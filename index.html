@@ -5,12 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="ICU Review">
-<meta name="theme-color" content="#F4F6FA">
+<meta name="theme-color" content="#1F3864">
+<link rel="icon" href="icon-64.png" sizes="64x64">
+<link rel="apple-touch-icon" href="icon-180.png">
 <title>Critical Care Pharmacotherapy Review</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
-
 <style>
 :root{
   --bg:#F4F6FA; --card:#FFFFFF; --sunk:#EDF1F7;
@@ -20,633 +21,641 @@
   --red:#B3121B; --red-soft:#FBEAEB;
   --amber:#9C6500; --amber-soft:#FDF2DE;
   --green:#1E6B3A; --green-soft:#E6F3EA;
+  --lbl:#EDF0F6; --rule:#AFB6C6;
   --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
   --r:10px;
 }
 html{color-scheme:only light}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{
-  margin:0;background:var(--bg);color:var(--ink);
-  font-family:var(--sans);font-size:16px;line-height:1.5;
-  -webkit-font-smoothing:antialiased;
-  padding-bottom:88px;
-}
-.wrap{max-width:560px;margin:0 auto;padding-inline:16px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:92px}
+.wrap{max-width:580px;margin:0 auto;padding-inline:16px}
 
-/* header */
-header{
-  background:var(--card);border-bottom:2px solid var(--red);
-  padding-block:16px 14px;
-}
-.eyebrow{font-size:11px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--red);margin:0 0 3px}
-h1{font-size:21px;font-weight:700;letter-spacing:-.02em;margin:0;color:var(--navy)}
-.sub{font-size:12.5px;color:var(--ink-dim);margin:3px 0 0}
+header{background:var(--card);border-bottom:2px solid var(--red);padding-block:15px 13px}
+.eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--red);margin:0 0 3px}
+h1{font-size:20px;font-weight:700;letter-spacing:-.02em;margin:0;color:var(--navy)}
+.sub{font-size:12px;color:var(--ink-dim);margin:3px 0 0}
+.back{background:none;border:0;font-family:inherit;font-size:13.5px;font-weight:600;
+  color:var(--navy);padding:0;margin-bottom:8px;cursor:pointer}
 
-/* sections */
-section{
-  background:var(--card);border:1px solid var(--line-soft);border-radius:var(--r);
-  margin-top:14px;overflow:hidden;
-}
-.sec-h{
-  display:flex;align-items:center;gap:10px;
-  padding:12px 14px;background:var(--navy-soft);cursor:pointer;
-  border:0;width:100%;text-align:left;font-family:inherit;
-}
-.sec-n{
-  font-family:var(--mono);font-size:12px;font-weight:600;color:var(--navy);
-  background:var(--card);border:1px solid var(--line);border-radius:5px;
-  min-width:22px;height:22px;display:grid;place-items:center;flex:none;
-}
+section{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--r);
+  margin-top:13px;overflow:hidden}
+.sec-h{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--navy-soft);
+  cursor:pointer;border:0;width:100%;text-align:left;font-family:inherit}
+.sec-n{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--navy);background:var(--card);
+  border:1px solid var(--line);border-radius:5px;min-width:22px;height:22px;display:grid;place-items:center;flex:none}
 .sec-t{font-size:15px;font-weight:600;color:var(--navy);flex:1}
-.sec-done{font-size:11px;font-weight:600;color:var(--green);letter-spacing:.04em}
 .chev{color:var(--ink-dim);font-size:13px;transition:transform .18s}
 .sec-h[aria-expanded="false"] .chev{transform:rotate(-90deg)}
 @media (prefers-reduced-motion:reduce){.chev{transition:none}}
 .sec-b{padding:14px}
 
-/* fields */
-.f{margin-bottom:14px}
-.f:last-child{margin-bottom:0}
-label,.lab{display:block;font-size:12.5px;font-weight:600;color:var(--ink-mid);margin-bottom:6px;letter-spacing:.01em}
-input[type=text],input[type=number],input[type=date],textarea,select{
-  width:100%;font-family:inherit;font-size:16px;color:var(--ink);
-  background:var(--sunk);border:1px solid var(--line);border-radius:8px;
-  padding:11px 12px;appearance:none;
-}
+.f{margin-bottom:13px}.f:last-child{margin-bottom:0}
+label,.lab{display:block;font-size:12.5px;font-weight:600;color:var(--ink-mid);margin-bottom:5px}
+input[type=text],input[type=number],textarea,select{width:100%;font-family:inherit;font-size:16px;
+  color:var(--ink);background:var(--sunk);border:1px solid var(--line);border-radius:8px;padding:10px 12px;appearance:none}
 input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid var(--navy);outline-offset:1px}
-textarea{resize:vertical;min-height:62px;line-height:1.45}
-.row{display:flex;gap:10px}
-.row>*{flex:1;min-width:0}
-.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+textarea{resize:vertical;min-height:58px;line-height:1.45}
+.row{display:flex;gap:9px}.row>*{flex:1;min-width:0}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px}
 
-/* yes / no */
+/* field with yesterday's value beside it */
+.pair{display:grid;grid-template-columns:1fr 104px;gap:8px;align-items:stretch}
+.prev{background:var(--lbl);border:1px dashed var(--rule);border-radius:8px;padding:6px 8px;
+  display:flex;flex-direction:column;justify-content:center;min-width:0}
+.prev-l{font-size:9.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-dim)}
+.prev-v{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--navy);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prev.none .prev-v{color:var(--ink-dim);font-weight:400}
+.up{color:var(--red)}.down{color:var(--green)}.same{color:var(--ink-mid)}
+
 .yn{display:flex;gap:8px}
-.yn button{
-  flex:1;font-family:inherit;font-size:15px;font-weight:600;
-  padding:12px 8px;border-radius:8px;cursor:pointer;
-  background:var(--sunk);border:1.5px solid var(--line);color:var(--ink-mid);
-}
+.yn button{flex:1;font-family:inherit;font-size:15px;font-weight:600;padding:11px 8px;border-radius:8px;
+  cursor:pointer;background:var(--sunk);border:1.5px solid var(--line);color:var(--ink-mid)}
 .yn button[aria-pressed="true"][data-v="no"]{background:var(--green-soft);border-color:var(--green);color:var(--green)}
 .yn button[aria-pressed="true"][data-v="yes"]{background:var(--red-soft);border-color:var(--red);color:var(--red)}
-.reveal{margin-top:10px}
-.reveal[hidden]{display:none!important}
-
-/* chips */
-.chips{display:flex;flex-wrap:wrap;gap:7px}
-.chips button{
-  font-family:inherit;font-size:14px;font-weight:500;padding:9px 13px;border-radius:99px;cursor:pointer;
-  background:var(--sunk);border:1.5px solid var(--line);color:var(--ink-mid);
-}
+.reveal{margin-top:9px}.reveal[hidden]{display:none!important}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{font-family:inherit;font-size:14px;font-weight:500;padding:8px 12px;border-radius:99px;
+  cursor:pointer;background:var(--sunk);border:1.5px solid var(--line);color:var(--ink-mid)}
 .chips button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
 
-/* computed */
-.calc{
-  background:var(--green-soft);border:1px solid var(--green);border-radius:8px;
-  padding:11px 12px;margin-top:10px;
-}
-.calc-l{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--green)}
-.calc-v{font-family:var(--mono);font-size:21px;font-weight:600;color:var(--ink);line-height:1.3}
+.calc{background:var(--green-soft);border:1px solid var(--green);border-radius:8px;padding:10px 12px;margin-top:9px}
+.calc-l{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
+.calc-v{font-family:var(--mono);font-size:20px;font-weight:600;color:var(--ink);line-height:1.3}
 .calc-n{font-size:11.5px;color:var(--ink-mid)}
 
-/* medicines */
-.med{background:var(--sunk);border:1px solid var(--line);border-radius:9px;padding:12px;margin-bottom:10px}
-.med-top{display:flex;gap:8px;align-items:center;margin-bottom:9px}
+.med{background:var(--sunk);border:1px solid var(--line);border-radius:9px;padding:11px;margin-bottom:9px}
+.med.stopped{opacity:.55}
+.med-top{display:flex;gap:8px;align-items:center;margin-bottom:8px}
 .med-n{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--ink-dim);flex:none}
 .med-top input{flex:1;background:var(--card)}
-.med input,.med textarea{background:var(--card)}
-.del{
-  flex:none;width:32px;height:32px;border-radius:7px;cursor:pointer;
-  background:var(--card);border:1px solid var(--line);color:var(--red);
-  font-size:17px;line-height:1;font-family:inherit;
-}
-.med-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.med input{background:var(--card)}
+.del{flex:none;width:31px;height:31px;border-radius:7px;cursor:pointer;background:var(--card);
+  border:1px solid var(--line);color:var(--red);font-size:16px;line-height:1;font-family:inherit}
+.med-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
 .med-grid .full{grid-column:1/-1}
-.med-grid input{font-size:15px;padding:9px 10px}
-.mini{font-size:11px;font-weight:600;color:var(--ink-dim);margin-bottom:4px;display:block}
-.addbtn{
-  width:100%;font-family:inherit;font-size:15px;font-weight:600;padding:12px;
-  border-radius:8px;cursor:pointer;background:var(--navy-soft);
-  border:1.5px dashed var(--navy);color:var(--navy);
-}
+.med-grid input{font-size:15px;padding:8px 10px}
+.mini{font-size:11px;font-weight:600;color:var(--ink-dim);margin-bottom:3px;display:block}
+.tagrow{display:flex;gap:6px;margin-top:8px}
+.tagrow button{flex:1;font-family:inherit;font-size:12px;font-weight:600;padding:7px 4px;border-radius:7px;
+  cursor:pointer;background:var(--card);border:1px solid var(--line);color:var(--ink-dim)}
+.tagrow button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.addbtn{width:100%;font-family:inherit;font-size:15px;font-weight:600;padding:11px;border-radius:8px;
+  cursor:pointer;background:var(--navy-soft);border:1.5px dashed var(--navy);color:var(--navy)}
 
-/* checks */
-.checks{margin-top:14px}
-.chk{
-  display:flex;gap:9px;padding:10px 12px;border-radius:8px;margin-bottom:7px;
-  font-size:13.5px;line-height:1.45;
-  background:var(--amber-soft);border:1px solid var(--amber);color:var(--ink);
-}
+.checks{margin-top:13px}
+.chk{display:flex;gap:9px;padding:10px 12px;border-radius:8px;margin-bottom:6px;font-size:13.5px;
+  line-height:1.45;background:var(--amber-soft);border:1px solid var(--amber);color:var(--ink)}
 .chk.ok{background:var(--green-soft);border-color:var(--green)}
-.chk b{font-weight:600}
 .chk-i{flex:none;font-weight:700;color:var(--amber)}
 .chk.ok .chk-i{color:var(--green)}
 
-/* action bar */
-.bar{
-  position:fixed;left:0;right:0;bottom:0;z-index:40;
-  background:var(--card);border-top:1px solid var(--line);
-  padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
-}
-.bar-in{max-width:560px;margin:0 auto;display:flex;gap:8px}
-.bar button{
-  flex:1;font-family:inherit;font-size:14.5px;font-weight:600;
-  padding:13px 6px;border-radius:9px;cursor:pointer;border:1.5px solid var(--line);
-  background:var(--sunk);color:var(--ink-mid);
-}
+/* patient list */
+.plist{margin-top:14px}
+.pcard{display:flex;align-items:center;gap:12px;width:100%;text-align:left;font-family:inherit;
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:13px 14px;
+  margin-bottom:9px;cursor:pointer}
+.pid{font-family:var(--mono);font-size:12.5px;font-weight:600;color:#fff;background:var(--navy);
+  border-radius:6px;padding:5px 8px;flex:none}
+.pmain{flex:1;min-width:0}
+.pname{font-size:15px;font-weight:600;color:var(--ink)}
+.pmeta{font-size:12px;color:var(--ink-dim)}
+.pday{font-family:var(--mono);font-size:12px;color:var(--ink-mid);flex:none}
+.empty{text-align:center;color:var(--ink-dim);font-size:14px;padding:26px 10px}
+
+/* trend */
+.trend{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-top:13px}
+table.tr{border-collapse:collapse;width:100%;font-size:13px}
+table.tr th,table.tr td{border:1px solid var(--line);padding:7px 9px;text-align:left;white-space:nowrap}
+table.tr th{background:var(--lbl);color:var(--navy);font-size:11px;font-weight:700;
+  letter-spacing:.04em;text-transform:uppercase}
+table.tr td.k{font-weight:600;color:var(--ink-mid);position:sticky;left:0;background:var(--card)}
+table.tr td{font-family:var(--mono)}
+table.tr td.k{font-family:var(--sans)}
+
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--card);
+  border-top:1px solid var(--line);padding:9px 16px calc(9px + env(safe-area-inset-bottom,0px))}
+.bar-in{max-width:580px;margin:0 auto;display:flex;gap:7px}
+.bar button{flex:1;font-family:inherit;font-size:14px;font-weight:600;padding:12px 4px;border-radius:9px;
+  cursor:pointer;border:1.5px solid var(--line);background:var(--sunk);color:var(--ink-mid)}
 .bar button.primary{background:var(--navy);border-color:var(--navy);color:#fff}
 
-/* preview */
 #preview[hidden]{display:none!important}
-#preview{
-  position:fixed;inset:0;z-index:60;background:var(--bg);
-  overflow-y:auto;padding:16px 16px calc(96px + env(safe-area-inset-bottom,0px));
-}
+#preview{position:fixed;inset:0;z-index:60;background:var(--bg);overflow-y:auto;
+  padding:16px 16px calc(96px + env(safe-area-inset-bottom,0px))}
 #preview .wrap{padding-inline:0}
-pre#out{
-  font-family:var(--mono);font-size:12.5px;line-height:1.55;white-space:pre-wrap;word-break:break-word;
-  background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;color:var(--ink);margin:0;
-}
-.toast{
-  position:fixed;left:50%;transform:translateX(-50%);bottom:96px;z-index:80;
-  background:var(--navy);color:#fff;font-size:14px;font-weight:600;
-  padding:10px 18px;border-radius:99px;
-}
+pre#out{font-family:var(--mono);font-size:12.5px;line-height:1.55;white-space:pre-wrap;word-break:break-word;
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;color:var(--ink);margin:0}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:98px;z-index:80;background:var(--navy);
+  color:#fff;font-size:14px;font-weight:600;padding:10px 18px;border-radius:99px}
 .toast[hidden]{display:none!important}
 .hint{font-size:11.5px;color:var(--ink-dim);margin:6px 0 0;line-height:1.4}
 
+/* ═══ PRINT — identical to the paper record ═══ */
+#print{display:none}
 @media print{
-  header,.bar,.sec-h .chev,.addbtn,.del,.checks,#preview{display:none!important}
-  body{background:#fff;color:#000;padding:0;font-size:11pt}
-  section{break-inside:avoid;border:1px solid #999;margin-top:8px}
-  .sec-h{background:#eee}
-  input,textarea{border:0;background:transparent;padding:2px 0}
+  @page{size:A4;margin:12mm 10mm}
+  body{background:#fff;padding:0}
+  body>header,body>.wrap,body>.bar,#preview,.toast{display:none!important}
+  #print{display:block;font-family:"IBM Plex Sans",Calibri,system-ui,sans-serif;color:#000;font-size:8.6pt}
+  #print *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .p-head{border-bottom:2.2pt solid #B3121B;padding-bottom:5pt;margin-bottom:9pt}
+  .p-eyebrow{font-size:7pt;font-weight:700;letter-spacing:.09em;color:#B3121B;margin-bottom:2pt}
+  .p-title{font-size:15pt;font-weight:700;color:#1F3864;letter-spacing:-.01em}
+  .p-sub{font-size:7.4pt;color:#5A6478;margin-top:2pt}
+  .p-bar{background:#1F3864;color:#fff;font-size:8.4pt;font-weight:700;letter-spacing:.05em;
+    padding:4pt 7pt;margin:9pt 0 4pt}
+  .p-bar.red{background:#B3121B}
+  table.p{border-collapse:collapse;width:100%;table-layout:fixed}
+  table.p th,table.p td{border:.5pt solid #AFB6C6;padding:3.4pt 5pt;vertical-align:top;
+    word-wrap:break-word;overflow-wrap:break-word}
+  table.p th{background:#EDF0F6;color:#1F3864;font-size:6.8pt;font-weight:700;
+    letter-spacing:.05em;text-transform:uppercase;text-align:left}
+  table.p td.k{background:#EDF0F6;font-weight:600;color:#1F3864;font-size:7.4pt;width:26%}
+  .p-note{font-size:7.4pt;color:#5A6478;margin-top:3pt;font-style:italic}
+  .p-foot{border-top:.6pt solid #AFB6C6;margin-top:11pt;padding-top:6pt;font-size:7.4pt;color:#5A6478;
+    display:flex;justify-content:space-between}
+  .p-up{color:#B3121B;font-weight:700}
+  .p-dn{color:#1E6B3A;font-weight:700}
+  tr,table.p{page-break-inside:auto}
+  td,th{page-break-inside:avoid}
 }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap">
-    <p class="eyebrow">Department of Pharmacy · Intensive Care Service</p>
-    <h1>Critical Care Pharmacotherapy Review</h1>
-    <p class="sub" id="autos">Saves as you type on this phone</p>
-  </div>
-</header>
+<header><div class="wrap">
+  <p class="eyebrow">Department of Pharmacy · Intensive Care Service</p>
+  <h1>Critical Care Pharmacotherapy Review</h1>
+  <p class="sub" id="hsub">Saves on this phone</p>
+</div></header>
 
-<div class="wrap">
+<div class="wrap" id="app"></div>
 
-<!-- 0 identity -->
-<section>
-  <button class="sec-h" aria-expanded="true" data-sec><span class="sec-n">·</span><span class="sec-t">Patient</span><span class="sec-done" data-done></span><span class="chev">▾</span></button>
-  <div class="sec-b">
-    <div class="row"><div class="f"><label for="caseno">Case no.</label><input type="text" id="caseno" placeholder="ICU-005"></div>
-    <div class="f"><label for="initials">Initials</label><input type="text" id="initials" placeholder="A. B."></div></div>
-    <div class="row3">
-      <div class="f"><label for="age">Age</label><input type="number" id="age" inputmode="numeric"></div>
-      <div class="f"><span class="lab">Sex</span><div class="chips" data-chip="sex"><button type="button" data-v="male" aria-pressed="false">Male</button><button type="button" data-v="female" aria-pressed="false">Female</button></div></div>
-      <div class="f"><label for="icuday">ICU day</label><input type="number" id="icuday" inputmode="numeric"></div>
-    </div>
-    <div class="row"><div class="f"><label for="admitted">Admitted on</label><input type="text" id="admitted" placeholder="19 / 9"></div>
-    <div class="f"><label for="today">Today</label><input type="text" id="today"></div></div>
-  </div>
-</section>
+<div class="bar"><div class="bar-in" id="bar"></div></div>
 
-<!-- 1 weight -->
-<section>
-  <button class="sec-h" aria-expanded="true" data-sec><span class="sec-n">1</span><span class="sec-t">Weight and height</span><span class="sec-done" data-done></span><span class="chev">▾</span></button>
-  <div class="sec-b">
-    <div class="row">
-      <div class="f"><label for="weight">Weight (kg)</label><input type="number" id="weight" inputmode="decimal" step="0.1"></div>
-      <div class="f"><label for="height">Height (cm)</label><input type="number" id="height" inputmode="numeric"></div>
-    </div>
-    <div class="f"><span class="lab">Is the patient swollen?</span>
-      <div class="yn" data-yn="swollen"><button type="button" data-v="no" aria-pressed="false">No</button><button type="button" data-v="yes" aria-pressed="false">Yes</button></div>
-    </div>
-    <div class="calc"><div class="calc-l">Ideal weight</div><div class="calc-v" id="ibw">—</div><div class="calc-n" id="ibwnote">Enter sex and height</div></div>
-  </div>
-</section>
-
-<!-- 2 why -->
-<section>
-  <button class="sec-h" aria-expanded="true" data-sec><span class="sec-n">2</span><span class="sec-t">Why in intensive care</span><span class="sec-done" data-done></span><span class="chev">▾</span></button>
-  <div class="sec-b">
-    <div class="f"><label for="mainprob">Main problem</label><input type="text" id="mainprob"></div>
-    <div class="f"><label for="otherprob">Other problems</label><input type="text" id="otherprob"></div>
-  </div>
-</section>
-
-<!-- 3 allergies -->
-<section>
-  <button class="sec-h" aria-expanded="true" data-sec><span class="sec-n">3</span><span class="sec-t">Allergies</span><span class="sec-done" data-done></span><span class="chev">▾</span></button>
-  <div class="sec-b">
-    <div class="f"><span class="lab">Drug allergy?</span>
-      <div class="yn" data-yn="drugallergy"><button type="button" data-v="no" aria-pressed="false">No</button><button type="button" data-v="yes" aria-pressed="false">Yes</button></div>
-      <div class="reveal" data-for="drugallergy" hidden><textarea id="drugallergytext" placeholder="Which drug, and what happened"></textarea></div>
-    </div>
-    <div class="f"><span class="lab">Food allergy?</span>
-      <div class="yn" data-yn="foodallergy"><button type="button" data-v="no" aria-pressed="false">No</button><button type="button" data-v="yes" aria-pressed="false">Yes</button></div>
-      <div class="reveal" data-for="foodallergy" hidden><textarea id="foodallergytext" placeholder="Which food, and what happened"></textarea></div>
-    </div>
-  </div>
-</section>
-
-<!-- 4 kidney -->
-<section>
-  <button class="sec-h" aria-expanded="true" data-sec><span class="sec-n">4</span><span class="sec-t">Kidney and liver</span><span class="sec-done" data-done></span><span class="chev">▾</span></button>
-  <div class="sec-b">
-    <div class="row3">
-      <div class="f"><label for="creat">Creatinine</label><input type="number" id="creat" inputmode="decimal" step="0.01"></div>
-      <div class="f"><label for="creatbase">Before adm.</label><input type="number" id="creatbase" inputmode="decimal" step="0.01"></div>
-      <div class="f"><label for="uo">Urine mL/kg/h</label><input type="number" id="uo" inputmode="decimal" step="0.1"></div>
-    </div>
-    <div class="f"><span class="lab">Creatinine is</span>
-      <div class="chips" data-chip="trend"><button type="button" data-v="going up" aria-pressed="false">Going up</button><button type="button" data-v="steady" aria-pressed="false">Steady</button><button type="button" data-v="coming down" aria-pressed="false">Coming down</button></div>
-    </div>
-    <div class="f"><span class="lab">Dialysis?</span>
-      <div class="yn" data-yn="dialysis"><button type="button" data-v="no" aria-pressed="false">No</button><button type="button" data-v="yes" aria-pressed="false">Yes</button></div>
-      <div class="reveal" data-for="dialysis" hidden><input type="text" id="dialysistext" placeholder="Type and hours per day"></div>
-    </div>
-    <div class="row3">
-      <div class="f"><label for="bili">Bilirubin</label><input type="number" id="bili" inputmode="decimal" step="0.1"></div>
-      <div class="f"><label for="alb">Albumin</label><input type="number" id="alb" inputmode="decimal" step="0.1"></div>
-      <div class="f"><label for="inr">INR</label><input type="number" id="inr" inputmode="decimal" step="0.1"></div>
-    </div>
-  </div>
-</section>
-
-<!-- 5 bloods -->
-<section>
-  <button class="sec-h" aria-expanded="true" data-sec><span class="sec-n">5</span><span class="sec-t">Blood results today</span><span class="sec-done" data-done></span><span class="chev">▾</span></button>
-  <div class="sec-b">
-    <div class="row3">
-      <div class="f"><label for="na">Sodium</label><input type="number" id="na" inputmode="decimal" step="0.1"></div>
-      <div class="f"><label for="k">Potassium</label><input type="number" id="k" inputmode="decimal" step="0.01"></div>
-      <div class="f"><label for="mg">Magnesium</label><input type="number" id="mg" inputmode="decimal" step="0.01"></div>
-    </div>
-    <div class="row3">
-      <div class="f"><label for="ca">Calcium</label><input type="number" id="ca" inputmode="decimal" step="0.01"></div>
-      <div class="f"><label for="glu">Glucose</label><input type="number" id="glu" inputmode="decimal" step="0.1"></div>
-      <div class="f"><label for="po4">Phosphate</label><input type="number" id="po4" inputmode="decimal" step="0.01"></div>
-    </div>
-    <div class="row3">
-      <div class="f"><label for="hb">Haemoglobin</label><input type="number" id="hb" inputmode="decimal" step="0.1"></div>
-      <div class="f"><label for="plt">Platelets</label><input type="number" id="plt" inputmode="numeric"></div>
-      <div class="f"><label for="wbc">White cells</label><input type="number" id="wbc" inputmode="decimal" step="0.1"></div>
-    </div>
-    <div class="row3">
-      <div class="f"><label for="crp">CRP</label><input type="number" id="crp" inputmode="decimal" step="0.1"></div>
-      <div class="f"><label for="pct">Procalcitonin</label><input type="number" id="pct" inputmode="decimal" step="0.01"></div>
-      <div class="f"><label for="lac">Lactate</label><input type="number" id="lac" inputmode="decimal" step="0.1"></div>
-    </div>
-  </div>
-</section>
-
-<!-- 6 status -->
-<section>
-  <button class="sec-h" aria-expanded="true" data-sec><span class="sec-n">6</span><span class="sec-t">Status, feeding and lines</span><span class="sec-done" data-done></span><span class="chev">▾</span></button>
-  <div class="sec-b">
-    <div class="f"><span class="lab">Breathing tube?</span>
-      <div class="yn" data-yn="tube"><button type="button" data-v="no" aria-pressed="false">No</button><button type="button" data-v="yes" aria-pressed="false">Yes</button></div></div>
-    <div class="f"><span class="lab">Blood pressure drugs?</span>
-      <div class="yn" data-yn="pressors"><button type="button" data-v="no" aria-pressed="false">No</button><button type="button" data-v="yes" aria-pressed="false">Yes</button></div></div>
-    <div class="row">
-      <div class="f"><label for="rass">Sedation score (RASS)</label><input type="text" id="rass"></div>
-      <div class="f"><label for="qtc">QTc (ms)</label><input type="number" id="qtc" inputmode="numeric"></div>
-    </div>
-    <div class="f"><span class="lab">Feeding</span>
-      <div class="chips" data-chip="feed"><button type="button" data-v="nothing by mouth" aria-pressed="false">Nil</button><button type="button" data-v="feeding tube" aria-pressed="false">Tube</button><button type="button" data-v="eating" aria-pressed="false">Eating</button><button type="button" data-v="drip feeding" aria-pressed="false">Drip</button></div>
-    </div>
-    <div class="f"><span class="lab">Central line?</span>
-      <div class="yn" data-yn="cvc"><button type="button" data-v="no" aria-pressed="false">No</button><button type="button" data-v="yes" aria-pressed="false">Yes</button></div>
-      <div class="reveal" data-for="cvc" hidden><input type="number" id="lumens" inputmode="numeric" placeholder="Number of lumens"></div>
-    </div>
-  </div>
-</section>
-
-<!-- 7 medicines -->
-<section>
-  <button class="sec-h" aria-expanded="true" data-sec><span class="sec-n">7</span><span class="sec-t">Medicines</span><span class="sec-done" data-done></span><span class="chev">▾</span></button>
-  <div class="sec-b">
-    <div id="meds"></div>
-    <button type="button" class="addbtn" id="addmed">+ Add medicine</button>
-    <p class="hint">Include drips, fluids, electrolytes, inhalers, creams, eye drops and anything given only when needed.</p>
-  </div>
-</section>
-
-<!-- 8 cultures + unclear -->
-<section>
-  <button class="sec-h" aria-expanded="true" data-sec><span class="sec-n">8</span><span class="sec-t">Cultures and anything unclear</span><span class="sec-done" data-done></span><span class="chev">▾</span></button>
-  <div class="sec-b">
-    <div class="f"><label for="cultures">Cultures — site, date, what grew, sensitivities</label><textarea id="cultures"></textarea></div>
-    <div class="f"><label for="unclear">Anything you could not read or could not get</label><textarea id="unclear" placeholder="Write it here rather than guessing"></textarea></div>
-  </div>
-</section>
-
-<div class="checks" id="checks"></div>
-<p class="hint" style="margin-bottom:10px">Nothing is sent anywhere until you press a button. What you type stays on this phone.</p>
-
-</div>
-
-<div class="bar"><div class="bar-in">
-  <button type="button" id="btn-print">Print</button>
-  <button type="button" id="btn-clear">New</button>
-  <button type="button" class="primary" id="btn-done">Finish</button>
+<div id="preview" hidden><div class="wrap">
+  <h1 style="font-size:19px;margin-bottom:10px">Send or copy</h1>
+  <pre id="out"></pre>
+  <div class="bar"><div class="bar-in">
+    <button onclick="closePreview()">Back</button>
+    <button onclick="copyOut()">Copy</button>
+    <button class="primary" onclick="waOut()">WhatsApp</button>
+  </div></div>
 </div></div>
 
-<div id="preview" hidden>
-  <div class="wrap" style="padding-top:8px">
-    <p class="eyebrow" style="color:var(--navy)">Record ready</p>
-    <h1 style="font-size:20px;margin-bottom:10px">Send or copy</h1>
-    <pre id="out"></pre>
-  </div>
-  <div class="bar"><div class="bar-in">
-    <button type="button" id="btn-back">Back</button>
-    <button type="button" id="btn-copy">Copy</button>
-    <button type="button" class="primary" id="btn-wa">WhatsApp</button>
-  </div></div>
-</div>
-
 <div class="toast" id="toast" hidden></div>
+<div id="print"></div>
 
 <script>
-(function(){
-  var KEY='pcr-v1';
-  var state={ sex:'', swollen:'', drugallergy:'', foodallergy:'', dialysis:'', trend:'', tube:'', pressors:'', feed:'', cvc:'', meds:[] };
+'use strict';
+const KEY='ccpr-v2';
+const LABS=[
+ ['sodium','Sodium'],['potassium','Potassium'],['magnesium','Magnesium'],['calcium','Calcium'],
+ ['glucose','Glucose (blood sugar)'],['phosphate','Phosphate'],['haemoglobin','Haemoglobin'],
+ ['platelets','Platelets'],['whitecells','White cell count'],['crp','CRP'],
+ ['procalcitonin','Procalcitonin'],['lactate','Lactate']
+];
+const KID=[['creatinine','Creatinine'],['urea','Urea'],['urine','Urine output mL/kg/h']];
+const LIV=[['bilirubin','Bilirubin'],['albumin','Albumin'],['inr','INR (clotting time)']];
 
-  var IDS=['caseno','initials','age','icuday','admitted','today','weight','height','mainprob','otherprob',
-    'drugallergytext','foodallergytext','creat','creatbase','uo','dialysistext','bili','alb','inr',
-    'na','k','mg','ca','glu','po4','hb','plt','wbc','crp','pct','lac','rass','qtc','lumens','cultures','unclear'];
+let S={cases:{},current:null,view:'list'};
+function load(){try{const r=localStorage.getItem(KEY);if(r)S=Object.assign(S,JSON.parse(r));}catch(e){}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.hidden=false;
+  clearTimeout(t._h);t._h=setTimeout(()=>t.hidden=true,1900);}
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const today=()=>{const d=new Date();return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});};
+const C=()=>S.cases[S.current];
+const D=()=>{const c=C();return c?c.days[c.days.length-1]:null;};
+const PREV=()=>{const c=C();return c&&c.days.length>1?c.days[c.days.length-2]:null;};
 
-  function $(id){return document.getElementById(id);}
-  function v(id){var e=$(id);return e?e.value.trim():'';}
+function newDay(from){
+  const d={date:today(),icuDay:'',weight:'',swollen:'',labs:{},kid:{},liv:{},
+    creatTrend:'',dialysis:'',ascites:'',enceph:'',vent:'',feeding:'',lines:'',
+    meds:[],cultures:'',unclear:''};
+  if(from){ d.icuDay=from.icuDay?String(Number(from.icuDay)+1):'';
+    d.weight=from.weight; d.swollen=from.swollen;
+    d.meds=from.meds.filter(m=>m.state!=='stopped').map(m=>({...m,state:''})); }
+  return d;
+}
+function newCase(){
+  const n=Object.keys(S.cases).length+1;
+  const id='ICU-'+String(n).padStart(3,'0');
+  S.cases[id]={id,initials:'',age:'',sex:'',admitted:'',reason:'',other:'',height:'',
+    algD:'',algDwhat:'',algF:'',algFwhat:'',days:[newDay(null)]};
+  S.current=id;S.view='form';save();render();
+}
 
-  /* ---------- medicines ---------- */
-  function medRow(i,d){
-    d=d||{};
-    var w=document.createElement('div');
-    w.className='med';
-    w.innerHTML=
-      '<div class="med-top"><span class="med-n">'+(i+1)+'</span>'+
-      '<input type="text" data-m="name" placeholder="Medicine" value="">'+
-      '<button type="button" class="del" aria-label="Remove medicine">×</button></div>'+
-      '<div class="med-grid">'+
-      '<div><span class="mini">Dose</span><input type="text" data-m="dose"></div>'+
-      '<div><span class="mini">Route</span><input type="text" data-m="route"></div>'+
-      '<div><span class="mini">How often</span><input type="text" data-m="freq"></div>'+
-      '<div><span class="mini">Rate (drips)</span><input type="text" data-m="rate"></div>'+
-      '<div><span class="mini">Started on</span><input type="text" data-m="start"></div>'+
-      '<div><span class="mini">What it is for</span><input type="text" data-m="ind"></div>'+
-      '</div>';
-    Object.keys(d).forEach(function(k){
-      var el=w.querySelector('[data-m="'+k+'"]'); if(el) el.value=d[k]||'';
-    });
-    w.querySelector('.del').addEventListener('click',function(){
-      w.remove(); renumber(); save(); check();
-    });
-    w.addEventListener('input',function(){ save(); check(); });
-    return w;
-  }
-  function renumber(){
-    var rows=document.querySelectorAll('#meds .med');
-    for(var i=0;i<rows.length;i++) rows[i].querySelector('.med-n').textContent=i+1;
-  }
-  function readMeds(){
-    var out=[];
-    document.querySelectorAll('#meds .med').forEach(function(r){
-      var o={};
-      r.querySelectorAll('[data-m]').forEach(function(el){ o[el.getAttribute('data-m')]=el.value.trim(); });
-      if(o.name) out.push(o);
-    });
-    return out;
-  }
-  $('addmed').addEventListener('click',function(){
-    $('meds').appendChild(medRow(document.querySelectorAll('#meds .med').length,{}));
-    save();
-  });
+/* ── ideal body weight ── */
+function ibw(){const c=C();const h=parseFloat(c.height);const s=c.sex;
+  if(!h||!s)return null;
+  const v=(s==='Male'?50:45.5)+0.9*(h-152);
+  return v>0?v:null;}
 
-  /* ---------- toggles ---------- */
-  document.querySelectorAll('[data-yn]').forEach(function(g){
-    var key=g.getAttribute('data-yn');
-    g.addEventListener('click',function(e){
-      var b=e.target.closest('button'); if(!b) return;
-      var val=b.getAttribute('data-v');
-      state[key]= (state[key]===val) ? '' : val;
-      paintYN(g,key); toggleReveal(key); save(); check(); ibw();
-    });
-  });
-  function paintYN(g,key){
-    g.querySelectorAll('button').forEach(function(b){
-      b.setAttribute('aria-pressed', String(b.getAttribute('data-v')===state[key]));
-    });
-  }
-  function toggleReveal(key){
-    var r=document.querySelector('.reveal[data-for="'+key+'"]');
-    if(r) r.hidden = (state[key]!=='yes');
-  }
-  document.querySelectorAll('[data-chip]').forEach(function(g){
-    var key=g.getAttribute('data-chip');
-    g.addEventListener('click',function(e){
-      var b=e.target.closest('button'); if(!b) return;
-      var val=b.getAttribute('data-v');
-      state[key]= (state[key]===val) ? '' : val;
-      paintChip(g,key); save(); check(); ibw();
-    });
-  });
-  function paintChip(g,key){
-    g.querySelectorAll('button').forEach(function(b){
-      b.setAttribute('aria-pressed', String(b.getAttribute('data-v')===state[key]));
-    });
-  }
+/* ── previous value chip ── */
+function prevOf(path){
+  const p=PREV();if(!p)return null;
+  const parts=path.split('.');let v=p;for(const k of parts){v=v?v[k]:undefined;}
+  return (v===''||v==null)?null:v;
+}
+function arrow(now,then){
+  const a=parseFloat(now),b=parseFloat(then);
+  if(isNaN(a)||isNaN(b))return '';
+  if(a>b)return '<span class="up">▲</span>';
+  if(a<b)return '<span class="down">▼</span>';
+  return '<span class="same">–</span>';
+}
+function field(label,path,ph){
+  const cur=getV(path);const pv=prevOf(path);
+  const pc=pv==null?'<div class="prev none"><div class="prev-l">Yesterday</div><div class="prev-v">—</div></div>'
+    :'<div class="prev"><div class="prev-l">Yesterday</div><div class="prev-v">'+esc(pv)+' '+arrow(cur,pv)+'</div></div>';
+  return '<div class="f"><label>'+esc(label)+'</label><div class="pair">'+
+    '<input type="text" inputmode="decimal" value="'+esc(cur)+'" placeholder="'+esc(ph||'')+'" oninput="setV(\''+path+'\',this.value)">'+
+    pc+'</div></div>';
+}
+function getV(path){const parts=path.split('.');let v=D();for(const k of parts){v=v?v[k]:undefined;}return v==null?'':v;}
+function setV(path,val){const parts=path.split('.');let o=D();
+  for(let i=0;i<parts.length-1;i++){if(!o[parts[i]])o[parts[i]]={};o=o[parts[i]];}
+  o[parts[parts.length-1]]=val;save();refreshLive();}
+function setC(k,v){C()[k]=v;save();refreshLive();}
 
-  /* ---------- ideal body weight ---------- */
-  function ibw(){
-    var h=parseFloat(v('height')), s=state.sex, el=$('ibw'), n=$('ibwnote');
-    if(!h||!s){ el.textContent='—'; n.textContent='Enter sex and height'; return; }
-    var base = (s==='male') ? 50.0 : 45.5;
-    var val = base + 0.9*(h-152);
-    if(val<30) val=30;
-    el.textContent = val.toFixed(1)+' kg';
-    var note = (s==='male'?'Male':'Female')+' · '+base.toFixed(1)+' + 0.9 × ('+h+' − 152)';
-    var w=parseFloat(v('weight'));
-    if(w && w > 1.3*val){
-      var adj = val + 0.4*(w-val);
-      note += '  ·  Adjusted ' + adj.toFixed(1) + ' kg (scale weight is over 1.3 × ideal)';
-    } else if(w && w < val){
-      note += '  ·  Scale weight is below ideal — use the scale weight';
-    }
-    n.textContent = note;
-  }
+/* ── screens ── */
+function render(){
+  const app=document.getElementById('app');
+  const bar=document.getElementById('bar');
+  const sub=document.getElementById('hsub');
+  if(S.view==='list'){ sub.textContent='Saves on this phone'; app.innerHTML=listView();
+    bar.innerHTML='<button class="primary" onclick="newCase()">New patient</button>';return;}
+  if(S.view==='trend'){ const c=C(); sub.textContent=c.id+(c.initials?' · '+c.initials:'');
+    app.innerHTML=trendView();
+    bar.innerHTML='<button onclick="go(\'form\')">Back</button><button onclick="window.print()">Print</button>';return;}
+  const c=C();sub.textContent=c.id+(c.initials?' · '+c.initials:'')+' · day '+(D().icuDay||'?');
+  app.innerHTML=formView();
+  bar.innerHTML='<button onclick="go(\'list\')">Patients</button>'+
+    '<button onclick="go(\'trend\')">Trend</button>'+
+    '<button onclick="doPrint()">Print</button>'+
+    '<button class="primary" onclick="finish()">Finish</button>';
+  refreshLive();
+}
+function go(v){S.view=v;save();render();window.scrollTo(0,0);}
+function open_(id){S.current=id;S.view='form';save();render();window.scrollTo(0,0);}
 
-  /* ---------- checks ---------- */
-  function check(){
-    var out=[], meds=readMeds();
-    var k=parseFloat(v('k')), mg=v('mg'), qtc=v('qtc');
-    if(state.swollen==='yes' && v('weight'))
-      out.push(['Weight is marked as swollen — kidney clearance worked out from it will read too high. Add the weight before the illness if anyone knows it.']);
-    if(v('creat') && !state.trend)
-      out.push(['Creatinine entered but the direction is not set. The direction matters more than the number.']);
-    if(k && k<3.5 && !mg)
-      out.push(['Potassium is low and magnesium is blank. Potassium will not correct through a magnesium shortage.']);
-    if(!mg && meds.length)
-      out.push(['Magnesium is blank — it is needed before judging any heart-rhythm drug.']);
-    var hasIns = meds.some(function(m){return /insulin/i.test(m.name);});
-    if(hasIns && !v('glu')) out.push(['Insulin is on the list but no blood sugar is recorded.']);
-    var hasCa = meds.some(function(m){return /calcium/i.test(m.name);});
-    if(hasCa && !v('ca')) out.push(['Calcium is being given but no calcium level is recorded.']);
-    var noStart = meds.filter(function(m){return !m.start;}).length;
-    if(noStart) out.push([noStart+' medicine'+(noStart>1?'s have':' has')+' no start date. That is how a forgotten medicine stays on a chart.']);
-    var noInd = meds.filter(function(m){return !m.ind;}).length;
-    if(noInd) out.push([noInd+' medicine'+(noInd>1?'s have':' has')+' no reason written.']);
-    if(!state.drugallergy) out.push(['Drug allergy has not been answered.']);
+function listView(){
+  const ids=Object.keys(S.cases);
+  if(!ids.length)return '<div class="empty">No patients yet.<br>Tap <b>New patient</b> to start.</div>';
+  return '<div class="plist">'+ids.map(id=>{const c=S.cases[id];const d=c.days[c.days.length-1];
+    return '<button class="pcard" onclick="open_(\''+id+'\')">'+
+      '<span class="pid">'+esc(id.replace('ICU-',''))+'</span>'+
+      '<span class="pmain"><span class="pname">'+esc(c.initials||'no initials')+'</span>'+
+      '<span class="pmeta">'+esc([c.age,c.sex,c.reason].filter(Boolean).join(' · ')||'not filled in')+'</span></span>'+
+      '<span class="pday">day '+esc(d.icuDay||'?')+'<br>'+esc(c.days.length)+' entr'+(c.days.length===1?'y':'ies')+'</span></button>';
+  }).join('')+'</div>';
+}
 
-    var box=$('checks'); box.innerHTML='';
-    if(!out.length){
-      if(meds.length){
-        var d=document.createElement('div'); d.className='chk ok';
-        d.innerHTML='<span class="chk-i">✓</span><span>Nothing missing. Ready to send.</span>';
-        box.appendChild(d);
-      }
-      return;
-    }
-    out.forEach(function(m){
-      var d=document.createElement('div'); d.className='chk';
-      d.innerHTML='<span class="chk-i">!</span><span>'+m[0]+'</span>';
-      box.appendChild(d);
-    });
-  }
+function sec(n,title,body,open){
+  return '<section><button class="sec-h" aria-expanded="'+(open===false?'false':'true')+'" onclick="tog(this)">'+
+    '<span class="sec-n">'+n+'</span><span class="sec-t">'+title+'</span><span class="chev">▾</span></button>'+
+    '<div class="sec-b"'+(open===false?' hidden':'')+'>'+body+'</div></section>';
+}
+function tog(b){const o=b.getAttribute('aria-expanded')==='true';
+  b.setAttribute('aria-expanded',String(!o));b.nextElementSibling.hidden=o;}
 
-  /* ---------- save / load ---------- */
-  function save(){
-    try{
-      var o={s:state,f:{}};
-      IDS.forEach(function(id){ var e=$(id); if(e) o.f[id]=e.value; });
-      o.s.meds=readMeds();
-      localStorage.setItem(KEY,JSON.stringify(o));
-    }catch(e){}
-  }
-  function load(){
-    var o=null;
-    try{ o=JSON.parse(localStorage.getItem(KEY)||'null'); }catch(e){}
-    if(o&&o.s){ Object.keys(state).forEach(function(k){ if(k!=='meds'&&o.s[k]!=null) state[k]=o.s[k]; }); }
-    if(o&&o.f){ IDS.forEach(function(id){ var e=$(id); if(e&&o.f[id]!=null) e.value=o.f[id]; }); }
-    var meds=(o&&o.s&&o.s.meds&&o.s.meds.length)?o.s.meds:[{},{},{}];
-    meds.forEach(function(m,i){ $('meds').appendChild(medRow(i,m)); });
-    document.querySelectorAll('[data-yn]').forEach(function(g){ paintYN(g,g.getAttribute('data-yn')); toggleReveal(g.getAttribute('data-yn')); });
-    document.querySelectorAll('[data-chip]').forEach(function(g){ paintChip(g,g.getAttribute('data-chip')); });
-    if(!v('today')){ $('today').value = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}); }
-    ibw(); check();
-  }
+function yn(label,key,isCase){
+  const v=isCase?C()[key]:getV(key);
+  const f=isCase?'setC':'setV';
+  return '<div class="f"><span class="lab">'+esc(label)+'</span><div class="yn">'+
+    '<button data-v="no" aria-pressed="'+(v==='no')+'" onclick="'+f+'(\''+key+'\',\'no\');render()">No</button>'+
+    '<button data-v="yes" aria-pressed="'+(v==='yes')+'" onclick="'+f+'(\''+key+'\',\'yes\');render()">Yes</button>'+
+    '</div></div>';
+}
+function chips(label,key,opts,isCase){
+  const v=isCase?C()[key]:getV(key);const f=isCase?'setC':'setV';
+  return '<div class="f"><span class="lab">'+esc(label)+'</span><div class="chips">'+
+    opts.map(o=>'<button aria-pressed="'+(v===o)+'" onclick="'+f+'(\''+key+'\',\''+o+'\');render()">'+esc(o)+'</button>').join('')+
+    '</div></div>';
+}
+function txt(label,key,ph,isCase,area){
+  const v=isCase?C()[key]:getV(key);const f=isCase?'setC':'setV';
+  const el=area?'<textarea placeholder="'+esc(ph||'')+'" oninput="'+f+'(\''+key+'\',this.value)">'+esc(v)+'</textarea>'
+    :'<input type="text" value="'+esc(v)+'" placeholder="'+esc(ph||'')+'" oninput="'+f+'(\''+key+'\',this.value)">';
+  return '<div class="f"><label>'+esc(label)+'</label>'+el+'</div>';
+}
 
-  IDS.forEach(function(id){ var e=$(id); if(e) e.addEventListener('input',function(){ save(); ibw(); check(); }); });
+function formView(){
+  const c=C(),d=D();
+  let h='';
+  h+='<button class="back" onclick="go(\'list\')">‹ All patients</button>';
 
-  /* ---------- sections ---------- */
-  document.querySelectorAll('[data-sec]').forEach(function(h){
-    h.addEventListener('click',function(){
-      var open = h.getAttribute('aria-expanded')==='true';
-      h.setAttribute('aria-expanded', String(!open));
-      h.parentElement.querySelector('.sec-b').hidden = open;
-    });
-  });
+  h+=sec('·','Patient',
+    '<div class="row">'+txt('Case no.','id','',true)+txt('Initials','initials','A. B.',true)+'</div>'+
+    '<div class="row">'+txt('Age','age','',true)+'</div>'+
+    chips('Sex','sex',['Male','Female'],true)+
+    '<div class="row">'+txt('Admitted on','admitted','19 / 9',true)+
+      '<div class="f"><label>Today</label><input type="text" value="'+esc(d.date)+'" oninput="setV(\'date\',this.value)"></div></div>'+
+    '<div class="f"><label>ICU day</label><div class="pair">'+
+      '<input type="text" inputmode="numeric" value="'+esc(d.icuDay)+'" oninput="setV(\'icuDay\',this.value)">'+
+      (PREV()&&PREV().icuDay?'<div class="prev"><div class="prev-l">Yesterday</div><div class="prev-v">day '+esc(PREV().icuDay)+'</div></div>'
+        :'<div class="prev none"><div class="prev-l">Yesterday</div><div class="prev-v">—</div></div>')+
+      '</div></div>');
 
-  /* ---------- build the record ---------- */
-  function line(l,val){ return val? (l+': '+val+'\n') : ''; }
-  function build(){
-    var meds=readMeds(), L=[];
-    L.push('CRITICAL CARE PHARMACOTHERAPY REVIEW');
-    L.push('Department of Pharmacy — Intensive Care Service');
+  h+=sec('1','Weight and height',
+    '<div class="row">'+
+      '<div class="f"><label>Weight (kg)</label><input type="text" inputmode="decimal" value="'+esc(d.weight)+'" oninput="setV(\'weight\',this.value)"></div>'+
+      txt('Height (cm)','height','',true)+'</div>'+
+    yn('Is the patient swollen?','swollen')+
+    '<div class="calc" id="ibwbox"></div>');
+
+  h+=sec('2','Why in intensive care',
+    txt('Main problem','reason','',true)+txt('Other problems','other','',true,true));
+
+  h+=sec('3','Allergies',
+    yn('Drug allergy?','algD',true)+
+    '<div class="reveal" '+(c.algD==='yes'?'':'hidden')+'>'+txt('Which drug, and what happened','algDwhat','',true,true)+'</div>'+
+    yn('Food allergy?','algF',true)+
+    '<div class="reveal" '+(c.algF==='yes'?'':'hidden')+'>'+txt('Which food, and what happened','algFwhat','',true,true)+'</div>');
+
+  h+=sec('4','Kidney and liver',
+    KID.map(k=>field(k[1],'kid.'+k[0])).join('')+
+    chips('Creatinine is','creatTrend',['going up','steady','coming down'])+
+    yn('On dialysis?','dialysis')+
+    LIV.map(k=>field(k[1],'liv.'+k[0])).join('')+
+    chips('Fluid in the abdomen','ascites',['none','mild','moderate or more'])+
+    chips('Confused or drowsy beyond sedation','enceph',['no','mild','marked'])+
+    '<p class="hint">The last two turn a vague liver caution into a computable class.</p>');
+
+  h+=sec('5','Blood results today',
+    LABS.map(k=>field(k[1],'labs.'+k[0])).join(''));
+
+  h+=sec('6','Status, feeding and lines',
+    chips('Breathing','vent',['own breathing','oxygen','ventilator'])+
+    chips('Feeding','feeding',['nothing by mouth','by mouth','feeding tube','drip feeding'])+
+    txt('Central line — where, and how many openings','lines','',false)+
+    txt('Cultures sent / grown','cultures','',false,true),false);
+
+  h+=sec('7','Medicines',
+    '<div id="meds">'+d.meds.map((m,i)=>medRow(i,m)).join('')+'</div>'+
+    '<button class="addbtn" onclick="addMed()">+ Add medicine</button>'+
+    '<p class="hint">Medicines carried over from the last entry. Mark anything that started, stopped or changed.</p>');
+
+  h+=sec('8','Anything unclear',
+    txt('Anything you could not read, or are unsure about','unclear','Leave blank rather than guess.',false,true));
+
+  h+='<div class="checks" id="checks"></div>';
+  return h;
+}
+
+function medRow(i,m){
+  return '<div class="med'+(m.state==='stopped'?' stopped':'')+'">'+
+    '<div class="med-top"><span class="med-n">'+(i+1)+'</span>'+
+    '<input type="text" value="'+esc(m.name||'')+'" placeholder="Medicine" oninput="setMed('+i+',\'name\',this.value)">'+
+    '<button class="del" onclick="delMed('+i+')" aria-label="Remove">×</button></div>'+
+    '<div class="med-grid">'+
+    '<div><span class="mini">Dose</span><input type="text" value="'+esc(m.dose||'')+'" oninput="setMed('+i+',\'dose\',this.value)"></div>'+
+    '<div><span class="mini">Route</span><input type="text" value="'+esc(m.route||'')+'" oninput="setMed('+i+',\'route\',this.value)"></div>'+
+    '<div><span class="mini">How often</span><input type="text" value="'+esc(m.freq||'')+'" oninput="setMed('+i+',\'freq\',this.value)"></div>'+
+    '<div><span class="mini">Started on</span><input type="text" value="'+esc(m.started||'')+'" oninput="setMed('+i+',\'started\',this.value)"></div>'+
+    '<div class="full"><span class="mini">What it is for</span><input type="text" value="'+esc(m.why||'')+'" oninput="setMed('+i+',\'why\',this.value)"></div>'+
+    '</div>'+
+    '<div class="tagrow">'+
+    ['started','changed','stopped'].map(t=>'<button aria-pressed="'+(m.state===t)+'" onclick="tagMed('+i+',\''+t+'\')">'+t+'</button>').join('')+
+    '</div></div>';
+}
+function addMed(){D().meds.push({name:'',dose:'',route:'',freq:'',started:'',why:'',state:'started'});save();render();}
+function delMed(i){D().meds.splice(i,1);save();render();}
+function setMed(i,k,v){D().meds[i][k]=v;save();}
+function tagMed(i,t){const m=D().meds[i];m.state=(m.state===t?'':t);save();render();}
+
+/* ── live calculations and checks ── */
+function refreshLive(){
+  const box=document.getElementById('ibwbox');
+  if(box){const v=ibw();const c=C();
+    box.innerHTML='<div class="calc-l">Ideal weight</div><div class="calc-v">'+
+      (v?v.toFixed(1)+' kg':'—')+'</div><div class="calc-n">'+
+      (v?esc(c.sex)+' · '+(c.sex==='Male'?'50.0':'45.5')+' + 0.9 × ('+esc(c.height)+' − 152)'
+        :'Enter sex and height')+'</div>';}
+  const ch=document.getElementById('checks');if(!ch)return;
+  const d=D(),out=[];
+  const n=k=>{const v=k.split('.').reduce((o,p)=>o?o[p]:undefined,d);const f=parseFloat(v);return isNaN(f)?null:f;};
+  const blank=k=>{const v=k.split('.').reduce((o,p)=>o?o[p]:undefined,d);return v===''||v==null;};
+  if(blank('kid.creatinine')) out.push('Creatinine is blank. No dose that depends on the kidneys can be checked without it.');
+  if(d.creatTrend==='going up') out.push('Creatinine is rising — every clearance figure calculated today will read higher than the truth.');
+  if(n('labs.potassium')!==null&&n('labs.potassium')<3.5&&blank('labs.magnesium'))
+    out.push('Potassium is low and magnesium is blank. Potassium will not correct through a magnesium shortage.');
+  if(d.swollen==='yes') out.push('Swollen — the weight on the scale is not the weight to dose with.');
+  if(!C().height) out.push('Height is missing, so ideal weight cannot be worked out.');
+  const p=PREV();
+  if(p){const a=parseFloat(d.kid&&d.kid.creatinine),b=parseFloat(p.kid&&p.kid.creatinine);
+    if(!isNaN(a)&&!isNaN(b)&&b>0&&Math.abs(a-b)/b>=0.25)
+      out.push('Creatinine has moved more than a quarter since the last entry — every renal dose needs re-checking.');}
+  ch.innerHTML=out.length?out.map(t=>'<div class="chk"><span class="chk-i">!</span><span>'+esc(t)+'</span></div>').join('')
+    :'<div class="chk ok"><span class="chk-i">✓</span><span>Nothing flagged on the entries so far.</span></div>';
+}
+
+/* ── trend view ── */
+function trendRows(){
+  const c=C();const rows=[];
+  const push=(label,get)=>{const vals=c.days.map(get);
+    if(vals.some(v=>v!==''&&v!=null))rows.push([label,vals]);};
+  push('ICU day',d=>d.icuDay);
+  push('Weight (kg)',d=>d.weight);
+  KID.forEach(k=>push(k[1],d=>d.kid&&d.kid[k[0]]));
+  push('Creatinine trend',d=>d.creatTrend);
+  LABS.forEach(k=>push(k[1],d=>d.labs&&d.labs[k[0]]));
+  LIV.forEach(k=>push(k[1],d=>d.liv&&d.liv[k[0]]));
+  push('Fluid in abdomen',d=>d.ascites);
+  push('Confusion',d=>d.enceph);
+  push('Medicines on chart',d=>d.meds.filter(m=>m.state!=='stopped').length||'');
+  return rows;
+}
+function trendView(){
+  const c=C();
+  if(c.days.length<2) return '<button class="back" onclick="go(\'form\')">‹ Back</button>'+
+    '<div class="empty">Only one entry so far.<br>Tap <b>New day</b> below to start the second, and the values will line up side by side.</div>'+
+    '<button class="addbtn" onclick="addDay()">+ New day</button>';
+  const rows=trendRows();
+  let h='<button class="back" onclick="go(\'form\')">‹ Back</button><div class="trend"><table class="tr"><thead><tr><th>Finding</th>'+
+    c.days.map(d=>'<th>'+esc(d.date)+'</th>').join('')+'</tr></thead><tbody>';
+  rows.forEach(r=>{h+='<tr><td class="k">'+esc(r[0])+'</td>'+
+    r[1].map((v,i)=>{let a='';if(i>0)a=arrow(v,r[1][i-1]);return '<td>'+esc(v||'—')+' '+a+'</td>';}).join('')+'</tr>';});
+  h+='</tbody></table></div><div style="margin-top:13px"><button class="addbtn" onclick="addDay()">+ New day</button></div>';
+  return h;
+}
+function addDay(){const c=C();c.days.push(newDay(c.days[c.days.length-1]));save();go('form');toast('New day started');}
+
+/* ── output text ── */
+function build(){
+  const c=C(),d=D(),p=PREV();const L=[];
+  L.push('CRITICAL CARE PHARMACOTHERAPY REVIEW');
+  L.push('Department of Pharmacy — Intensive Care Service');
+  L.push('');
+  L.push(c.id+' · '+(c.initials||'—')+' · '+(c.age||'?')+' '+(c.sex||'')+' · ICU day '+(d.icuDay||'?'));
+  L.push(d.date+(p?'   (previous entry '+p.date+')':'   FIRST ENTRY'));
+  L.push('');
+  if(!p){
+    L.push('WHY IN INTENSIVE CARE: '+(c.reason||'—'));
+    if(c.other)L.push('OTHER PROBLEMS: '+c.other);
+    L.push('ALLERGY — drug: '+(c.algD||'—')+(c.algDwhat?' ('+c.algDwhat+')':'')+
+      ' · food: '+(c.algF||'—')+(c.algFwhat?' ('+c.algFwhat+')':''));
     L.push('');
-    var hdr=[v('caseno'),v('initials'),(v('age')?v('age')+' '+(state.sex==='male'?'M':state.sex==='female'?'F':''):''),
-             (v('icuday')?'ICU day '+v('icuday'):''), v('today')].filter(Boolean);
-    L.push(hdr.join(' · '));
-    if(v('admitted')) L.push('Admitted '+v('admitted'));
-    L.push('');
-    var ib=$('ibw').textContent;
-    L.push('WEIGHT AND HEIGHT');
-    L.push('  Weight '+(v('weight')||'—')+' kg'+(state.swollen?' ('+(state.swollen==='yes'?'SWOLLEN':'not swollen')+')':'')
-          +' · Height '+(v('height')||'—')+' cm');
-    L.push('  Ideal weight '+ib);
-    L.push('');
-    L.push('WHY IN ICU');
-    L.push('  '+(v('mainprob')||'—'));
-    if(v('otherprob')) L.push('  Other: '+v('otherprob'));
-    L.push('');
-    L.push('ALLERGIES');
-    L.push('  Drug: '+(state.drugallergy||'not answered')+(state.drugallergy==='yes'&&v('drugallergytext')?' — '+v('drugallergytext'):''));
-    L.push('  Food: '+(state.foodallergy||'not answered')+(state.foodallergy==='yes'&&v('foodallergytext')?' — '+v('foodallergytext'):''));
-    L.push('');
-    L.push('KIDNEY');
-    L.push('  Creatinine '+(v('creat')||'—')+(state.trend?' · '+state.trend:'')
-          +(v('creatbase')?' · before admission '+v('creatbase'):'')
-          +(v('uo')?' · urine '+v('uo')+' mL/kg/h':''));
-    L.push('  Dialysis: '+(state.dialysis||'—')+(state.dialysis==='yes'&&v('dialysistext')?' — '+v('dialysistext'):''));
-    L.push('LIVER');
-    L.push('  Bilirubin '+(v('bili')||'—')+' · Albumin '+(v('alb')||'—')+' · INR '+(v('inr')||'—'));
-    L.push('');
-    L.push('BLOODS');
-    L.push('  Na '+(v('na')||'—')+' · K '+(v('k')||'—')+' · Mg '+(v('mg')||'—')+' · Ca '+(v('ca')||'—'));
-    L.push('  Glucose '+(v('glu')||'—')+' · Phosphate '+(v('po4')||'—')+' · Lactate '+(v('lac')||'—'));
-    L.push('  Hb '+(v('hb')||'—')+' · Platelets '+(v('plt')||'—')+' · WCC '+(v('wbc')||'—'));
-    L.push('  CRP '+(v('crp')||'—')+' · Procalcitonin '+(v('pct')||'—'));
-    L.push('');
+  }
+  const line=(lbl,now,then)=>{
+    if((now===''||now==null)&&(then===''||then==null))return null;
+    if(then==null||then===''||!p)return lbl+': '+(now||'not measured');
+    if(String(now)===String(then))return lbl+': '+now+'  (unchanged)';
+    const a=parseFloat(now),b=parseFloat(then);
+    const ar=(!isNaN(a)&&!isNaN(b))?(a>b?' UP':' DOWN'):'';
+    return lbl+': '+(then)+' -> '+(now||'not measured')+ar;
+  };
+  L.push('WEIGHT AND HEIGHT');
+  const iv=ibw();
+  L.push('Weight '+(d.weight||'—')+' kg'+(d.swollen==='yes'?' (SWOLLEN — not a dosing weight)':'')+
+    ' · height '+(c.height||'—')+' cm'+(iv?' · ideal weight '+iv.toFixed(1)+' kg':''));
+  L.push('');
+  L.push('KIDNEY');
+  KID.forEach(k=>{const s=line(k[1],d.kid&&d.kid[k[0]],p&&p.kid&&p.kid[k[0]]);if(s)L.push(s);});
+  if(d.creatTrend)L.push('Creatinine is '+d.creatTrend.toUpperCase());
+  if(d.dialysis)L.push('Dialysis: '+d.dialysis);
+  L.push('');
+  const livL=[];
+  LIV.forEach(k=>{const s=line(k[1],d.liv&&d.liv[k[0]],p&&p.liv&&p.liv[k[0]]);if(s)livL.push(s);});
+  if(d.ascites)livL.push('Fluid in abdomen: '+d.ascites);
+  if(d.enceph)livL.push('Confusion beyond sedation: '+d.enceph);
+  if(livL.length){L.push('LIVER');livL.forEach(x=>L.push(x));L.push('');}
+  else {L.push('LIVER: nothing entered — liver class cannot be worked out.');L.push('');}
+  L.push('BLOOD RESULTS');
+  let any=false;
+  LABS.forEach(k=>{const s=line(k[1],d.labs&&d.labs[k[0]],p&&p.labs&&p.labs[k[0]]);if(s){L.push(s);any=true;}});
+  if(!any)L.push('none entered');
+  L.push('');
+  if(d.vent||d.feeding||d.lines){
     L.push('STATUS');
-    L.push('  Breathing tube: '+(state.tube||'—')+' · BP drugs: '+(state.pressors||'—')
-          +(v('rass')?' · RASS '+v('rass'):'')+(v('qtc')?' · QTc '+v('qtc'):''));
-    L.push('  Feeding: '+(state.feed||'—')+' · Central line: '+(state.cvc||'—')+(state.cvc==='yes'&&v('lumens')?', '+v('lumens')+' lumens':''));
+    if(d.vent)L.push('Breathing: '+d.vent);
+    if(d.feeding)L.push('Feeding: '+d.feeding);
+    if(d.lines)L.push('Lines: '+d.lines);
     L.push('');
-    L.push('MEDICINES ('+meds.length+')');
-    if(!meds.length) L.push('  none entered');
-    meds.forEach(function(m,i){
-      var p=[m.dose,m.route,m.freq,m.rate].filter(Boolean).join(' ');
-      L.push('  '+(i+1)+'. '+m.name+(p?' — '+p:'')
-            +(m.start?' — started '+m.start:' — NO START DATE')
-            +(m.ind?' — for '+m.ind:' — NO REASON GIVEN'));
-    });
+  }
+  const started=d.meds.filter(m=>m.state==='started'),stopped=d.meds.filter(m=>m.state==='stopped'),
+        changed=d.meds.filter(m=>m.state==='changed');
+  if(p){
+    L.push('MEDICINE CHANGES');
+    if(started.length)started.forEach(m=>L.push('STARTED  '+medTxt(m)));
+    if(changed.length)changed.forEach(m=>L.push('CHANGED  '+medTxt(m)));
+    if(stopped.length)stopped.forEach(m=>L.push('STOPPED  '+(m.name||'—')));
+    if(!started.length&&!changed.length&&!stopped.length)L.push('No medicine changes.');
     L.push('');
-    if(v('cultures')){ L.push('CULTURES'); L.push('  '+v('cultures')); L.push(''); }
-    if(v('unclear')){ L.push('COULD NOT READ / NOT AVAILABLE'); L.push('  '+v('unclear')); L.push(''); }
-    return L.join('\n').replace(/\n{3,}/g,'\n\n');
+    const nOn=d.meds.filter(m=>m.state!=='stopped').length;L.push('ON CHART NOW: '+nOn+' medicine'+(nOn===1?'':'s'));
+  }else{
+    L.push('MEDICINES — '+d.meds.length+' items');
+    d.meds.forEach((m,i)=>L.push((i+1)+'. '+medTxt(m)));
+  }
+  L.push('');
+  if(d.cultures)L.push('CULTURES: '+d.cultures);
+  if(d.unclear)L.push('COULD NOT READ / UNSURE: '+d.unclear);
+  L.push('');
+  L.push('Initials only. Sent from the ICU pharmacy record.');
+  return L.join('\n');
+}
+function medTxt(m){return [m.name,m.dose,m.route,m.freq].filter(Boolean).join('  ')+(m.why?'   — '+m.why:'');}
+
+function finish(){document.getElementById('out').textContent=build();
+  document.getElementById('preview').hidden=false;window.scrollTo(0,0);}
+function closePreview(){document.getElementById('preview').hidden=true;}
+function copyOut(){const t=build();
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(()=>toast('Copied'),()=>toast('Could not copy'));}
+  else toast('Select the text and copy');}
+function waOut(){window.open('https://wa.me/?text='+encodeURIComponent(build()),'_blank');}
+
+/* ── print: identical to the paper record ── */
+function doPrint(){buildPrint();setTimeout(()=>window.print(),60);}
+function buildPrint(){
+  const c=C(),d=D(),p=PREV();const iv=ibw();
+  const row=(k,v)=>'<tr><td class="k">'+esc(k)+'</td><td class="v" colspan="3">'+esc(v||'')+'</td></tr>';
+  const q=(k1,v1,k2,v2)=>'<tr><td class="k">'+esc(k1)+'</td><td class="v">'+esc(v1||'')+
+    '</td><td class="k">'+esc(k2)+'</td><td class="v">'+esc(v2||'')+'</td></tr>';
+  const pv=(now,then)=>{
+    if(then==null||then==='')return esc(now||'');
+    const a=parseFloat(now),b=parseFloat(then);
+    const ar=(!isNaN(a)&&!isNaN(b))?(a>b?'<span class="p-up">▲</span>':a<b?'<span class="p-dn">▼</span>':'–'):'';
+    return esc(then)+' → <b>'+esc(now||'')+'</b> '+ar;};
+
+  let h='<div class="p-head"><div class="p-eyebrow">DEPARTMENT OF PHARMACY  ·  INTENSIVE CARE SERVICE</div>'+
+    '<div class="p-title">Critical Care Pharmacotherapy Review</div>'+
+    '<div class="p-sub">'+esc(c.id)+'  ·  '+esc(c.initials||'—')+'  ·  entry '+c.days.length+
+    (p?'  ·  previous entry '+esc(p.date):'  ·  first entry')+'</div></div>';
+
+  h+='<table class="p"><tr><th>Case no.</th><th>Initials</th><th>Age · sex</th><th>ICU day</th></tr>'+
+    '<tr><td class="v">'+esc(c.id)+'</td><td class="v">'+esc(c.initials)+'</td><td class="v">'+
+    esc([c.age,c.sex].filter(Boolean).join(' · '))+'</td><td class="v">'+esc(d.icuDay)+'</td></tr>'+
+    '<tr><th>Admitted on</th><th>This entry</th><th>Reason for admission</th><th>Pharmacist</th></tr>'+
+    '<tr><td class="v">'+esc(c.admitted)+'</td><td class="v">'+esc(d.date)+'</td><td class="v">'+
+    esc(c.reason)+'</td><td class="v"></td></tr></table>';
+
+  h+='<div class="p-bar">1  ·  WEIGHT AND HEIGHT</div><table class="p">'+
+    q('Weight (kg)',(d.weight||'')+(d.swollen==='yes'?'  — SWOLLEN':''),'Height (cm)',c.height)+
+    row('Ideal weight',iv?iv.toFixed(1)+' kg   ('+(c.sex||'')+' · '+(c.sex==='Male'?'50.0':'45.5')+' + 0.9 × ('+(c.height||'?')+' − 152))':'not calculable')+
+    '</table>';
+
+  h+='<div class="p-bar">2  ·  WHY IN INTENSIVE CARE</div><table class="p">'+
+    row('Main problem',c.reason)+row('Other problems',c.other)+'</table>';
+
+  h+='<div class="p-bar">3  ·  ALLERGIES</div><table class="p">'+
+    q('Drug allergy',c.algD,'If yes — what',c.algDwhat)+
+    q('Food allergy',c.algF,'If yes — what',c.algFwhat)+'</table>';
+
+  h+='<div class="p-bar">4  ·  KIDNEY  and  LIVER</div><table class="p">'+
+    '<tr><th>Finding</th><th>'+(p?'Previous → today':'Today')+'</th><th>Finding</th><th>'+(p?'Previous → today':'Today')+'</th></tr>';
+  const kl=KID.map(k=>[k[1],pv(d.kid&&d.kid[k[0]],p&&p.kid&&p.kid[k[0]])])
+    .concat([['Creatinine is',esc(d.creatTrend||'')],['On dialysis',esc(d.dialysis||'')]])
+    .concat(LIV.map(k=>[k[1],pv(d.liv&&d.liv[k[0]],p&&p.liv&&p.liv[k[0]])]))
+    .concat([['Fluid in abdomen',esc(d.ascites||'')],['Confusion beyond sedation',esc(d.enceph||'')]]);
+  for(let i=0;i<kl.length;i+=2){
+    h+='<tr><td class="k">'+esc(kl[i][0])+'</td><td class="v">'+kl[i][1]+'</td>'+
+      (kl[i+1]?'<td class="k">'+esc(kl[i+1][0])+'</td><td class="v">'+kl[i+1][1]+'</td>':'<td></td><td></td>')+'</tr>';}
+  h+='</table>';
+
+  h+='<div class="p-bar">5  ·  BLOOD RESULTS</div><table class="p">'+
+    '<tr><th>Finding</th><th>'+(p?'Previous → today':'Today')+'</th><th>Finding</th><th>'+(p?'Previous → today':'Today')+'</th></tr>';
+  for(let i=0;i<LABS.length;i+=2){
+    const A=LABS[i],B=LABS[i+1];
+    h+='<tr><td class="k">'+esc(A[1])+'</td><td class="v">'+pv(d.labs&&d.labs[A[0]],p&&p.labs&&p.labs[A[0]])+'</td>'+
+      (B?'<td class="k">'+esc(B[1])+'</td><td class="v">'+pv(d.labs&&d.labs[B[0]],p&&p.labs&&p.labs[B[0]])+'</td>':'<td></td><td></td>')+'</tr>';}
+  h+='</table>';
+
+  h+='<div class="p-bar">6  ·  STATUS, FEEDING AND LINES</div><table class="p">'+
+    q('Breathing',d.vent,'Feeding',d.feeding)+row('Central line',d.lines)+row('Cultures',d.cultures)+'</table>';
+
+  h+='<div class="p-bar">7  ·  MEDICINES  —  '+d.meds.filter(m=>m.state!=='stopped').length+' on chart, '+d.meds.length+' listed</div>'+
+    '<table class="p"><tr><th style="width:5%">#</th><th style="width:27%">Medicine</th><th style="width:14%">Dose</th>'+
+    '<th style="width:10%">Route</th><th style="width:14%">How often</th><th style="width:18%">What it is for</th>'+
+    '<th style="width:12%">Change</th></tr>';
+  d.meds.forEach((m,i)=>{h+='<tr><td class="v">'+(i+1)+'</td><td class="v">'+esc(m.name)+'</td><td class="v">'+esc(m.dose)+
+    '</td><td class="v">'+esc(m.route)+'</td><td class="v">'+esc(m.freq)+'</td><td class="v">'+esc(m.why)+
+    '</td><td class="v">'+esc(m.state?m.state.toUpperCase():'')+'</td></tr>';});
+  h+='</table>';
+
+  if(d.unclear){h+='<div class="p-bar red">COULD NOT READ  ·  EXCLUDED FROM EVERY CHECK</div>'+
+    '<table class="p">'+row('Unclear',d.unclear)+'</table>';}
+
+  if(c.days.length>1){
+    h+='<div class="p-bar">DAY BY DAY</div><table class="p"><tr><th>Finding</th>'+
+      c.days.map(x=>'<th>'+esc(x.date)+'</th>').join('')+'</tr>';
+    trendRows().forEach(r=>{h+='<tr><td class="k">'+esc(r[0])+'</td>'+
+      r[1].map(v=>'<td class="v">'+esc(v||'—')+'</td>').join('')+'</tr>';});
+    h+='</table>';
   }
 
-  function toast(msg){
-    var t=$('toast'); t.textContent=msg; t.hidden=false;
-    clearTimeout(t._t); t._t=setTimeout(function(){ t.hidden=true; },1900);
-  }
+  h+='<div class="p-foot"><span>Pharmacist ______________________   Signature ______________   Time _________</span>'+
+    '<span>Initials only — no full name, no hospital number.</span></div>';
+  document.getElementById('print').innerHTML=h;
+}
 
-  $('btn-done').addEventListener('click',function(){
-    $('out').textContent=build();
-    $('preview').hidden=false;
-    window.scrollTo(0,0);
-  });
-  $('btn-back').addEventListener('click',function(){ $('preview').hidden=true; });
-  $('btn-copy').addEventListener('click',function(){
-    var txt=$('out').textContent;
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(txt).then(function(){toast('Copied');},function(){fallback(txt);});
-    } else fallback(txt);
-  });
-  function fallback(txt){
-    var ta=document.createElement('textarea'); ta.value=txt;
-    ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta);
-    ta.select();
-    try{ document.execCommand('copy'); toast('Copied'); }catch(e){ toast('Select the text and copy'); }
-    document.body.removeChild(ta);
-  }
-  $('btn-wa').addEventListener('click',function(){
-    var url='https://wa.me/?text='+encodeURIComponent($('out').textContent);
-    var w=window.open(url,'_blank');
-    if(!w) toast('Blocked — use Copy instead');
-  });
-  $('btn-print').addEventListener('click',function(){ window.print(); });
-  $('btn-clear').addEventListener('click',function(){
-    if(!confirm('Start a new record? What is on this form will be cleared.')) return;
-    try{ localStorage.removeItem(KEY); }catch(e){}
-    location.reload();
-  });
-
-  load();
-})();
+load();
+if(S.current&&!S.cases[S.current])S.current=null;
+if(!S.current)S.view='list';
+render();
 </script>
-
 </body>
 </html>
