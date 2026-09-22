@@ -53,7 +53,7 @@ section{background:var(--card);border:1px solid var(--line-soft);border-radius:v
 
 .f{margin-bottom:13px}.f:last-child{margin-bottom:0}
 label,.lab{display:block;font-size:12.5px;font-weight:600;color:var(--ink-mid);margin-bottom:5px}
-input[type=text],input[type=number],textarea,select{width:100%;font-family:inherit;font-size:16px;
+input[type=text],input[type=number],input[type=password],input[type=tel],textarea,select{width:100%;font-family:inherit;font-size:16px;
   color:var(--ink);background:var(--sunk);border:1px solid var(--line);border-radius:8px;padding:10px 12px;appearance:none}
 input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid var(--navy);outline-offset:1px}
 textarea{resize:vertical;min-height:58px;line-height:1.45}
@@ -112,6 +112,21 @@ textarea{resize:vertical;min-height:58px;line-height:1.45}
 .chk-i{flex:none;font-weight:700;color:var(--amber)}
 .chk.ok .chk-i{color:var(--green)}
 
+/* sign in / lock */
+.gate{max-width:360px;margin:34px auto 0;background:var(--card);border:1px solid var(--line);
+  border-radius:14px;padding:22px 20px}
+.gate h2{font-size:18px;margin:0 0 4px;color:var(--navy)}
+.gate p.g-sub{font-size:13px;color:var(--ink-mid);margin:0 0 16px;line-height:1.45}
+.gate .f{margin-bottom:14px}
+.gate input{width:100%}
+.gate .big-btn{width:100%;font-family:inherit;font-size:15px;font-weight:600;padding:13px;
+  border-radius:9px;cursor:pointer;background:var(--navy);border:1.5px solid var(--navy);color:#fff;margin-top:4px}
+.gate .warn{font-size:11.5px;color:var(--ink-dim);margin-top:13px;line-height:1.45}
+.who{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.who-av{width:38px;height:38px;border-radius:50%;background:var(--navy);color:#fff;display:grid;
+  place-items:center;font-weight:700;font-size:14px;flex:none}
+.err{color:var(--red);font-size:13px;font-weight:600;margin-top:9px}
+
 /* patient list */
 .plist{margin-top:14px}
 .pcard{display:flex;align-items:center;gap:12px;width:100%;text-align:left;font-family:inherit;
@@ -120,9 +135,21 @@ textarea{resize:vertical;min-height:58px;line-height:1.45}
 .pid{font-family:var(--mono);font-size:12.5px;font-weight:600;color:#fff;background:var(--navy);
   border-radius:6px;padding:5px 8px;flex:none}
 .pmain{flex:1;min-width:0}
-.pname{font-size:15px;font-weight:600;color:var(--ink)}
-.pmeta{font-size:12px;color:var(--ink-dim)}
-.pday{font-family:var(--mono);font-size:12px;color:var(--ink-mid);flex:none}
+.pname{display:block;font-size:15px;font-weight:600;color:var(--ink)}
+.pmeta{display:block;font-size:12px;color:var(--ink-dim)}
+.pday{font-family:var(--mono);font-size:12px;color:var(--ink-mid);flex:none;text-align:right}
+.pcard.closed{opacity:.62;background:var(--sunk)}
+.pcard.closed .pid{background:var(--ink-dim)}
+.lhead{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-dim);margin:16px 0 8px}
+.lhead:first-child{margin-top:4px}
+.setrow{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;
+  border-bottom:1px solid var(--line-soft);font-size:14px}
+.setrow:last-child{border-bottom:0}
+.setrow b{color:var(--navy)}
+.linkbtn{background:none;border:0;font-family:inherit;font-size:14px;font-weight:600;
+  color:var(--navy);cursor:pointer;padding:0}
+.linkbtn.danger{color:var(--red)}
 .empty{text-align:center;color:var(--ink-dim);font-size:14px;padding:26px 10px}
 
 /* trend */
@@ -221,9 +248,109 @@ const LABS=[
 const KID=[['creatinine','Creatinine'],['urea','Urea'],['urine','Urine output mL/kg/h']];
 const LIV=[['bilirubin','Bilirubin'],['albumin','Albumin'],['inr','INR (clotting time)']];
 
-let S={cases:{},current:null,view:'list'};
+let S={user:null,cases:{},current:null,view:'list'};
+let UNLOCKED=false;
 function load(){try{const r=localStorage.getItem(KEY);if(r)S=Object.assign(S,JSON.parse(r));}catch(e){}}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+const ACCOUNTS=[
+  'cd03ad254827fa55e474867f456841983b525c10089bfd83a6dd74795a8c89c8',
+  '60f3fa4f5a428d2d89664d72660855b4677639de41c454260a84ea19921e5d89'
+];
+const normU=u=>String(u||'').trim().toLowerCase().replace(/\s+/g,' ');
+async function sha(t){
+  if(window.crypto&&crypto.subtle&&window.isSecureContext){
+    const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));
+    return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');}
+  return null;}
+async function checkCred(u,p){
+  const h=await sha('ccpr-auth:'+normU(u)+':'+String(p));
+  if(h===null)return 'insecure';
+  return ACCOUNTS.indexOf(h)>=0;}
+function initialsOf(name){
+  return normU(name).split(' ').filter(Boolean).map(w=>w[0]).join('').toUpperCase().slice(0,3);}
+
+function signInView(pref){
+  return '<div class="gate">'+
+  '<h2>Sign in</h2>'+
+  '<p class="g-sub">Your name goes on every record you send, and your initials go on the case numbers so two pharmacists never create the same one.</p>'+
+  '<div class="f"><label>Username</label><input type="text" id="si-user" autocapitalize="words" '+
+  'autocomplete="username" value="'+esc(pref||'')+'"></div>'+
+  '<div class="f"><label>Password</label><input type="password" id="si-pass" autocomplete="current-password" '+
+  'onkeydown="if(event.key===\'Enter\')doSignIn()"></div>'+
+  '<div id="si-err"></div>'+
+  '<button class="big-btn" onclick="doSignIn()">Sign in</button>'+
+  '<p class="warn"><b>What this is.</b> The sign-in names the pharmacist and keeps a phone left on a desk from opening straight into patient records. It is checked on the phone, not by a hospital server \u2014 a lock on a drawer, not a safe. Records stay on this phone until they are sent.</p>'+
+  '</div>';}
+
+async function doSignIn(){
+  const u=document.getElementById('si-user').value;
+  const p=document.getElementById('si-pass').value;
+  const e=document.getElementById('si-err');
+  if(!u||!p){e.innerHTML='<p class="err">Both are needed.</p>';return;}
+  const r=await checkCred(u,p);
+  if(r==='insecure'){e.innerHTML='<p class="err">Open the page over its web address, not as a file \u2014 sign-in cannot run here.</p>';return;}
+  if(!r){e.innerHTML='<p class="err">That username and password do not match.</p>';return;}
+  const name=normU(u).split(' ').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ');
+  const prevName=S.user?S.user.name:null;
+  S.user={name:name,initials:initialsOf(name),since:(S.user&&S.user.since)||today()};
+  UNLOCKED=true;S.view='list';save();render();
+  toast(prevName&&prevName!==name?'Signed in as '+name:'Signed in');}
+
+function lockView(){
+  const u=S.user;
+  return '<div class="gate">'+
+  '<div class="who"><span class="who-av">'+esc(u.initials)+'</span>'+
+  '<span><b>'+esc(u.name)+'</b><br><span style="font-size:12px;color:var(--ink-dim)">Department of Pharmacy</span></span></div>'+
+  '<div class="f"><label>Password</label><input type="password" id="lk-pin" '+
+  'autocomplete="current-password" onkeydown="if(event.key===\'Enter\')doUnlock()"></div>'+
+  '<div id="lk-err"></div>'+
+  '<button class="big-btn" onclick="doUnlock()">Unlock</button>'+
+  '<p class="warn">Not '+esc(u.name.split(' ')[0])+'? <button class="linkbtn" onclick="signOut()">Sign in as someone else</button></p>'+
+  '</div>';}
+
+async function doUnlock(){
+  const v=document.getElementById('lk-pin').value;
+  const r=await checkCred(S.user.name,v);
+  if(r===true){UNLOCKED=true;S.view=S.current?'form':'list';render();}
+  else document.getElementById('lk-err').innerHTML='<p class="err">'+
+    (r==='insecure'?'Open the page over its web address, not as a file.':'Wrong password.')+'</p>';}
+
+function signOut(){UNLOCKED=false;S.view='signin';save();render();window.scrollTo(0,0);}
+function lockNow(){UNLOCKED=false;S.view='list';render();window.scrollTo(0,0);}
+
+function resetPhone(){
+  const n=Object.keys(S.cases).length;
+  if(!confirm('This erases '+n+' patient record'+(n===1?'':'s')+' from this phone. It cannot be undone. Continue?'))return;
+  if(!confirm('Last check \u2014 anything not already sent will be lost. Erase?'))return;
+  try{localStorage.removeItem(KEY);}catch(e){}
+  S={user:null,cases:{},current:null,view:'list'};UNLOCKED=false;render();}
+
+function settingsView(){
+  const u=S.user,ids=Object.keys(S.cases);
+  const open=ids.filter(i=>S.cases[i].status!=='closed').length;
+  return '<button class="back" onclick="go(\'list\')">\u2039 Patients</button>'+
+  '<section><div class="sec-b" style="padding:0">'+
+  '<div class="setrow"><span>Pharmacist</span><b>'+esc(u.name)+'</b></div>'+
+  '<div class="setrow"><span>Initials on case numbers</span><b>'+esc(u.initials)+'</b></div>'+
+  '<div class="setrow"><span>Patients on this phone</span><b>'+open+' open · '+(ids.length-open)+' closed</b></div>'+
+  '<div class="setrow"><span>Set up on</span><b>'+esc(u.since||'—')+'</b></div>'+
+  '</div></section>'+
+  '<section><div class="sec-b" style="padding:0">'+
+  '<div class="setrow"><span>Back up everything to a file</span><button class="linkbtn" onclick="backup()">Back up</button></div>'+
+  '<div class="setrow"><span>Lock this phone now</span><button class="linkbtn" onclick="lockNow()">Lock</button></div>'+
+  '<div class="setrow"><span>Sign in as someone else</span><button class="linkbtn" onclick="signOut()">Sign out</button></div>'+
+  '<div class="setrow"><span>Erase everything</span><button class="linkbtn danger" onclick="resetPhone()">Reset</button></div>'+
+  '</div></section>'+
+  '<p class="hint">Records live only on this phone. Sending is what makes a record durable \u2014 a lost phone is a lost record unless it was sent.</p>';}
+
+function backup(){
+  try{
+    const blob=new Blob([JSON.stringify(S,null,1)],{type:'application/json'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    a.download='icu-review-backup-'+new Date().toISOString().slice(0,10)+'.json';
+    document.body.appendChild(a);a.click();a.remove();toast('Backup saved');
+  }catch(e){toast('Could not back up here');}}
+
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.hidden=false;
   clearTimeout(t._h);t._h=setTimeout(()=>t.hidden=true,1900);}
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -243,8 +370,8 @@ function newDay(from){
 }
 function newCase(){
   const n=Object.keys(S.cases).length+1;
-  const id='ICU-'+String(n).padStart(3,'0');
-  S.cases[id]={id,initials:'',age:'',sex:'',admitted:'',reason:'',other:'',height:'',
+  const id='ICU-'+String(n).padStart(3,'0')+'-'+(S.user?S.user.initials:'');
+  S.cases[id]={id,status:'open',closedOn:'',initials:'',age:'',sex:'',admitted:'',reason:'',other:'',height:'',
     algD:'',algDwhat:'',algF:'',algFwhat:'',days:[newDay(null)]};
   S.current=id;S.view='form';save();render();
 }
@@ -287,8 +414,17 @@ function render(){
   const app=document.getElementById('app');
   const bar=document.getElementById('bar');
   const sub=document.getElementById('hsub');
-  if(S.view==='list'){ sub.textContent='Saves on this phone'; app.innerHTML=listView();
-    bar.innerHTML='<button class="primary" onclick="newCase()">New patient</button>';return;}
+  if(!S.user||S.view==='signin'){sub.textContent='Sign in';
+    app.innerHTML=signInView(S.user?S.user.name:'');bar.innerHTML='';
+    setTimeout(()=>{const f=document.getElementById('si-user');if(f&&!f.value)f.focus();
+      else{const g=document.getElementById('si-pass');if(g)g.focus();}},60);return;}
+  if(!UNLOCKED){sub.textContent='Locked';app.innerHTML=lockView();bar.innerHTML='';
+    setTimeout(()=>{const f=document.getElementById('lk-pin');if(f)f.focus();},60);return;}
+  if(S.view==='settings'){sub.textContent='This phone';app.innerHTML=settingsView();
+    bar.innerHTML='<button onclick="go(\'list\')">Patients</button>';return;}
+  if(S.view==='list'){ sub.textContent=S.user.name; app.innerHTML=listView();
+    bar.innerHTML='<button onclick="go(\'settings\')">This phone</button>'+
+      '<button class="primary" onclick="newCase()">New patient</button>';return;}
   if(S.view==='trend'){ const c=C(); sub.textContent=c.id+(c.initials?' · '+c.initials:'');
     app.innerHTML=trendView();
     bar.innerHTML='<button onclick="go(\'form\')">Back</button><button onclick="window.print()">Print</button>';return;}
@@ -300,19 +436,33 @@ function render(){
     '<button class="primary" onclick="finish()">Finish</button>';
   refreshLive();
 }
+function closeCase(){
+  const c=C();
+  if(!confirm('Close '+c.id+'? It leaves the active list but stays readable under Closed.'))return;
+  c.status='closed';c.closedOn=today();save();go('list');toast('Case closed');}
+function reopenCase(id){S.cases[id].status='open';S.cases[id].closedOn='';save();render();toast('Case reopened');}
+
 function go(v){S.view=v;save();render();window.scrollTo(0,0);}
 function open_(id){S.current=id;S.view='form';save();render();window.scrollTo(0,0);}
 
 function listView(){
   const ids=Object.keys(S.cases);
   if(!ids.length)return '<div class="empty">No patients yet.<br>Tap <b>New patient</b> to start.</div>';
-  return '<div class="plist">'+ids.map(id=>{const c=S.cases[id];const d=c.days[c.days.length-1];
-    return '<button class="pcard" onclick="open_(\''+id+'\')">'+
+  const open=ids.filter(i=>S.cases[i].status!=='closed');
+  const shut=ids.filter(i=>S.cases[i].status==='closed');
+  const card=(id,isClosed)=>{const c=S.cases[id];const d=c.days[c.days.length-1];
+    return '<button class="pcard'+(isClosed?' closed':'')+'" onclick="open_(\''+id+'\')">'+
       '<span class="pid">'+esc(id.replace('ICU-',''))+'</span>'+
       '<span class="pmain"><span class="pname">'+esc(c.initials||'no initials')+'</span>'+
       '<span class="pmeta">'+esc([c.age,c.sex,c.reason].filter(Boolean).join(' · ')||'not filled in')+'</span></span>'+
-      '<span class="pday">day '+esc(d.icuDay||'?')+'<br>'+esc(c.days.length)+' entr'+(c.days.length===1?'y':'ies')+'</span></button>';
-  }).join('')+'</div>';
+      '<span class="pday">'+(isClosed?'closed<br>'+esc(c.closedOn||''):'day '+esc(d.icuDay||'?')+'<br>'+
+        esc(c.days.length)+' entr'+(c.days.length===1?'y':'ies'))+'</span></button>';};
+  let h='<div class="plist">';
+  h+='<div class="lhead">In the unit — '+open.length+'</div>';
+  h+= open.length?open.map(id=>card(id,false)).join(''):'<div class="empty">No open patients.</div>';
+  if(shut.length){h+='<div class="lhead">Closed — '+shut.length+'</div>'+shut.map(id=>card(id,true)).join('');}
+  h+='</div>';
+  return h;
 }
 
 function sec(n,title,body,open){
@@ -492,6 +642,7 @@ function build(){
   L.push('Department of Pharmacy — Intensive Care Service');
   L.push('');
   L.push(c.id+' · '+(c.initials||'—')+' · '+(c.age||'?')+' '+(c.sex||'')+' · ICU day '+(d.icuDay||'?'));
+  L.push('Pharmacist: '+(S.user?S.user.name:'—'));
   L.push(d.date+(p?'   (previous entry '+p.date+')':'   FIRST ENTRY'));
   L.push('');
   if(!p){
@@ -548,7 +699,7 @@ function build(){
     L.push('');
     const nOn=d.meds.filter(m=>m.state!=='stopped').length;L.push('ON CHART NOW: '+nOn+' medicine'+(nOn===1?'':'s'));
   }else{
-    L.push('MEDICINES — '+d.meds.length+' items');
+    L.push('MEDICINES — '+d.meds.length+' item'+(d.meds.length===1?'':'s'));
     d.meds.forEach((m,i)=>L.push((i+1)+'. '+medTxt(m)));
   }
   L.push('');
@@ -591,7 +742,7 @@ function buildPrint(){
     esc([c.age,c.sex].filter(Boolean).join(' · '))+'</td><td class="v">'+esc(d.icuDay)+'</td></tr>'+
     '<tr><th>Admitted on</th><th>This entry</th><th>Reason for admission</th><th>Pharmacist</th></tr>'+
     '<tr><td class="v">'+esc(c.admitted)+'</td><td class="v">'+esc(d.date)+'</td><td class="v">'+
-    esc(c.reason)+'</td><td class="v"></td></tr></table>';
+    esc(c.reason)+'</td><td class="v">'+esc(S.user?S.user.name:'')+'</td></tr></table>';
 
   h+='<div class="p-bar">1  ·  WEIGHT AND HEIGHT</div><table class="p">'+
     q('Weight (kg)',(d.weight||'')+(d.swollen==='yes'?'  — SWOLLEN':''),'Height (cm)',c.height)+
@@ -653,8 +804,11 @@ function buildPrint(){
 }
 
 load();
+Object.keys(S.cases).forEach(k=>{if(!S.cases[k].status)S.cases[k].status='open';});
 if(S.current&&!S.cases[S.current])S.current=null;
-if(!S.current)S.view='list';
+if(!S.current&&S.view==='form')S.view='list';
+if(!S.user)S.view='signin';
+if(S.view==='signin'&&S.user)S.view='list';
 render();
 </script>
 </body>
