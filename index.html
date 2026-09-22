@@ -32,10 +32,11 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
   font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:92px}
 .wrap{max-width:580px;margin:0 auto;padding-inline:16px}
 
-header{background:var(--card);border-bottom:2px solid var(--red);padding-block:15px 13px}
+header{background:var(--card);border-bottom:2px solid var(--red);padding-block:15px 13px;text-align:center}
 .eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--red);margin:0 0 3px}
 h1{font-size:20px;font-weight:700;letter-spacing:-.02em;margin:0;color:var(--navy)}
 .sub{font-size:12px;color:var(--ink-dim);margin:3px 0 0}
+.sub:empty{display:none}
 .back{background:none;border:0;font-family:inherit;font-size:13.5px;font-weight:600;
   color:var(--navy);padding:0;margin-bottom:8px;cursor:pointer}
 
@@ -414,11 +415,11 @@ function render(){
   const app=document.getElementById('app');
   const bar=document.getElementById('bar');
   const sub=document.getElementById('hsub');
-  if(!S.user||S.view==='signin'){sub.textContent='Sign in';
+  if(!S.user||S.view==='signin'){sub.textContent='';
     app.innerHTML=signInView(S.user?S.user.name:'');bar.innerHTML='';
     setTimeout(()=>{const f=document.getElementById('si-user');if(f&&!f.value)f.focus();
       else{const g=document.getElementById('si-pass');if(g)g.focus();}},60);return;}
-  if(!UNLOCKED){sub.textContent='Locked';app.innerHTML=lockView();bar.innerHTML='';
+  if(!UNLOCKED){sub.textContent='';app.innerHTML=lockView();bar.innerHTML='';
     setTimeout(()=>{const f=document.getElementById('lk-pin');if(f)f.focus();},60);return;}
   if(S.view==='settings'){sub.textContent='This phone';app.innerHTML=settingsView();
     bar.innerHTML='<button onclick="go(\'list\')">Patients</button>';return;}
