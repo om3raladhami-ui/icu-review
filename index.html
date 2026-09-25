@@ -237,6 +237,37 @@ table.now td.d{font-size:11px;color:var(--ink-dim);text-align:right;white-space:
 .tl-act{display:flex;gap:14px;margin-top:6px}
 .loading{text-align:center;color:var(--ink-dim);font-size:14px;padding:30px 10px}
 
+
+/* fast entry */
+.choice{display:block;width:100%;text-align:left;font-family:inherit;background:var(--card);border:1.5px solid var(--line);
+  border-radius:12px;padding:16px;margin-top:12px;cursor:pointer}
+.choice.hl{border-color:var(--navy);box-shadow:0 0 0 3px var(--navy-soft)}
+.choice b{display:block;font-size:16px;color:var(--navy);margin-bottom:3px}
+.choice span{font-size:13px;color:var(--ink-mid);line-height:1.45}
+.pastebtn{width:100%;margin-top:10px;font-family:inherit;font-size:14px;font-weight:600;padding:11px;border-radius:9px;cursor:pointer;
+  background:var(--card);border:1.5px solid var(--navy);color:var(--navy)}
+.grp{font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-dim);margin:12px 0 5px}
+.grp:first-child{margin-top:0}
+.lrow{display:grid;grid-template-columns:112px 1fr 92px;gap:8px;align-items:center;margin-bottom:5px}
+.lab-l{font-size:13px;font-weight:600;color:var(--ink-mid);margin:0}
+.lrow input{padding:7px 9px;font-family:var(--mono);font-size:16px}
+.lab-p{font-family:var(--mono);font-size:12px;color:var(--ink-mid);text-align:right;line-height:1.2}
+.lab-p i{display:block;font-style:normal;font-family:var(--sans);font-size:10px;color:var(--ink-dim)}
+.sugg{background:var(--card);border:1px solid var(--navy);border-radius:8px;margin:-2px 0 8px;overflow:hidden}
+.sugg[hidden]{display:none}
+.sugg button{display:flex;justify-content:space-between;gap:8px;width:100%;text-align:left;font-family:inherit;font-size:14px;
+  background:none;border:0;border-bottom:1px solid var(--line-soft);padding:10px 11px;cursor:pointer;color:var(--ink)}
+.sugg button:last-child{border-bottom:0}
+.sugg em{font-style:normal;font-size:10px;font-weight:700;text-transform:uppercase;color:var(--green);background:var(--green-soft);border-radius:4px;padding:1px 4px}
+.sugg i{font-style:normal;font-family:var(--mono);font-size:12px;color:var(--ink-mid);white-space:nowrap}
+.mchips{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.mchips button{font-family:inherit;font-size:12.5px;font-weight:600;padding:5px 9px;border-radius:99px;cursor:pointer;
+  background:var(--card);border:1px solid var(--line);color:var(--ink-mid)}
+.mchips button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.mcur{font-size:12px;color:var(--ink-mid);font-family:var(--mono);padding-left:4px}
+.med.flag{background:var(--amber-soft);border-color:var(--amber)}
+.mflag{font-size:12.5px;color:var(--amber);font-weight:600;margin:0 0 8px}
+
 /* ═══ PRINT — identical to the paper record ═══ */
 #print{display:none}
 @media print{
@@ -299,15 +330,52 @@ table.now td.d{font-size:11px;color:var(--ink-dim);text-align:right;white-space:
 const API='https://script.google.com/macros/s/AKfycbyoMbpdG5RKqq1iHqWJz_0SQ1Bffs2VyEAvKYEzDR1A2f-2LbMzhk-I2ll6aMHwSslZ/exec';
 const KEY='ccpr-shared-v1';
 
-const LABS=[
- ['sodium','Sodium'],['potassium','Potassium'],['magnesium','Magnesium'],['calcium','Calcium'],
- ['ionised','Ionised calcium'],['glucose','Glucose (blood sugar)'],['phosphate','Phosphate'],
- ['haemoglobin','Haemoglobin'],['platelets','Platelets'],['whitecells','White cell count'],['crp','CRP'],
- ['procalcitonin','Procalcitonin'],['lactate','Lactate']
+/* the lab chart, in the order of the paper "Daily ICU Lab Monitoring Chart" — [group, path, label, codes read from a pasted block] */
+const LABCHART=[
+ ['Blood count','labs.hct','HCT',['HCT','PCV']],
+ ['Blood count','labs.haemoglobin','HGB',['HGB','HB','HAEMOGLOBIN','HEMOGLOBIN']],
+ ['Blood count','labs.whitecells','WBC',['WBC','WCC']],
+ ['Blood count','labs.platelets','Platelet',['PLT','PLATELET','PLATELETS']],
+ ['Blood count','labs.neut','Neutrophil %',['NEUT','NEUTROPHIL','NEUTROPHILS']],
+ ['Blood count','labs.lymph','Lymphocytes %',['LYMPH','LYMPHOCYTES']],
+ ['Blood count','labs.mono','Monocytes %',['MONO','MONOCYTES']],
+ ['Blood count','labs.eos','Eosinophil %',['EOS','EOSINOPHIL']],
+ ['Blood count','labs.baso','Basophil %',['BASO','BASOPHIL']],
+ ['Chemistry','labs.sodium','S. Na',['NA','SODIUM']],
+ ['Chemistry','labs.potassium','S. K',['K','POTASSIUM']],
+ ['Chemistry','labs.chloride','S. Cl',['CL','CHLORIDE']],
+ ['Chemistry','labs.calcium','S. Ca',['CA','CALCIUM']],
+ ['Chemistry','labs.phosphate','S. Phosphorus',['PHOS','PO4','PHOSPHATE','PHOSPHORUS']],
+ ['Chemistry','labs.glucose','R.B.S.',['RBS','GLU','GLUCOSE','BS']],
+ ['Chemistry','kid.urea','B. Urea',['UREA','BUN','BU']],
+ ['Chemistry','kid.creatinine','S. Creatinine',['CREAT','CR','CREATININE','SCR']],
+ ['Liver','liv.bilirubin','T.S.B.',['TSB','TBIL','BILI','BILIRUBIN']],
+ ['Liver','liv.dbili','D. Bili',['DBIL','DBILI']],
+ ['Liver','liv.ibili','ID. Bili',['IBIL','IDBIL','IBILI']],
+ ['Liver','liv.ast','S. GOT (AST)',['AST','GOT','SGOT']],
+ ['Liver','liv.alt','S. GPT (ALT)',['ALT','GPT','SGPT']],
+ ['Liver','liv.alp','ALP',['ALP']],
+ ['Liver','liv.protein','T. S. Protein',['TP','PROTEIN','TSP']],
+ ['Liver','liv.albumin','S. Albumin',['ALB','ALBUMIN']],
+ ['Clotting','liv.pt','PT',['PT']],
+ ['Clotting','liv.ptt','PTT',['PTT','APTT']],
+ ['Clotting','liv.inr','INR',['INR']],
+ ['Inflammation and heart','labs.procalcitonin','PCT',['PCT','PROCALCITONIN']],
+ ['Inflammation and heart','labs.crp','CRP',['CRP']],
+ ['Inflammation and heart','labs.ddimer','D. Dimer',['DDIMER','D-DIMER','DIMER']],
+ ['Inflammation and heart','labs.troponin','Troponin',['TROP','TROPONIN','TNI','TNT']],
+ ['Inflammation and heart','labs.bnp','Pro BNP',['BNP','PROBNP','NTPROBNP']],
+ ['Thyroid','labs.tsh','TSH',['TSH']],
+ ['Thyroid','labs.t3','T3',['T3']],
+ ['Thyroid','labs.t4','T4',['T4']],
+ ['Also — not on the paper chart','labs.magnesium','Magnesium',['MG','MAGNESIUM']],
+ ['Also — not on the paper chart','labs.ionised','Ionised calcium',['ICA','IONISED','IONIZED']],
+ ['Also — not on the paper chart','labs.lactate','Lactate',['LACT','LACTATE']],
+ ['Also — not on the paper chart','kid.urine','Urine output mL/kg/h',['UO','URINE']],
 ];
-const KID=[['creatinine','Creatinine'],['urea','Urea'],['urine','Urine output mL/kg/h']];
-const LIV=[['bilirubin','Bilirubin'],['albumin','Albumin'],['inr','INR (clotting time)']];
-const ALLKEYS=[].concat(KID.map(k=>['kid',k[0],k[1]]),LIV.map(k=>['liv',k[0],k[1]]),LABS.map(k=>['labs',k[0],k[1]]));
+const LABCODE={};LABCHART.forEach(r=>r[3].forEach(c=>LABCODE[c]=r[1]));
+const ALLKEYS=LABCHART.map(r=>{const q=r[1].split('.');return [q[0],q[1],r[2]];});
+const LABGROUPS=[...new Set(LABCHART.map(r=>r[0]))];
 
 /* S is what this phone keeps: who is signed in, the last copy of the shared list, and unsaved drafts. */
 let S={auth:null,lastUser:'',patients:[],fetchedAt:'',drafts:{},profDraft:null,view:'list',current:null};
@@ -567,57 +635,91 @@ function field(label,path){
   return '<div class="f"><label>'+esc(label)+'</label><div class="pair">'+
     '<input type="text" inputmode="decimal" value="'+esc(cur)+'" oninput="setV(\''+path+'\',this.value)">'+pc+'</div></div>';}
 
-/* ── admission profile: created once, edited rarely ── */
-function newPatient(){S.profDraft={mode:'new',data:{case_id:'',initials:'',age:'',sex:'',admitted:'',admission_event:'',operations:'',
-  reason:'',other:'',height:'',allergy_drug:'',allergy_drug_what:'',allergy_food:'',allergy_food_what:''}};go('profedit');}
-function editProfile(){const p=CP();const d={};
-  ['case_id','initials','age','sex','admitted','admission_event','operations','reason','other','height',
-   'allergy_drug','allergy_drug_what','allergy_food','allergy_food_what'].forEach(k=>d[k]=p[k]||'');
+/* ── new patient: one screen = admission profile + first day's findings ── */
+const NEWKEY='__new__';
+const PROFILE_KEYS=['case_id','initials','age','sex','admitted','admission_event','operations','reason','other','height',
+  'allergy_drug','allergy_drug_what','allergy_food','allergy_food_what'];
+function blankProfile(){const o={};PROFILE_KEYS.forEach(k=>o[k]='');return o;}
+function blankEntry(){const td=isoToday();return {entry_id:'',date_iso:td,date:fmtIso(td),icuDay:'',weight:'',swollen:'',
+  labs:{},kid:{},liv:{},creatTrend:'',dialysis:'',ascites:'',enceph:'',vent:'',feeding:'',lines:'',meds:[],cultures:'',unclear:'',_check:[]};}
+const isNewFlow=()=>S.current===NEWKEY;
+
+function newPatient(){go('newchoice');}
+function newChoiceView(){
+  const cont=S.profDraft&&S.profDraft.mode==='new'&&S.drafts[NEWKEY];
+  return '<button class="back" onclick="go(\'list\')">‹ All patients</button>'+
+    (cont?'<button class="choice hl" onclick="resumeNew()"><b>Continue the unsaved new patient</b><span>'+
+      esc(PD().initials||'no initials yet')+' — kept on this phone</span></button>':'')+
+    '<button class="choice'+(cont?'':' hl')+'" onclick="beginNew(\'paste\')"><b>Paste from ORION</b>'+
+      '<span>Send the photos to ORION in chat, copy the block it returns, paste it here — the whole profile fills in.</span></button>'+
+    '<button class="choice" onclick="beginNew(\'type\')"><b>Type it in</b>'+
+      '<span>Labs in the order of the paper chart, medicine quick-pick, one-tap route and frequency.</span></button>';}
+function beginNew(mode){
+  if(S.profDraft&&S.profDraft.mode==='new'&&S.drafts[NEWKEY]&&!confirm('Start again? The unsaved new patient will be cleared.'))return;
+  S.profDraft={mode:'new',data:blankProfile()};S.drafts[NEWKEY]=blankEntry();S.current=NEWKEY;
+  if(mode==='paste'){S.pasteFor='new';go('paste');}else go('profedit');}
+function resumeNew(){S.current=NEWKEY;go('profedit');}
+function editProfile(){const p=CP();const d={};PROFILE_KEYS.forEach(k=>d[k]=p[k]||'');
   S.profDraft={mode:'edit',data:d};go('profedit');}
-function profEditView(){
-  const d=PD(),isNew=S.profDraft.mode==='new';
-  let h='<button class="back" onclick="cancelProfile()">‹ Cancel</button>';
-  h+=sec('·',isNew?'New patient — admission profile':'Edit admission profile — '+esc(d.case_id),
+
+function profileSections(isNew){
+  const d=PD();let h='';
+  h+=sec('·',isNew?'Patient':'Edit admission profile — '+esc(d.case_id),
     (isNew?txt('Case no.','case_id','Leave blank for the next number','p'):'')+
     '<div class="row">'+txt('Initials','initials','A. B.','p')+txt('Age','age','','p',false,'tel')+'</div>'+
     chips('Sex','sex',['Male','Female'],'p')+
-    '<div class="row">'+txt('Admitted to ICU on','admitted','15 Aug 2026','p')+txt('Height (cm)','height','','p',false,'tel')+'</div>'+
+    '<div class="row">'+txt('Admitted to ICU on','admitted','24 Sep 2026','p')+txt('Height (cm)','height','','p',false,'tel')+'</div>'+
     '<div class="calc" id="ibwbox"></div>');
-  h+=sec('1','Why in intensive care',
-    txt('What brought them in','admission_event','e.g. head trauma with reduced consciousness','p',true)+
-    txt('Operations this admission','operations','e.g. burr hole','p',true)+
+  h+=sec('·','Why in intensive care',
+    txt('What brought them in','admission_event','e.g. dizziness → craniotomy for brain tumour','p',true)+
+    txt('Operations this admission','operations','e.g. craniotomy','p',true)+
     txt('Main problem now','reason','','p')+
     txt('Other problems','other','Long-standing conditions','p',true));
-  h+=sec('2','Allergies',
-    yn('Drug allergy?','allergy_drug','p')+
+  h+=sec('·','Allergies',
+    chips('Drug allergy','allergy_drug',['no','yes','unknown'],'p')+
     '<div class="reveal" '+(d.allergy_drug==='yes'?'':'hidden')+'>'+txt('Which drug, and what happened','allergy_drug_what','','p',true)+'</div>'+
-    yn('Food allergy?','allergy_food','p')+
+    chips('Food allergy','allergy_food',['no','yes','unknown'],'p')+
     '<div class="reveal" '+(d.allergy_food==='yes'?'':'hidden')+'>'+txt('Which food, and what happened','allergy_food_what','','p',true)+'</div>');
-  if(!isNew)h+='<p class="hint">Changing the profile is logged with your name. Day-to-day results go in an update, not here.</p>';
   return h;}
-function cancelProfile(){const m=S.profDraft&&S.profDraft.mode;S.profDraft=null;save();go(m==='edit'?'profile':'list');}
+function profEditView(){
+  const isNew=S.profDraft.mode==='new';
+  let h='<button class="back" onclick="cancelProfile()">‹ Cancel</button>';
+  if(isNew){h+=checkBanner(D());h+=profileSections(true)+entrySections();h+='<div class="checks" id="checks"></div>';}
+  else{h+=profileSections(false)+'<p class="hint">Changing the profile is logged with your name. Day-to-day results go in an update, not here.</p>';}
+  return h;}
+function cancelProfile(){const m=S.profDraft&&S.profDraft.mode;
+  if(m==='new'){go('newchoice');return;}   // the unsaved new patient stays on the phone until saved or restarted
+  S.profDraft=null;save();go('profile');}
+function hasContent(e){return has(e.weight)||has(e.unclear)||e.meds.some(m=>has(m.name))||
+  ['labs','kid','liv'].some(g=>Object.values(e[g]||{}).some(has));}
+function pendingChecks(e){return (e._check||[]).length+(e.meds||[]).filter(m=>m.flag&&has(m.name)).length;}
+function cleanEntry(e){const d=clone(e);delete d._check;d.meds=(d.meds||[]).filter(m=>has(m.name)).map(m=>{delete m.flag;return m;});
+  d.date=fmtIso(d.date_iso);return d;}
 async function saveProfile(){
   const d=clone(PD());if(!d.initials){toast('Initials are needed');return;}
-  const isNew=S.profDraft.mode==='new';if(isNew)d.create=true;
+  const isNew=S.profDraft.mode==='new';
+  if(isNew){const n=pendingChecks(D());if(n&&!confirm(n+' item'+(n===1?' is':'s are')+' still marked to check. Save anyway?'))return;d.create=true;}
   if(d.case_id&&/^\d+$/.test(d.case_id.trim()))d.case_id='ICU-'+d.case_id.trim().padStart(3,'0');
-  BUSY=true;toast('Saving…');const j=await api('savePatient',{patient:d});BUSY=false;
-  if(!j.ok){toast(j.error==='offline'?'Not saved — no connection. Your entry is kept.':(j.message||'Not saved'));return;}
-  S.profDraft=null;S.current=j.case_id;save();await refresh(true);
-  if(isNew){startUpdate(j.case_id);toast(j.case_id+' opened — now today\'s findings');}
-  else{go('profile');toast('Profile saved');}}
+  BUSY=true;toast('Saving…');const j=await api('savePatient',{patient:d});
+  if(!j.ok){BUSY=false;toast(j.error==='offline'?'Not saved — no connection. Your entry is kept.':(j.message||'Not saved'));return;}
+  if(isNew&&hasContent(D())){const e=cleanEntry(D());e.case_id=j.case_id;
+    const k=await api('saveEntry',{entry:e});
+    if(!k.ok){BUSY=false;S.drafts[j.case_id]=Object.assign(clone(D()),{case_id:j.case_id});delete S.drafts[NEWKEY];S.profDraft=null;
+      S.current=j.case_id;save();await refresh(true);go('form');toast('Profile saved — findings not yet. Tap Save update.');return;}}
+  BUSY=false;if(isNew)delete S.drafts[NEWKEY];
+  S.profDraft=null;S.current=j.case_id;save();await refresh(true);go('profile');
+  toast(isNew?j.case_id+' saved to the shared record':'Profile saved');}
 
 /* ── today's update: a draft on this phone until saved to the shared record ── */
 function startUpdate(id){
   const p=P(id);S.current=id;const td=isoToday();
-  const ex=S.drafts[id];
-  if(!ex){
+  if(!S.drafts[id]){
     const mine=entries(p).find(e=>e.date_iso===td&&e.pharmacist===me());
     if(mine){S.drafts[id]=clone(mine);}
     else{
       const mE=lastMedsEntry(p),w=lastKnown(p,'weight'),sw=lastKnown(p,'swollen');
-      S.drafts[id]={entry_id:'',date_iso:td,date:fmtIso(td),icuDay:icuDayFor(p,td),weight:w?w.v:'',swollen:sw?sw.v:'',
-        labs:{},kid:{},liv:{},creatTrend:'',dialysis:'',ascites:'',enceph:'',vent:'',feeding:'',lines:'',
-        meds:mE?mE.meds.filter(m=>m.state!=='stopped').map(m=>Object.assign({},m,{state:''})):[],cultures:'',unclear:''};
+      S.drafts[id]=Object.assign(blankEntry(),{icuDay:icuDayFor(p,td),weight:w?w.v:'',swollen:sw?sw.v:'',
+        meds:mE?mE.meds.filter(m=>m.state!=='stopped').map(m=>Object.assign({},m,{state:''})):[]});
     }
   }
   save();go('form');}
@@ -626,7 +728,36 @@ function editEntry(eid){const p=CP();const e=entries(p).find(x=>x.entry_id===eid
   S.drafts[p.case_id]=clone(e);save();go('form');}
 function discardDraft(){if(!confirm('Discard this unsaved update?'))return;delete S.drafts[S.current];save();go('profile');}
 function setDate(v){const d=D();d.date_iso=v;d.date=fmtIso(v);
-  if(!d.entry_id)d.icuDay=icuDayFor(CP(),v)||d.icuDay;save();render();}
+  if(!d.entry_id&&CP())d.icuDay=icuDayFor(CP(),v)||d.icuDay;save();render();}
+
+function checkBanner(d){const c=(d&&d._check)||[];if(!c.length)return '';
+  return '<div class="banner"><b style="color:var(--amber)">'+c.length+' to check from ORION:</b> '+c.map(esc).join(' · ')+
+    ' <button class="linkbtn" style="font-size:13px" onclick="D()._check=[];save();render()">Mark checked</button></div>';}
+
+function entrySections(){
+  const d=D();let h='';
+  h+=sec('·',isNewFlow()?'First day in the record':'This update',
+    '<div class="row"><div class="f"><label>Date</label><input type="date" value="'+esc(d.date_iso)+'" onchange="setDate(this.value)"></div>'+
+    '<div class="f"><label>ICU day</label><input type="text" inputmode="numeric" value="'+esc(d.icuDay)+'" oninput="setV(\'icuDay\',this.value)"></div></div>'+
+    '<div class="f"><label>Weight (kg)</label><div class="pair"><input type="text" inputmode="decimal" value="'+esc(d.weight)+'" oninput="setV(\'weight\',this.value)">'+
+      (function(){const pv=prevOf('weight');return pv?'<div class="prev"><div class="prev-l">Last · '+esc(shortIso(pv.date))+'</div><div class="prev-v">'+esc(pv.v)+'</div></div>'
+        :'<div class="prev none"><div class="prev-l">Last</div><div class="prev-v">—</div></div>';})()+'</div></div>'+
+    yn('Is the patient swollen?','swollen','d')+(isNewFlow()?'':'<div class="calc" id="ibwbox"></div>'));
+  h+=sec('·','Lab chart',labChart()+'<p class="hint">Same order as the paper chart. Leave a box empty if it was not measured. <b>Next</b> on the keypad jumps to the next box.</p>');
+  h+=sec('·','Kidney and liver status',
+    chips('Creatinine is','creatTrend',['going up','steady','coming down'],'d')+yn('On dialysis?','dialysis','d')+
+    chips('Fluid in the abdomen','ascites',['none','mild','moderate or more'],'d')+
+    chips('Confused or drowsy beyond sedation','enceph',['no','mild','marked'],'d'),false);
+  h+=sec('·','Status, feeding and lines',
+    chips('Breathing','vent',['own breathing','oxygen','ventilator'],'d')+
+    chips('Feeding','feeding',['nothing by mouth','by mouth','feeding tube','drip feeding'],'d')+
+    txt('Central line — where, and how many openings','lines','','d')+txt('Cultures sent / grown','cultures','','d',true),false);
+  h+=sec('·','Medicines — '+d.meds.filter(m=>has(m.name)&&m.state!=='stopped').length+' on chart',
+    '<div id="meds">'+d.meds.map((m,i)=>medRow(i,m)).join('')+'</div>'+
+    '<button class="addbtn" onclick="addMed()">+ Add medicine</button>'+
+    (isNewFlow()?'':'<p class="hint">Carried over from the last list. Mark anything that started, stopped or changed.</p>'));
+  h+=sec('·','Notes and anything unclear',txt('Notes, or anything you could not read','unclear','Leave blank rather than guess.','d',true));
+  return h;}
 
 function formView(){
   const p=CP(),d=D();const edit=!!d.entry_id;
@@ -634,59 +765,229 @@ function formView(){
   h+='<div class="banner" style="background:var(--navy-soft);border-color:var(--navy)">'+
     (edit?'Editing your update of '+esc(fmtIso(d.date_iso))+'.':'New update by <b>'+esc(me())+'</b> — it reaches the shared record when you tap <b>Save</b>.')+
     ' <button class="linkbtn" style="font-size:13px" onclick="discardDraft()">Discard</button></div>';
-  h+=sec('·','This update',
-    '<div class="row"><div class="f"><label>Date</label><input type="date" value="'+esc(d.date_iso)+'" onchange="setDate(this.value)"></div>'+
-    '<div class="f"><label>ICU day</label><input type="text" inputmode="numeric" value="'+esc(d.icuDay)+'" oninput="setV(\'icuDay\',this.value)"></div></div>');
-  h+=sec('1','Weight',
-    '<div class="f"><label>Weight (kg)</label><div class="pair"><input type="text" inputmode="decimal" value="'+esc(d.weight)+'" oninput="setV(\'weight\',this.value)">'+
-      (function(){const pv=prevOf('weight');return pv?'<div class="prev"><div class="prev-l">Last · '+esc(shortIso(pv.date))+'</div><div class="prev-v">'+esc(pv.v)+'</div></div>'
-        :'<div class="prev none"><div class="prev-l">Last</div><div class="prev-v">—</div></div>';})()+'</div></div>'+
-    yn('Is the patient swollen?','swollen','d')+'<div class="calc" id="ibwbox"></div>');
-  h+=sec('2','Kidney and liver',
-    KID.map(k=>field(k[1],'kid.'+k[0])).join('')+
-    chips('Creatinine is','creatTrend',['going up','steady','coming down'],'d')+
-    yn('On dialysis?','dialysis','d')+
-    LIV.map(k=>field(k[1],'liv.'+k[0])).join('')+
-    chips('Fluid in the abdomen','ascites',['none','mild','moderate or more'],'d')+
-    chips('Confused or drowsy beyond sedation','enceph',['no','mild','marked'],'d'));
-  h+=sec('3','Blood results',LABS.map(k=>field(k[1],'labs.'+k[0])).join('')+
-    '<p class="hint">Leave a box empty if it was not measured — the last value stays visible on the profile.</p>');
-  h+=sec('4','Status, feeding and lines',
-    chips('Breathing','vent',['own breathing','oxygen','ventilator'],'d')+
-    chips('Feeding','feeding',['nothing by mouth','by mouth','feeding tube','drip feeding'],'d')+
-    txt('Central line — where, and how many openings','lines','','d')+
-    txt('Cultures sent / grown','cultures','','d',true),false);
-  h+=sec('5','Medicines',
-    '<div id="meds">'+d.meds.map((m,i)=>medRow(i,m)).join('')+'</div>'+
-    '<button class="addbtn" onclick="addMed()">+ Add medicine</button>'+
-    '<p class="hint">Carried over from the last list. Mark anything that started, stopped or changed.</p>');
-  h+=sec('6','Notes and anything unclear',
-    txt('Notes, or anything you could not read','unclear','Leave blank rather than guess.','d',true));
-  h+='<div class="checks" id="checks"></div>';
+  h+='<button class="pastebtn" onclick="S.pasteFor=\'update\';go(\'paste\')">Paste today\'s findings from ORION</button>';
+  h+=checkBanner(d)+entrySections()+'<div class="checks" id="checks"></div>';
   return h;}
 
+/* ── lab chart rows: label · today · last value ── */
+function labChart(){
+  let h='';
+  LABGROUPS.forEach(g=>{
+    h+='<div class="grp">'+esc(g)+'</div>';
+    LABCHART.filter(r=>r[0]===g).forEach(r=>{
+      const cur=getT('d',r[1]),pv=prevOf(r[1]);
+      h+='<div class="lrow"><label class="lab-l" for="lab-'+r[1]+'">'+esc(r[2])+'</label>'+
+        '<input class="labin" id="lab-'+r[1]+'" type="text" inputmode="decimal" enterkeyhint="next" value="'+esc(cur)+'" '+
+        'oninput="setV(\''+r[1]+'\',this.value)" onkeydown="labNext(event,this)">'+
+        '<span class="lab-p">'+(pv?esc(pv.v)+' '+arrow(cur,pv.v)+'<i>'+esc(shortIso(pv.date))+'</i>':'—')+'</span></div>';});});
+  return h;}
+function labNext(ev,el){if(ev.key!=='Enter')return;ev.preventDefault();
+  const all=Array.from(document.querySelectorAll('.labin'));const i=all.indexOf(el);
+  if(i>=0&&all[i+1]){all[i+1].focus();all[i+1].scrollIntoView({block:'center'});}else el.blur();}
+
+/* ── medicines: quick-pick, one-tap route and frequency ── */
+const DRUGS=[
+ ['Ceftriaxone',['Rocephin','Triaxone'],'1 g','IV','×2'],['Cefotaxime',['Claforan'],'1 g','IV','×3'],
+ ['Ceftazidime',['Fortum'],'1 g','IV','×3'],['Cefepime',['Maxipime'],'1 g','IV','×2'],
+ ['Meropenem',['Meronem'],'1 g','IV','×3'],['Imipenem/cilastatin',['Tienam'],'500 mg','IV','×4'],
+ ['Piperacillin/tazobactam',['Tazocin'],'4.5 g','IV','×3'],['Ampicillin/sulbactam',['Unasyn'],'1.5 g','IV','×4'],
+ ['Vancomycin',['Vancocin'],'1 g','IV','×2'],['Teicoplanin',['Targocid'],'400 mg','IV','×1'],
+ ['Linezolid',['Zyvox'],'600 mg','IV','×2'],['Metronidazole',['Flagyl'],'500 mg','IV','×3'],
+ ['Amikacin',['Amikin'],'500 mg','IV','×1'],['Gentamicin',['Garamycin'],'80 mg','IV','×3'],
+ ['Levofloxacin',['Tavanic'],'500 mg','IV','×1'],['Ciprofloxacin',['Ciprobay'],'400 mg','IV','×2'],
+ ['Azithromycin',['Zithromax'],'500 mg','IV','×1'],['Clindamycin',['Dalacin'],'600 mg','IV','×3'],
+ ['Colistin',['Colomycin'],'2 MIU','IV','×3'],['Tigecycline',['Tygacil'],'50 mg','IV','×2'],
+ ['Fluconazole',['Diflucan'],'200 mg','IV','×1'],['Acyclovir',['Zovirax'],'500 mg','IV','×3'],
+ ['Omeprazole',['Losec'],'40 mg','IV','×1'],['Esomeprazole',['Nexium'],'40 mg','IV','×1'],
+ ['Pantoprazole',['Controloc'],'40 mg','IV','×1'],['Metoclopramide',['Plasil','Primperan'],'10 mg','IV','×3'],
+ ['Ondansetron',['Zofran'],'4 mg','IV','×3'],['Mosapride',['Gasmotin'],'5 mg','PO','×3'],
+ ['Lactulose',['Duphalac'],'15 mL','PO','×3'],
+ ['Enoxaparin',['Clexane'],'40 mg','SC','×1'],['Heparin',[],'5000 IU','SC','×3'],
+ ['Tranexamic acid',['Cyklokapron','Transamin'],'1 g','IV','×3'],
+ ['Dexamethasone',['Decadron'],'4 mg','IV','×4'],['Hydrocortisone',['Solu-Cortef'],'100 mg','IV','×3'],
+ ['Methylprednisolone',['Solu-Medrol'],'40 mg','IV','×2'],
+ ['Mannitol 20%',['Osmitrol'],'100 mL','IV','×3'],['Hypertonic saline 3%',[],'','IV','infusion'],
+ ['Phenytoin',['Epanutin','Dilantin'],'100 mg','IV','×3'],['Levetiracetam',['Keppra'],'500 mg','IV','×2'],
+ ['Carbamazepine',['Tegretol'],'200 mg','PO','×2'],['Sodium valproate',['Depakine','Epilim'],'500 mg','IV','×2'],
+ ['Lacosamide',['Vimpat'],'100 mg','IV','×2'],['Nimodipine',['Nimotop'],'60 mg','PO','×6'],
+ ['Midazolam',['Dormicum'],'','IV','infusion'],['Propofol',['Diprivan'],'','IV','infusion'],
+ ['Fentanyl',[],'','IV','infusion'],['Morphine',[],'5 mg','IV','PRN'],
+ ['Paracetamol',['Perfalgan','Paramol','Panadol'],'1 g','IV','×4'],['Tramadol',['Tramal'],'100 mg','IV','PRN'],
+ ['Insulin regular',['Actrapid'],'sliding scale','SC','×4'],['Insulin glargine',['Lantus'],'','SC','×1'],
+ ['Noradrenaline',['Levophed','Norepinephrine'],'','IV','infusion'],['Adrenaline',['Epinephrine'],'','IV','infusion'],
+ ['Dobutamine',[],'','IV','infusion'],['Amiodarone',['Cordarone'],'150 mg','IV','infusion'],
+ ['Furosemide',['Lasix'],'20 mg','IV','×2'],['Bisoprolol',['Concor'],'5 mg','PO','×1'],
+ ['Amlodipine',['Norvasc'],'5 mg','PO','×1'],['Atorvastatin',['Lipitor'],'40 mg','PO','×1'],
+ ['Aspirin',[],'100 mg','PO','×1'],['Clopidogrel',['Plavix'],'75 mg','PO','×1'],
+ ['Sacubitril/valsartan',['Entresto','Savesto'],'50 mg','PO','×2'],
+ ['Potassium chloride',['KCl'],'20 mEq','IV','infusion'],['Magnesium sulfate',[],'2 g','IV','×1'],
+ ['Calcium gluconate 10%',[],'10 mL','IV','×3'],['Sodium bicarbonate 8.4%',[],'50 mL','IV','×1'],
+ ['Salbutamol',['Ventolin'],'2.5 mg','Neb','×4'],['Ipratropium',['Atrovent'],'0.5 mg','Neb','×3'],
+ ['Budesonide',['Pulmicort'],'0.5 mg','Neb','×2'],['Acetylcysteine',['Fluimucil'],'300 mg','IV','×2'],
+ ['Normal saline 0.9%',['NS'],'1000 mL','IV','infusion'],['Dextrose 5%',['D5W'],'1000 mL','IV','infusion'],
+ ['Ringer lactate',['RL','Hartmann'],'1000 mL','IV','infusion'],['Albumin 20%',[],'100 mL','IV','×1'],
+ ['Quetiapine',['Seroquel'],'25 mg','PO','at night'],['Haloperidol',['Haldol'],'5 mg','IV','PRN'],
+ ['Mirtazapine',['Remeron'],'15 mg','PO','at night'],['Desmopressin',['Minirin'],'','Nasal','×2'],
+ ['Thiamine',['Vitamin B1'],'100 mg','IV','×3'],
+];
+const ROUTES=['IV','PO','NG','SC','IM','Neb','Nasal'];
+const FREQS=['×1','×2','×3','×4','×6','at night','PRN','infusion'];
+function recentMeds(){const seen={},out=[];
+  S.patients.forEach(p=>(p.entries||[]).forEach(e=>(e.meds||[]).forEach(m=>{if(!has(m.name))return;
+    const k=[m.name,m.dose,m.route,m.freq].join('|').toLowerCase();if(!seen[k]){seen[k]=1;out.push(m);}})));return out;}
+function suggest(q){
+  q=String(q||'').trim().toLowerCase();if(q.length<2)return [];
+  const hit=s=>{s=String(s||'').toLowerCase();return s.startsWith(q)||(q.length>=3&&s.includes(q));};
+  const out=[],keys={};
+  const add=(name,dose,route,freq,src)=>{const k=(name+'|'+dose+'|'+route+'|'+freq).toLowerCase();if(keys[k])return;keys[k]=1;
+    out.push({name,dose,route,freq,src});};
+  recentMeds().filter(m=>hit(m.name)).slice(0,4).forEach(m=>add(m.name,m.dose||'',m.route||'',m.freq||'','recent'));
+  DRUGS.forEach(d=>{const b=d[1].find(hit);if(hit(d[0])||b)add(b?d[0]+' ('+b+')':d[0],d[2],d[3],d[4],'list');});
+  return out.slice(0,7);}
+let SUG={};
+function medType(i,el){setMed(i,'name',el.value);const box=document.getElementById('sug-'+i);if(!box)return;
+  const list=suggest(el.value);SUG[i]=list;
+  box.innerHTML=list.map((s,j)=>'<button onmousedown="event.preventDefault()" onclick="pickMed('+i+','+j+')"><span>'+
+    (s.src==='recent'?'<em>recent</em> ':'')+esc(s.name)+'</span><i>'+esc([s.dose,s.route,s.freq].filter(Boolean).join(' '))+'</i></button>').join('');
+  box.hidden=!list.length;}
+function pickMed(i,j){const s=SUG[i]&&SUG[i][j];if(!s)return;const m=D().meds[i];
+  m.name=s.name;m.dose=s.dose;m.route=s.route;m.freq=s.freq;delete m.flag;save();render();
+  setTimeout(()=>{const x=document.getElementById('dose-'+i);if(x){x.focus();x.select&&x.select();}},80);}
+function setMedTap(i,k,v){const m=D().meds[i];m[k]=(m[k]===v?'':v);save();render();}
 function medRow(i,m){
-  return '<div class="med'+(m.state==='stopped'?' stopped':'')+'">'+
+  const tap=(k,list)=>'<div class="mchips">'+list.map(v=>'<button aria-pressed="'+(m[k]===v)+'" onclick="setMedTap('+i+',\''+k+'\',\''+v+'\')">'+v+'</button>').join('')+
+    (has(m[k])&&!list.includes(m[k])?'<span class="mcur">'+esc(m[k])+'</span>':'')+'</div>';
+  return '<div class="med'+(m.state==='stopped'?' stopped':'')+(m.flag?' flag':'')+'">'+
     '<div class="med-top"><span class="med-n">'+(i+1)+'</span>'+
-    '<input type="text" value="'+esc(m.name||'')+'" placeholder="Medicine" oninput="setMed('+i+',\'name\',this.value)">'+
+    '<input type="text" value="'+esc(m.name||'')+'" placeholder="Type 2–3 letters — generic or brand" autocomplete="off" '+
+      'oninput="medType('+i+',this)" onblur="setTimeout(()=>{const b=document.getElementById(\'sug-'+i+'\');if(b)b.hidden=true},150)">'+
     '<button class="del" onclick="delMed('+i+')" aria-label="Remove">×</button></div>'+
-    '<div class="med-grid">'+
-    '<div><span class="mini">Dose</span><input type="text" value="'+esc(m.dose||'')+'" oninput="setMed('+i+',\'dose\',this.value)"></div>'+
-    '<div><span class="mini">Route</span><input type="text" value="'+esc(m.route||'')+'" oninput="setMed('+i+',\'route\',this.value)"></div>'+
-    '<div><span class="mini">How often</span><input type="text" value="'+esc(m.freq||'')+'" oninput="setMed('+i+',\'freq\',this.value)"></div>'+
+    '<div class="sugg" id="sug-'+i+'" hidden></div>'+
+    (m.flag?'<div class="mflag">⚠ '+esc(m.flag)+' <button class="linkbtn" style="font-size:12px" onclick="delete D().meds['+i+'].flag;save();render()">Checked</button></div>':'')+
+    '<div class="med-grid"><div class="full"><span class="mini">Dose</span><input type="text" id="dose-'+i+'" value="'+esc(m.dose||'')+'" oninput="setMed('+i+',\'dose\',this.value)"></div></div>'+
+    '<span class="mini" style="margin-top:6px">Route</span>'+tap('route',ROUTES)+
+    '<span class="mini" style="margin-top:6px">How often</span>'+tap('freq',FREQS)+
+    '<div class="med-grid" style="margin-top:6px">'+
+    '<div><span class="mini">What it is for</span><input type="text" value="'+esc(m.why||'')+'" oninput="setMed('+i+',\'why\',this.value)"></div>'+
     '<div><span class="mini">Started on</span><input type="text" value="'+esc(m.started||'')+'" oninput="setMed('+i+',\'started\',this.value)"></div>'+
-    '<div class="full"><span class="mini">What it is for</span><input type="text" value="'+esc(m.why||'')+'" oninput="setMed('+i+',\'why\',this.value)"></div>'+
     '</div><div class="tagrow">'+
     ['started','changed','stopped'].map(t=>'<button aria-pressed="'+(m.state===t)+'" onclick="tagMed('+i+',\''+t+'\')">'+t+'</button>').join('')+
     '</div></div>';}
-function addMed(){D().meds.push({name:'',dose:'',route:'',freq:'',started:'',why:'',state:'started'});save();render();}
+function addMed(){const d=D();d.meds.push({name:'',dose:'',route:'',freq:'',started:'',why:'',state:isNewFlow()?'':'started'});save();render();
+  setTimeout(()=>{const ins=document.querySelectorAll('.med-top input');const x=ins[ins.length-1];if(x){x.focus();x.scrollIntoView({block:'center'});}},80);}
 function delMed(i){D().meds.splice(i,1);save();render();}
 function setMed(i,k,v){D().meds[i][k]=v;save();}
 function tagMed(i,t){const m=D().meds[i];m.state=(m.state===t?'':t);save();render();}
 
+/* ── paste from ORION ── */
+function pasteView(){
+  const upd=S.pasteFor==='update';
+  return '<button class="back" onclick="cancelPaste()">‹ Back</button>'+
+    '<section><div class="sec-b">'+
+    '<label for="paste-in">'+(upd?'Paste today\'s block from ORION':'Paste the block from ORION')+'</label>'+
+    '<textarea id="paste-in" style="min-height:260px;font-family:var(--mono);font-size:13px" placeholder="#CCPR v1&#10;patient: B. H. | 23 | Female&#10;…"></textarea>'+
+    '<div id="paste-err"></div>'+
+    '<p class="hint">The phone reads the block itself — nothing is sent anywhere until you check the form and tap Save.</p>'+
+    '</div></section>';}
+function cancelPaste(){go(S.pasteFor==='update'?'form':'newchoice');}
+async function pasteClip(){try{const t=await navigator.clipboard.readText();document.getElementById('paste-in').value=t;}catch(e){toast('Tap the box and paste');}}
+function applyPaste(){
+  const r=parseBlock(document.getElementById('paste-in').value);
+  if(!r.ok){document.getElementById('paste-err').innerHTML='<p class="err">'+esc(r.msg)+'</p>';return;}
+  const d=D();
+  if(S.pasteFor==='new'){const pd=PD();Object.keys(r.profile).forEach(k=>{if(has(r.profile[k]))pd[k]=r.profile[k];});}
+  ['date_iso','icuDay','weight'].forEach(k=>{if(has(r.entry[k]))d[k]=r.entry[k];});
+  if(has(r.entry.date_iso))d.date=fmtIso(d.date_iso);
+  r.labs.forEach(x=>{const q=x[0].split('.');d[q[0]]=d[q[0]]||{};d[q[0]][q[1]]=x[1];});
+  if(r.meds.length)d.meds=r.meds;
+  const notes=[r.notes,r.unmatched.length?'Also reported: '+r.unmatched.join('; '):''].filter(Boolean).join('\n');
+  if(notes)d.unclear=[d.unclear,notes].filter(Boolean).join('\n');
+  d._check=r.check;save();
+  go(S.pasteFor==='update'?'form':'profedit');
+  toast('Filled: '+r.labs.length+' lab'+(r.labs.length===1?'':'s')+', '+r.meds.length+' medicine'+(r.meds.length===1?'':'s'));}
+
+function parseDateIso(s){
+  s=String(s||'').trim();let m=s.match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+  if(m)return m[1]+'-'+pad(m[2])+'-'+pad(m[3]);
+  const MON={jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12};
+  m=s.match(/(\d{1,2})\s*([A-Za-z]{3})[a-z]*\.?\s*(\d{4})?/);
+  if(m&&MON[m[2].toLowerCase()])return (m[3]||new Date().getFullYear())+'-'+pad(MON[m[2].toLowerCase()])+'-'+pad(m[1]);
+  m=s.match(/(\d{1,2})[\/.](\d{1,2})(?:[\/.](\d{2,4}))?/);
+  if(m){let y=m[3]||String(new Date().getFullYear());if(y.length===2)y='20'+y;return y+'-'+pad(m[2])+'-'+pad(m[1]);}
+  return '';}
+function labPath(code){
+  const raw=String(code||'').toUpperCase();
+  const tries=[raw.replace(/[^A-Z0-9-]/g,''),raw.replace(/[^A-Z0-9]/g,'')];
+  const par=raw.match(/\(([^)]+)\)/);if(par)tries.unshift(par[1].replace(/[^A-Z0-9]/g,''));
+  tries.push(tries[tries.length-1].replace(/^(S|B|SERUM)/,''));
+  for(const t of tries)if(LABCODE[t])return LABCODE[t];return null;}
+function parseMedLine(line){
+  let t=line.replace(/^\s*(?:[-•*]|\d+[.)])\s*/,'').trim();if(!t)return null;
+  const parts=t.split('|').map(x=>x.trim());
+  const m={name:'',dose:'',route:'',freq:'',started:'',why:'',state:''};const flags=[];
+  const take=(v)=>{let x=v;if(/⚠/.test(x)){const note=x.split('⚠')[1].trim();flags.push(note||'check');x=x.split('⚠')[0].trim();}return x;};
+  m.name=take(parts[0]||'');
+  m.dose=take(parts[1]||'');m.route=take(parts[2]||'');m.freq=take(parts[3]||'');
+  parts.slice(4).forEach(x=>{const v=take(x);const l=v.toLowerCase();
+    if(['started','changed','stopped'].includes(l))m.state=l;else if(l==='new')m.state='started';else if(l==='stop')m.state='stopped';
+    else if(v)m.why=m.why?m.why+'; '+v:v;});
+  if(m.dose==='?'){m.dose='';flags.push('dose not written');}
+  if(m.freq==='?'){m.freq='';flags.push('frequency not written');}
+  m.freq=m.freq.replace(/^x\s*(\d)/i,'×$1');
+  if(flags.length)m.flag=flags.filter(Boolean).join('; ');
+  return m.name?m:null;}
+function parseBlock(text){
+  const out={ok:false,profile:{},entry:{},labs:[],meds:[],check:[],unmatched:[],notes:''};
+  const lines=String(text||'').replace(/\r/g,'').split('\n');
+  if(!lines.some(l=>/#CCPR/i.test(l)))return {ok:false,msg:'This does not look like an ORION block — it should start with #CCPR.'};
+  const KEYS=['patient','height','admitted','event','ops','operations','reason','problem','other','allergy','allergies',
+    'date','icu_day','day','weight','labs','meds','notes','check'];
+  const text_={};let key=null;
+  const addLabs=s=>s.split(/[;·|\n]+/).forEach(tok=>{tok=tok.trim();if(!tok)return;
+    const m=tok.match(/^(.*?)[\s:=]+([<>]?\d+(?:\.\d+)?)\s*(.*)$/);
+    if(!m){out.unmatched.push(tok);return;}
+    const path=labPath(m[1]);if(path)out.labs.push([path,m[2].replace(/^[<>]/,'')]);else out.unmatched.push(tok);});
+  lines.forEach(raw=>{
+    if(!raw.trim()||/#CCPR/i.test(raw))return;
+    const indented=/^\s/.test(raw);
+    const m=raw.match(/^([A-Za-z_]+)\s*:?\s*(.*)$/);
+    const k=m&&m[1].toLowerCase();
+    if(!indented&&k&&KEYS.includes(k)&&raw.indexOf('|')<0||(!indented&&k&&KEYS.includes(k)&&k==='patient')){
+      key=k;const v=m[2].trim();
+      if(k==='labs'){const rest=v.replace(/^\d{4}-\d{2}-\d{2}|^\d{1,2}\s*[A-Za-z]{3}(\s*\d{4})?/,'').trim();
+        const dm=v.match(/^(\d{4}-\d{2}-\d{2}|\d{1,2}\s*[A-Za-z]{3}(\s*\d{4})?)/);
+        if(dm&&!has(out.entry.date_iso))out.entry.date_iso=parseDateIso(dm[1]);if(rest)addLabs(rest);}
+      else if(k==='meds'){if(v&&v.indexOf('|')>=0){const md=parseMedLine(v);if(md)out.meds.push(md);}}
+      else text_[k]=v;
+      return;}
+    if(key==='labs')addLabs(raw);
+    else if(key==='meds'){const md=parseMedLine(raw);if(md)out.meds.push(md);}
+    else if(key)text_[key]=(text_[key]?text_[key]+' ':'')+raw.trim();
+  });
+  const P_=out.profile;
+  if(text_.patient){const b=text_.patient.split('|').map(x=>x.trim());
+    P_.initials=b[0]||'';const age=(b[1]||'').match(/\d+/);P_.age=age?age[0]:'';
+    const sx=(b[2]||'').toLowerCase();P_.sex=/^(f|female|♀|انثى|أنثى)/.test(sx)?'Female':/^(m|male|♂|ذكر)/.test(sx)?'Male':'';}
+  if(text_.height){const h=text_.height.match(/\d+(\.\d+)?/);P_.height=h?h[0]:'';}
+  if(text_.admitted)P_.admitted=text_.admitted;
+  if(text_.event)P_.admission_event=text_.event;
+  if(text_.ops||text_.operations)P_.operations=text_.ops||text_.operations;
+  if(text_.reason||text_.problem)P_.reason=text_.reason||text_.problem;
+  if(text_.other)P_.other=text_.other;
+  const al=text_.allergy||text_.allergies;
+  if(al){if(/unknown|not known|\?/i.test(al))P_.allergy_drug='unknown';
+    else if(/^(no|none|nil|nkda|no known)/i.test(al))P_.allergy_drug='no';
+    else{P_.allergy_drug='yes';P_.allergy_drug_what=al;}}
+  if(text_.date)out.entry.date_iso=parseDateIso(text_.date);
+  const dy=text_.icu_day||text_.day;if(dy){const n=dy.match(/\d+/);if(n)out.entry.icuDay=n[0];}
+  if(text_.weight){const w=text_.weight.match(/\d+(\.\d+)?/);if(w)out.entry.weight=w[0];}
+  if(text_.notes)out.notes=text_.notes;
+  if(text_.check)out.check=text_.check.split(/[;·]+/).map(x=>x.trim()).filter(Boolean);
+  out.ok=true;return out;}
+
 async function saveEntry(){
-  const d=clone(D());d.case_id=S.current;d.date=fmtIso(d.date_iso);
-  d.meds=d.meds.filter(m=>has(m.name));
+  const n=pendingChecks(D());if(n&&!confirm(n+' item'+(n===1?' is':'s are')+' still marked to check. Save anyway?'))return;
+  const d=cleanEntry(D());d.case_id=S.current;
   BUSY=true;toast('Saving…');const j=await api('saveEntry',{entry:d});BUSY=false;
   if(!j.ok){toast(j.error==='offline'?'Not saved — no connection. Your update is kept on this phone.':(j.message||'Not saved'));return;}
   delete S.drafts[S.current];save();await refresh(true);go('profile');toast('Saved to the shared record');}
@@ -697,8 +998,8 @@ function refreshLive(){
   if(box){const src=S.view==='profedit'?PD():CP();const v=ibwOf(src);
     box.innerHTML='<div class="calc-l">Ideal weight</div><div class="calc-v">'+(v?v.toFixed(1)+' kg':'—')+'</div><div class="calc-n">'+
       (v?esc(src.sex)+' · '+(src.sex==='Male'?'50.0':'45.5')+' + 0.9 × ('+esc(src.height)+' − 152)':'Enter sex and height in the profile')+'</div>';}
-  const ch=document.getElementById('checks');if(!ch||S.view!=='form')return;
-  const d=D(),p=CP(),out=[];
+  const ch=document.getElementById('checks');if(!ch||!(S.view==='form'||(S.view==='profedit'&&isNewFlow())))return;
+  const d=D(),p=CP()||{},out=[];
   const n=k=>{const f=parseFloat(getPath(d,k));return isNaN(f)?null:f;};
   const blank=k=>!has(getPath(d,k));
   if(blank('kid.creatinine')){const lk=lastKnown(p,'kid.creatinine',d.date_iso,d.entry_id);
@@ -709,7 +1010,7 @@ function refreshLive(){
   if(n('labs.ionised')!==null&&n('labs.ionised')<1.0&&blank('labs.magnesium'))
     out.push('Ionised calcium is low and magnesium is blank. Calcium will not hold without magnesium.');
   if(d.swollen==='yes')out.push('Swollen — the weight on the scale is not the weight to dose with.');
-  if(!p.height)out.push('Height is missing from the profile, so ideal weight cannot be worked out.');
+  if(!(S.view==='profedit'?PD():p).height)out.push('Height is missing from the profile, so ideal weight cannot be worked out.');
   const lk=lastKnown(p,'kid.creatinine',d.date_iso,d.entry_id);
   if(lk&&n('kid.creatinine')!==null){const b=parseFloat(lk.v);
     if(b>0&&Math.abs(n('kid.creatinine')-b)/b>=0.25)out.push('Creatinine has moved more than a quarter since '+shortIso(lk.date)+' — every renal dose needs re-checking.');}
@@ -721,10 +1022,8 @@ function trendRows(p,E){
   const rows=[];const push=(label,get)=>{const vals=E.map(get);if(vals.some(has))rows.push([label,vals]);};
   push('ICU day',e=>icuDayFor(p,e.date_iso));
   push('Weight (kg)',e=>e.weight);
-  KID.forEach(k=>push(k[1],e=>e.kid&&e.kid[k[0]]));
+  LABCHART.forEach(r=>push(r[2],e=>getPath(e,r[1])));
   push('Creatinine trend',e=>e.creatTrend);
-  LABS.forEach(k=>push(k[1],e=>e.labs&&e.labs[k[0]]));
-  LIV.forEach(k=>push(k[1],e=>e.liv&&e.liv[k[0]]));
   push('Medicines on chart',e=>(e.meds||[]).filter(m=>m.state!=='stopped').length||'');
   push('Pharmacist',e=>initialsOf(e.pharmacist));
   return rows;}
@@ -779,13 +1078,19 @@ function render(){
     setTimeout(()=>{const f=document.getElementById('si-pass');if(f)f.focus();},60);return;}
   if(['profile','form','trend'].includes(S.view)&&!CP())S.view='list';
   if(S.view==='form'&&!D())S.view='profile';
+  if(S.view==='paste'&&S.pasteFor==='update'&&(!CP()||!D()))S.view='list';
+  if(S.view==='paste'&&S.pasteFor==='new'&&!S.profDraft)S.view='newchoice';
   if(S.view==='profedit'&&!S.profDraft)S.view='list';
   const p=CP();
   if(S.view==='settings'){sub.textContent=me();app.innerHTML=settingsView();bar.innerHTML='<button onclick="go(\'list\')">Patients</button>';return;}
   if(S.view==='list'){sub.textContent=me();app.innerHTML=listView();
     bar.innerHTML='<button onclick="go(\'settings\')">Settings</button><button class="primary" onclick="newPatient()">New patient</button>';return;}
-  if(S.view==='profedit'){sub.textContent=S.profDraft.mode==='new'?'New patient':PD().case_id;app.innerHTML=profEditView();
-    bar.innerHTML='<button onclick="cancelProfile()">Cancel</button><button class="primary" onclick="saveProfile()">Save profile</button>';refreshLive();return;}
+  if(S.view==='newchoice'){sub.textContent='New patient';app.innerHTML=newChoiceView();
+    bar.innerHTML='<button onclick="go(\'list\')">Cancel</button>';return;}
+  if(S.view==='paste'){sub.textContent=S.pasteFor==='update'?p.case_id+' · paste update':'New patient · paste';app.innerHTML=pasteView();
+    bar.innerHTML='<button onclick="cancelPaste()">Back</button><button onclick="pasteClip()">Paste</button><button class="primary" onclick="applyPaste()">Fill the form</button>';return;}
+  if(S.view==='profedit'){const nw=S.profDraft.mode==='new';sub.textContent=nw?'New patient · '+me():PD().case_id;app.innerHTML=profEditView();
+    bar.innerHTML='<button onclick="cancelProfile()">'+(nw?'Back':'Cancel')+'</button><button class="primary" onclick="saveProfile()">'+(nw?'Save patient':'Save profile')+'</button>';refreshLive();return;}
   if(S.view==='trend'){sub.textContent=p.case_id+' · '+(p.initials||'');app.innerHTML=trendView();
     bar.innerHTML='<button onclick="go(\'profile\')">Back</button><button onclick="printEntry()">Print</button>';return;}
   if(S.view==='form'){sub.textContent=p.case_id+' · '+(p.initials||'')+' · '+me();app.innerHTML=formView();
@@ -822,8 +1127,9 @@ function build(eid){
     ' · height '+(c.height||'—')+' cm'+(iv?' · ideal '+iv.toFixed(1)+' kg':''));L.push('');
   const block=(title,list,pre)=>{const out=list.map(k=>line(k[1],pre+'.'+k[0])).filter(Boolean);
     if(out.length){L.push(title);out.forEach(s=>L.push(s));L.push('');}};
-  block('KIDNEY',KID,'kid');if(d.creatTrend)L.push('Creatinine is '+d.creatTrend.toUpperCase());if(d.dialysis)L.push('Dialysis: '+d.dialysis);
-  block('LIVER',LIV,'liv');block('BLOOD RESULTS',LABS,'labs');
+  LABGROUPS.forEach(g=>{const out=LABCHART.filter(r=>r[0]===g).map(r=>line(r[2],r[1])).filter(Boolean);
+    if(out.length){L.push(g.toUpperCase());out.forEach(x=>L.push(x));L.push('');}});
+  if(d.creatTrend)L.push('Creatinine is '+d.creatTrend.toUpperCase());if(d.dialysis)L.push('Dialysis: '+d.dialysis);
   if(d.vent||d.feeding||d.lines){L.push('STATUS');if(d.vent)L.push('Breathing: '+d.vent);if(d.feeding)L.push('Feeding: '+d.feeding);
     if(d.lines)L.push('Lines: '+d.lines);L.push('');}
   const meds=d.meds||[];
@@ -886,14 +1192,13 @@ function buildPrint(eid){
   const hd='<tr><th>Finding</th><th>'+(hasPrev?'Previous → today':'Today')+'</th><th>Finding</th><th>'+(hasPrev?'Previous → today':'Today')+'</th></tr>';
   const pairs=list=>{let s='';for(let i=0;i<list.length;i+=2){s+='<tr><td class="k">'+esc(list[i][0])+'</td><td class="v">'+list[i][1]+'</td>'+
     (list[i+1]?'<td class="k">'+esc(list[i+1][0])+'</td><td class="v">'+list[i+1][1]+'</td>':'<td></td><td></td>')+'</tr>';}return s;};
-  const kl=KID.map(k=>[k[1],pv('kid.'+k[0])]).concat([['Creatinine is',esc(d.creatTrend||'')],['On dialysis',esc(d.dialysis||'')]])
-    .concat(LIV.map(k=>[k[1],pv('liv.'+k[0])])).concat([['Fluid in abdomen',esc(d.ascites||'')],['Confusion beyond sedation',esc(d.enceph||'')]]);
-  h+='<div class="p-bar">4  ·  KIDNEY  and  LIVER</div><table class="p">'+hd+pairs(kl)+'</table>';
-  h+='<div class="p-bar">5  ·  BLOOD RESULTS</div><table class="p">'+hd+pairs(LABS.map(k=>[k[1],pv('labs.'+k[0])]))+'</table>';
-  h+='<div class="p-bar">6  ·  STATUS, FEEDING AND LINES</div><table class="p">'+
+  const rowsL=LABCHART.filter(r=>has(getPath(d,r[1]))||x.prevOf(r[1])!=null).map(r=>[r[2],pv(r[1])]);
+  h+='<div class="p-bar">4  ·  LAB CHART</div><table class="p">'+hd+(rowsL.length?pairs(rowsL):'<tr><td colspan="4" class="v">No results recorded.</td></tr>')+
+    q('Creatinine is',d.creatTrend,'On dialysis',d.dialysis)+q('Fluid in abdomen',d.ascites,'Confusion beyond sedation',d.enceph)+'</table>';
+  h+='<div class="p-bar">5  ·  STATUS, FEEDING AND LINES</div><table class="p">'+
     q('Breathing',d.vent,'Feeding',d.feeding)+row('Central line',d.lines)+row('Cultures',d.cultures)+'</table>';
   const meds=d.meds&&d.meds.length?d.meds:((lastMedsEntry(c)||{}).meds||[]);
-  h+='<div class="p-bar">7  ·  MEDICINES  —  '+meds.filter(m=>m.state!=='stopped').length+' on chart, '+meds.length+' listed</div>'+
+  h+='<div class="p-bar">6  ·  MEDICINES  —  '+meds.filter(m=>m.state!=='stopped').length+' on chart, '+meds.length+' listed</div>'+
     '<table class="p"><tr><th style="width:5%">#</th><th style="width:27%">Medicine</th><th style="width:14%">Dose</th>'+
     '<th style="width:10%">Route</th><th style="width:14%">How often</th><th style="width:18%">What it is for</th><th style="width:12%">Change</th></tr>';
   meds.forEach((m,i)=>{h+='<tr><td class="v">'+(i+1)+'</td><td class="v">'+esc(m.name)+'</td><td class="v">'+esc(m.dose)+
