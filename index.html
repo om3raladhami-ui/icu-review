@@ -54,7 +54,7 @@ section{background:var(--card);border:1px solid var(--line-soft);border-radius:v
 
 .f{margin-bottom:13px}.f:last-child{margin-bottom:0}
 label,.lab{display:block;font-size:12.5px;font-weight:600;color:var(--ink-mid);margin-bottom:5px}
-input[type=text],input[type=number],input[type=password],input[type=tel],textarea,select{width:100%;font-family:inherit;font-size:16px;
+input[type=text],input[type=number],input[type=password],input[type=tel],input[type=date],textarea,select{width:100%;font-family:inherit;font-size:16px;
   color:var(--ink);background:var(--sunk);border:1px solid var(--line);border-radius:8px;padding:10px 12px;appearance:none}
 input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid var(--navy);outline-offset:1px}
 textarea{resize:vertical;min-height:58px;line-height:1.45}
@@ -181,6 +181,62 @@ pre#out{font-family:var(--mono);font-size:12.5px;line-height:1.55;white-space:pr
 .toast[hidden]{display:none!important}
 .hint{font-size:11.5px;color:var(--ink-dim);margin:6px 0 0;line-height:1.4}
 
+
+/* shared records */
+.sync{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11.5px;color:var(--ink-dim);margin:10px 0 0}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex:none}
+.dot.off{background:var(--amber)}
+.banner{background:var(--amber-soft);border:1px solid var(--amber);color:var(--ink);border-radius:8px;
+  padding:9px 12px;font-size:13px;margin-top:12px;line-height:1.45}
+.pcard{align-items:flex-start}
+.plast{display:flex;align-items:center;flex-wrap:wrap;gap:0 3px;font-size:11.5px;color:var(--navy);margin-top:3px;font-weight:500}
+.plast b{font-weight:700}
+.av{display:inline-grid;place-items:center;width:19px;height:19px;border-radius:50%;background:var(--navy);
+  color:#fff;font-size:9px;font-weight:700;flex:none;margin-right:4px}
+.av.t{background:var(--red)}
+.card{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--r);margin-top:13px;overflow:hidden}
+.card-h{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 14px;background:var(--navy-soft)}
+.card-t{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy)}
+.card-b{padding:12px 14px}
+.kv{display:grid;grid-template-columns:118px 1fr;gap:6px 12px;font-size:14px}
+.kv dt{color:var(--ink-mid);font-weight:600;font-size:12.5px;padding-top:1px}
+.kv dd{margin:0;color:var(--ink)}
+.hero{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-top:4px}
+.hero-top{display:flex;align-items:center;gap:10px}
+.hero-n{font-size:19px;font-weight:700;color:var(--navy);flex:1}
+.hero-m{font-size:13px;color:var(--ink-mid);margin-top:4px}
+.pill{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:99px;padding:3px 9px}
+.pill.open{background:var(--green-soft);color:var(--green)}
+.pill.closed{background:var(--sunk);color:var(--ink-mid)}
+table.now{border-collapse:collapse;width:100%;font-size:13.5px}
+table.now td{padding:6px 0;border-bottom:1px solid var(--line-soft);vertical-align:top}
+table.now tr:last-child td{border-bottom:0}
+table.now td.v{font-family:var(--mono);font-weight:600;text-align:right;white-space:nowrap;padding-left:8px}
+table.now td.d{font-size:11px;color:var(--ink-dim);text-align:right;white-space:nowrap;padding-left:10px;width:64px}
+.mlist{margin:0;padding:0;list-style:none}
+.mlist li{padding:7px 0;border-bottom:1px solid var(--line-soft);font-size:14px;display:flex;gap:8px;align-items:baseline}
+.mlist li:last-child{border-bottom:0}
+.mlist .mn{font-weight:600;flex:1}
+.mlist .md{font-family:var(--mono);font-size:12px;color:var(--ink-mid);text-align:right}
+.tag{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:5px;padding:2px 6px;flex:none}
+.tag.started{background:var(--green-soft);color:var(--green)}
+.tag.changed{background:var(--amber-soft);color:var(--amber)}
+.tag.stopped{background:var(--red-soft);color:var(--red)}
+.tl{position:relative;margin-top:4px}
+.tli{position:relative;padding:0 0 14px 22px}
+.tli:before{content:"";position:absolute;left:6px;top:6px;bottom:-6px;width:2px;background:var(--line)}
+.tli:last-child:before{display:none}
+.tli:after{content:"";position:absolute;left:1px;top:4px;width:12px;height:12px;border-radius:50%;
+  background:var(--card);border:2.5px solid var(--navy)}
+.tli.base:after{background:var(--red);border-color:var(--red)}
+.tl-h{font-size:14px;font-weight:700;color:var(--ink)}
+.tl-m{font-size:12px;color:var(--ink-dim);margin:2px 0 5px;display:flex;align-items:center;gap:2px}
+.tl-b{font-size:13px;line-height:1.55;color:var(--ink)}
+.tl-b .lc{font-family:var(--mono);font-size:12.5px}
+.tl-note{font-size:12.5px;color:var(--ink-mid);background:var(--sunk);border-radius:7px;padding:7px 9px;margin-top:6px}
+.tl-act{display:flex;gap:14px;margin-top:6px}
+.loading{text-align:center;color:var(--ink-dim);font-size:14px;padding:30px 10px}
+
 /* ═══ PRINT — identical to the paper record ═══ */
 #print{display:none}
 @media print{
@@ -217,7 +273,7 @@ pre#out{font-family:var(--mono);font-size:12.5px;line-height:1.55;white-space:pr
 <header><div class="wrap">
   <p class="eyebrow">Department of Pharmacy · Intensive Care Service</p>
   <h1>Critical Care Pharmacotherapy Review</h1>
-  <p class="sub" id="hsub">Saves on this phone</p>
+  <p class="sub" id="hsub"></p>
 </div></header>
 
 <div class="wrap" id="app"></div>
@@ -239,324 +295,375 @@ pre#out{font-family:var(--mono);font-size:12.5px;line-height:1.55;white-space:pr
 
 <script>
 'use strict';
-const KEY='ccpr-v2';
+/* ── the shared record lives in one Google Sheet; this address reaches it ── */
+const API='https://script.google.com/macros/s/AKfycbyoMbpdG5RKqq1iHqWJz_0SQ1Bffs2VyEAvKYEzDR1A2f-2LbMzhk-I2ll6aMHwSslZ/exec';
+const KEY='ccpr-shared-v1';
+
 const LABS=[
  ['sodium','Sodium'],['potassium','Potassium'],['magnesium','Magnesium'],['calcium','Calcium'],
- ['glucose','Glucose (blood sugar)'],['phosphate','Phosphate'],['haemoglobin','Haemoglobin'],
- ['platelets','Platelets'],['whitecells','White cell count'],['crp','CRP'],
+ ['ionised','Ionised calcium'],['glucose','Glucose (blood sugar)'],['phosphate','Phosphate'],
+ ['haemoglobin','Haemoglobin'],['platelets','Platelets'],['whitecells','White cell count'],['crp','CRP'],
  ['procalcitonin','Procalcitonin'],['lactate','Lactate']
 ];
 const KID=[['creatinine','Creatinine'],['urea','Urea'],['urine','Urine output mL/kg/h']];
 const LIV=[['bilirubin','Bilirubin'],['albumin','Albumin'],['inr','INR (clotting time)']];
+const ALLKEYS=[].concat(KID.map(k=>['kid',k[0],k[1]]),LIV.map(k=>['liv',k[0],k[1]]),LABS.map(k=>['labs',k[0],k[1]]));
 
-let S={user:null,cases:{},current:null,view:'list'};
-let UNLOCKED=false;
+/* S is what this phone keeps: who is signed in, the last copy of the shared list, and unsaved drafts. */
+let S={auth:null,lastUser:'',patients:[],fetchedAt:'',drafts:{},profDraft:null,view:'list',current:null};
+let UNLOCKED=false, ONLINE=true, BUSY=false, PRINT_ENTRY=null;
 function load(){try{const r=localStorage.getItem(KEY);if(r)S=Object.assign(S,JSON.parse(r));}catch(e){}}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
-const ACCOUNTS=[
-  'cd03ad254827fa55e474867f456841983b525c10089bfd83a6dd74795a8c89c8',
-  '60f3fa4f5a428d2d89664d72660855b4677639de41c454260a84ea19921e5d89'
-];
-const normU=u=>String(u||'').trim().toLowerCase().replace(/\s+/g,' ');
-async function sha(t){
-  if(window.crypto&&crypto.subtle&&window.isSecureContext){
-    const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));
-    return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');}
-  return null;}
-async function checkCred(u,p){
-  const h=await sha('ccpr-auth:'+normU(u)+':'+String(p));
-  if(h===null)return 'insecure';
-  return ACCOUNTS.indexOf(h)>=0;}
-function initialsOf(name){
-  return normU(name).split(' ').filter(Boolean).map(w=>w[0]).join('').toUpperCase().slice(0,3);}
 
+/* ── talking to the shared record ── */
+async function api(action,payload){
+  const body=JSON.stringify(Object.assign({action:action,token:S.auth&&S.auth.token},payload||{}));
+  let j;
+  try{
+    const r=await fetch(API,{method:'POST',body:body,headers:{'Content-Type':'text/plain;charset=utf-8'},redirect:'follow'});
+    j=await r.json(); ONLINE=true;
+  }catch(e){ ONLINE=false; return {ok:false,error:'offline',message:'No connection to the shared record.'}; }
+  if(!j.ok&&j.error==='auth'&&action!=='login'){UNLOCKED=false;render();toast('Session ended — sign in again');}
+  return j;
+}
+async function refresh(quiet){
+  if(BUSY)return;
+  const j=await api('list');
+  if(j.ok){S.patients=j.data||[];S.fetchedAt=new Date().toISOString();save();}
+  else if(!quiet&&j.error!=='auth')toast(j.message||'Could not refresh');
+  if(!['form','profedit'].includes(S.view))render();
+}
+
+/* ── helpers ── */
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.hidden=false;
+  clearTimeout(t._h);t._h=setTimeout(()=>t.hidden=true,2200);}
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const jsq=s=>String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+const normU=u=>String(u||'').trim().toLowerCase().replace(/\s+/g,' ');
+const pad=n=>String(n).padStart(2,'0');
+function isoToday(){const d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+function fmtIso(iso){if(!iso)return '';const d=new Date(iso+'T12:00:00');
+  return isNaN(d)?iso:d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});}
+function shortIso(iso){if(!iso)return '';const d=new Date(iso+'T12:00:00');
+  return isNaN(d)?iso:d.toLocaleDateString('en-GB',{day:'numeric',month:'short'});}
+function dayDiff(a,b){return Math.round((new Date(b+'T12:00:00')-new Date(a+'T12:00:00'))/864e5);}
+function relTime(ts){
+  if(!ts)return '';const d=new Date(ts);if(isNaN(d))return '';
+  const s=(Date.now()-d)/1000, hm=pad(d.getHours())+':'+pad(d.getMinutes());
+  if(s<60)return 'just now';if(s<3600)return Math.floor(s/60)+' min ago';
+  const t=new Date();const y=new Date(t);y.setDate(t.getDate()-1);
+  if(d.toDateString()===t.toDateString())return 'today '+hm;
+  if(d.toDateString()===y.toDateString())return 'yesterday '+hm;
+  return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'})+' '+hm;}
+function initialsOf(name){return normU(name).split(' ').filter(Boolean).map(w=>w[0]).join('').toUpperCase().slice(0,2);}
+function av(name){return '<span class="av'+(/^teba/i.test(name||'')?' t':'')+'">'+esc(initialsOf(name))+'</span>';}
+const me=()=>S.auth?S.auth.user:'';
+const clone=o=>JSON.parse(JSON.stringify(o));
+const P=id=>S.patients.find(p=>p.case_id===id);
+const CP=()=>P(S.current);
+function entries(p){return (p&&p.entries||[]).slice().sort((a,b)=>
+  String(a.date_iso||'').localeCompare(String(b.date_iso||''))||String(a.saved_at||'').localeCompare(String(b.saved_at||'')));}
+function lastEntry(p){const e=entries(p);return e.length?e[e.length-1]:null;}
+function getPath(o,path){return path.split('.').reduce((x,k)=>x?x[k]:undefined,o);}
+const has=v=>!(v===''||v==null);
+
+/* last known value of a finding, from saved entries before a point in time */
+function lastKnown(p,path,beforeIso,skipId){
+  const list=entries(p).filter(e=>e.entry_id!==skipId&&(!beforeIso||String(e.date_iso)<=beforeIso));
+  for(let i=list.length-1;i>=0;i--){const v=getPath(list[i],path);if(has(v))return {v:v,date:list[i].date_iso,by:list[i].pharmacist};}
+  return null;}
+function lastMedsEntry(p,skipId){const list=entries(p).filter(e=>e.entry_id!==skipId);
+  for(let i=list.length-1;i>=0;i--)if(list[i].meds&&list[i].meds.length)return list[i];return null;}
+function icuDayFor(p,iso,skipId){
+  const list=entries(p).filter(e=>e.entry_id!==skipId&&has(e.icuDay)&&String(e.date_iso)<=iso);
+  if(!list.length)return '';const l=list[list.length-1];const n=Number(l.icuDay)+dayDiff(l.date_iso,iso);
+  return isNaN(n)?'':String(n);}
+function ibwOf(p){const h=parseFloat(p&&p.height),s=p&&p.sex;if(!h||!s)return null;
+  const v=(s==='Male'?50:45.5)+0.9*(h-152);return v>0?v:null;}
+function arrow(now,then){const a=parseFloat(now),b=parseFloat(then);
+  if(isNaN(a)||isNaN(b))return '';if(a>b)return '<span class="up">▲</span>';
+  if(a<b)return '<span class="down">▼</span>';return '<span class="same">–</span>';}
+
+/* ── sign in ── */
 function signInView(pref){
   return '<div class="gate">'+
-  '<h2>Sign in</h2>'+
-  '<p class="g-sub">Your name goes on every record you send, and your initials go on the case numbers so two pharmacists never create the same one.</p>'+
   '<div class="f"><label>Username</label><input type="text" id="si-user" autocapitalize="words" '+
   'autocomplete="username" value="'+esc(pref||'')+'"></div>'+
   '<div class="f"><label>Password</label><input type="password" id="si-pass" autocomplete="current-password" '+
   'onkeydown="if(event.key===\'Enter\')doSignIn()"></div>'+
   '<div id="si-err"></div>'+
-  '<button class="big-btn" onclick="doSignIn()">Sign in</button>'+
-  '<p class="warn"><b>What this is.</b> The sign-in names the pharmacist and keeps a phone left on a desk from opening straight into patient records. It is checked on the phone, not by a hospital server \u2014 a lock on a drawer, not a safe. Records stay on this phone until they are sent.</p>'+
+  '<button class="big-btn" id="si-btn" onclick="doSignIn()">Sign in</button>'+
+  '<p class="warn">Both pharmacists see the same patient files. Every update carries the name of the pharmacist who saved it.</p>'+
   '</div>';}
-
-async function doSignIn(){
-  const u=document.getElementById('si-user').value;
-  const p=document.getElementById('si-pass').value;
-  const e=document.getElementById('si-err');
-  if(!u||!p){e.innerHTML='<p class="err">Both are needed.</p>';return;}
-  const r=await checkCred(u,p);
-  if(r==='insecure'){e.innerHTML='<p class="err">Open the page over its web address, not as a file \u2014 sign-in cannot run here.</p>';return;}
-  if(!r){e.innerHTML='<p class="err">That username and password do not match.</p>';return;}
-  const name=normU(u).split(' ').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ');
-  const prevName=S.user?S.user.name:null;
-  S.user={name:name,initials:initialsOf(name),since:(S.user&&S.user.since)||today()};
-  UNLOCKED=true;S.view='list';save();render();
-  toast(prevName&&prevName!==name?'Signed in as '+name:'Signed in');}
-
 function lockView(){
-  const u=S.user;
+  const u=S.lastUser;
   return '<div class="gate">'+
-  '<div class="who"><span class="who-av">'+esc(u.initials)+'</span>'+
-  '<span><b>'+esc(u.name)+'</b><br><span style="font-size:12px;color:var(--ink-dim)">Department of Pharmacy</span></span></div>'+
-  '<div class="f"><label>Password</label><input type="password" id="lk-pin" '+
-  'autocomplete="current-password" onkeydown="if(event.key===\'Enter\')doUnlock()"></div>'+
-  '<div id="lk-err"></div>'+
-  '<button class="big-btn" onclick="doUnlock()">Unlock</button>'+
-  '<p class="warn">Not '+esc(u.name.split(' ')[0])+'? <button class="linkbtn" onclick="signOut()">Sign in as someone else</button></p>'+
+  '<div class="who"><span class="who-av">'+esc(initialsOf(u))+'</span>'+
+  '<span><b>'+esc(u)+'</b><br><span style="font-size:12px;color:var(--ink-dim)">Department of Pharmacy</span></span></div>'+
+  '<div class="f"><label>Password</label><input type="password" id="si-pass" '+
+  'autocomplete="current-password" onkeydown="if(event.key===\'Enter\')doSignIn(true)"></div>'+
+  '<div id="si-err"></div>'+
+  '<button class="big-btn" id="si-btn" onclick="doSignIn(true)">Unlock</button>'+
+  '<p class="warn">Not '+esc(u.split(' ')[0])+'? <button class="linkbtn" onclick="signOut()">Sign in as someone else</button></p>'+
   '</div>';}
+async function doSignIn(isUnlock){
+  const u=isUnlock?S.lastUser:document.getElementById('si-user').value;
+  const p=document.getElementById('si-pass').value;
+  const e=document.getElementById('si-err'),b=document.getElementById('si-btn');
+  if(!u||!p){e.innerHTML='<p class="err">Both are needed.</p>';return;}
+  b.disabled=true;b.textContent='Checking…';
+  const j=await api('login',{user:u,pass:p});
+  b.disabled=false;b.textContent=isUnlock?'Unlock':'Sign in';
+  if(!j.ok){e.innerHTML='<p class="err">'+esc(j.error==='offline'?'No connection — check the internet and try again.':(j.message||'Could not sign in.'))+'</p>';return;}
+  S.auth={token:j.token,user:j.user,initials:j.initials,expires:j.expires};S.lastUser=j.user;
+  UNLOCKED=true;if(!['profile','trend'].includes(S.view)||!CP())S.view='list';save();
+  render();toast('Signed in as '+j.user);refresh(true);}
+function signOut(){S.auth=null;S.lastUser='';UNLOCKED=false;S.view='list';save();render();window.scrollTo(0,0);}
+function lockNow(){UNLOCKED=false;S.view='list';save();render();window.scrollTo(0,0);}
 
-async function doUnlock(){
-  const v=document.getElementById('lk-pin').value;
-  const r=await checkCred(S.user.name,v);
-  if(r===true){UNLOCKED=true;S.view=S.current?'form':'list';render();}
-  else document.getElementById('lk-err').innerHTML='<p class="err">'+
-    (r==='insecure'?'Open the page over its web address, not as a file.':'Wrong password.')+'</p>';}
+/* ── patient list: everyone's patients ── */
+function syncLine(){
+  return '<p class="sync"><span class="dot'+(ONLINE?'':' off')+'"></span>'+
+    (ONLINE?'Shared record · refreshed '+esc(relTime(S.fetchedAt)||'—'):'Offline · showing the copy from '+esc(relTime(S.fetchedAt)||'—'))+
+    ' · <button class="linkbtn" style="font-size:11.5px" onclick="refresh()">Refresh</button></p>';}
+function listView(){
+  const ps=S.patients.slice().sort((a,b)=>String(a.case_id).localeCompare(String(b.case_id)));
+  if(!S.fetchedAt)return '<div class="loading">Loading the shared record…</div>';
+  let h=syncLine();
+  if(!ONLINE)h+='<div class="banner">No connection. You can read the last copy; saving waits until you are back online.</div>';
+  if(!ps.length)return h+'<div class="empty">No patients yet.<br>Tap <b>New patient</b> to start.</div>';
+  const open=ps.filter(p=>p.status!=='closed'),shut=ps.filter(p=>p.status==='closed');
+  const card=p=>{const isC=p.status==='closed';const l=lastEntry(p);const n=(p.entries||[]).length;
+    const day=l?icuDayFor(p,l.date_iso):'';
+    return '<button class="pcard'+(isC?' closed':'')+'" onclick="openP(\''+jsq(p.case_id)+'\')">'+
+      '<span class="pid">'+esc(String(p.case_id).replace(/^ICU-/,''))+'</span>'+
+      '<span class="pmain"><span class="pname">'+esc(p.initials||'no initials')+
+        '<span style="font-weight:400;color:var(--ink-mid)"> · '+esc([p.age,p.sex].filter(Boolean).join(' '))+'</span></span>'+
+      '<span class="pmeta">'+esc(p.admission_event||p.reason||'not filled in')+'</span>'+
+      (p.updated_by?'<span class="plast">'+av(p.updated_by)+'Last update <b>'+esc(p.updated_by)+'</b> · '+esc(relTime(p.updated_at))+'</span>':'')+
+      '</span>'+
+      '<span class="pday">'+(isC?'closed<br>'+esc(fmtIso(p.closed_on)):(day?'day '+esc(day):'—')+'<br>'+n+' entr'+(n===1?'y':'ies'))+'</span></button>';};
+  h+='<div class="plist"><div class="lhead">In the unit — '+open.length+'</div>';
+  h+=open.length?open.map(card).join(''):'<div class="empty">No open patients.</div>';
+  if(shut.length)h+='<div class="lhead">Closed — '+shut.length+'</div>'+shut.map(card).join('');
+  return h+'</div>';}
 
-function signOut(){UNLOCKED=false;S.view='signin';save();render();window.scrollTo(0,0);}
-function lockNow(){UNLOCKED=false;S.view='list';render();window.scrollTo(0,0);}
+/* ── patient profile: admission baseline, where things stand now, and every update ── */
+function profileView(){
+  const p=CP();if(!p)return '<div class="empty">This patient is no longer in the list.</div>';
+  const E=entries(p),L=E[E.length-1];const iv=ibwOf(p);
+  let h='<button class="back" onclick="go(\'list\')">‹ All patients</button>';
+  h+='<div class="hero"><div class="hero-top"><span class="pid">'+esc(p.case_id)+'</span>'+
+    '<span class="hero-n">'+esc(p.initials||'—')+'</span><span class="pill '+(p.status==='closed'?'closed':'open')+'">'+
+    (p.status==='closed'?'closed':'in the unit')+'</span></div>'+
+    '<div class="hero-m">'+esc([p.age&&p.age+' y',p.sex,L&&icuDayFor(p,L.date_iso)&&'ICU day '+icuDayFor(p,L.date_iso)].filter(Boolean).join(' · '))+'</div>'+
+    (p.updated_by?'<div class="plast" style="margin-top:6px">'+av(p.updated_by)+'Last update <b>'+esc(p.updated_by)+'</b> · '+esc(relTime(p.updated_at))+'</div>':'')+
+    (p.status==='closed'?'<div class="hero-m">Closed '+esc(fmtIso(p.closed_on))+(p.outcome?' · '+esc(p.outcome):'')+'</div>':'')+
+    '</div>';
 
-function resetPhone(){
-  const n=Object.keys(S.cases).length;
-  if(!confirm('This erases '+n+' patient record'+(n===1?'':'s')+' from this phone. It cannot be undone. Continue?'))return;
-  if(!confirm('Last check \u2014 anything not already sent will be lost. Erase?'))return;
-  try{localStorage.removeItem(KEY);}catch(e){}
-  S={user:null,cases:{},current:null,view:'list'};UNLOCKED=false;render();}
+  /* where things stand now */
+  const rows=[];
+  ALLKEYS.forEach(k=>{const cur=lastKnown(p,k[0]+'.'+k[1]);if(!cur)return;
+    const before=entries(p).filter(e=>String(e.date_iso)<String(cur.date));let pv=null;
+    for(let i=before.length-1;i>=0;i--){const v=getPath(before[i],k[0]+'.'+k[1]);if(has(v)){pv=v;break;}}
+    rows.push('<tr><td>'+esc(k[2])+'</td><td class="v">'+esc(cur.v)+' '+(pv!=null?arrow(cur.v,pv):'')+'</td><td class="d">'+esc(shortIso(cur.date))+'</td></tr>');});
+  const w=lastKnown(p,'weight');
+  if(w)rows.unshift('<tr><td>Weight (kg)</td><td class="v">'+esc(w.v)+'</td><td class="d">'+esc(shortIso(w.date))+'</td></tr>');
+  h+='<div class="card"><div class="card-h"><span class="card-t">Now — latest findings</span></div><div class="card-b">'+
+    (rows.length?'<table class="now">'+rows.join('')+'</table>':'<div class="hint">No results recorded yet.</div>')+'</div></div>';
 
-function settingsView(){
-  const u=S.user,ids=Object.keys(S.cases);
-  const open=ids.filter(i=>S.cases[i].status!=='closed').length;
-  return '<button class="back" onclick="go(\'list\')">\u2039 Patients</button>'+
-  '<section><div class="sec-b" style="padding:0">'+
-  '<div class="setrow"><span>Pharmacist</span><b>'+esc(u.name)+'</b></div>'+
-  '<div class="setrow"><span>Initials on case numbers</span><b>'+esc(u.initials)+'</b></div>'+
-  '<div class="setrow"><span>Patients on this phone</span><b>'+open+' open · '+(ids.length-open)+' closed</b></div>'+
-  '<div class="setrow"><span>Set up on</span><b>'+esc(u.since||'—')+'</b></div>'+
-  '</div></section>'+
-  '<section><div class="sec-b" style="padding:0">'+
-  '<div class="setrow"><span>Back up everything to a file</span><button class="linkbtn" onclick="backup()">Back up</button></div>'+
-  '<div class="setrow"><span>Lock this phone now</span><button class="linkbtn" onclick="lockNow()">Lock</button></div>'+
-  '<div class="setrow"><span>Sign in as someone else</span><button class="linkbtn" onclick="signOut()">Sign out</button></div>'+
-  '<div class="setrow"><span>Erase everything</span><button class="linkbtn danger" onclick="resetPhone()">Reset</button></div>'+
-  '</div></section>'+
-  '<p class="hint">Records live only on this phone. Sending is what makes a record durable \u2014 a lost phone is a lost record unless it was sent.</p>';}
+  const mE=lastMedsEntry(p);
+  h+='<div class="card"><div class="card-h"><span class="card-t">Medicines on the chart</span>'+
+    (mE?'<span class="hint" style="margin:0">'+esc(shortIso(mE.date_iso))+' · '+esc(mE.pharmacist)+'</span>':'')+'</div><div class="card-b">';
+  if(mE){const on=mE.meds.filter(m=>m.state!=='stopped'),off=mE.meds.filter(m=>m.state==='stopped');
+    h+='<ul class="mlist">'+on.map(m=>'<li><span class="mn">'+esc(m.name)+'</span>'+
+      (m.state?'<span class="tag '+m.state+'">'+m.state+'</span>':'')+
+      '<span class="md">'+esc([m.dose,m.route,m.freq].filter(Boolean).join(' · '))+'</span></li>').join('')+
+      off.map(m=>'<li style="opacity:.6"><span class="mn"><s>'+esc(m.name)+'</s></span><span class="tag stopped">stopped</span></li>').join('')+'</ul>';}
+  else h+='<div class="hint">No medicine list recorded yet.</div>';
+  h+='</div></div>';
 
-function backup(){
-  try{
-    const blob=new Blob([JSON.stringify(S,null,1)],{type:'application/json'});
-    const a=document.createElement('a');a.href=URL.createObjectURL(blob);
-    a.download='icu-review-backup-'+new Date().toISOString().slice(0,10)+'.json';
-    document.body.appendChild(a);a.click();a.remove();toast('Backup saved');
-  }catch(e){toast('Could not back up here');}}
+  /* admission profile */
+  h+='<div class="card"><div class="card-h"><span class="card-t">Admission profile</span>'+
+    '<button class="linkbtn" style="font-size:13px" onclick="editProfile()">Edit</button></div><div class="card-b"><dl class="kv">'+
+    kv('Admitted',p.admitted)+kv('What brought them in',p.admission_event)+kv('Operations',p.operations)+
+    kv('Main problem',p.reason)+kv('Other problems',p.other)+
+    kv('Height',p.height?p.height+' cm':'')+kv('Ideal weight',iv?iv.toFixed(1)+' kg':'')+
+    kv('Drug allergy',[p.allergy_drug,p.allergy_drug_what].filter(Boolean).join(' — '))+
+    kv('Food allergy',[p.allergy_food,p.allergy_food_what].filter(Boolean).join(' — '))+
+    kv('Opened by',p.created_by?p.created_by+' · '+relTime(p.created_at):'')+
+    '</dl></div></div>';
 
-function toast(m){const t=document.getElementById('toast');t.textContent=m;t.hidden=false;
-  clearTimeout(t._h);t._h=setTimeout(()=>t.hidden=true,1900);}
-const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const today=()=>{const d=new Date();return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});};
-const C=()=>S.cases[S.current];
-const D=()=>{const c=C();return c?c.days[c.days.length-1]:null;};
-const PREV=()=>{const c=C();return c&&c.days.length>1?c.days[c.days.length-2]:null;};
+  /* timeline */
+  h+='<div class="card"><div class="card-h"><span class="card-t">Updates — '+E.length+'</span></div><div class="card-b"><div class="tl">';
+  for(let i=E.length-1;i>=0;i--)h+=tlItem(p,E,i);
+  h+='<div class="tli base"><div class="tl-h">Admitted to intensive care</div><div class="tl-m">'+esc(p.admitted||'date not recorded')+
+    (p.created_by?' · file opened by '+esc(p.created_by):'')+'</div><div class="tl-b">'+esc(p.admission_event||p.reason||'')+'</div></div>';
+  h+='</div></div></div>';
+  if(p.status==='closed')h+='<p class="hint" style="text-align:center;margin-top:14px"><button class="linkbtn" onclick="reopenP()">Reopen this case</button></p>';
+  else h+='<p class="hint" style="text-align:center;margin-top:14px"><button class="linkbtn danger" onclick="closeP()">Close this case</button></p>';
+  return h;}
+function kv(k,v){return has(v)?'<dt>'+esc(k)+'</dt><dd>'+esc(v)+'</dd>':'';}
 
-function newDay(from){
-  const d={date:today(),icuDay:'',weight:'',swollen:'',labs:{},kid:{},liv:{},
-    creatTrend:'',dialysis:'',ascites:'',enceph:'',vent:'',feeding:'',lines:'',
-    meds:[],cultures:'',unclear:''};
-  if(from){ d.icuDay=from.icuDay?String(Number(from.icuDay)+1):'';
-    d.weight=from.weight; d.swollen=from.swollen;
-    d.meds=from.meds.filter(m=>m.state!=='stopped').map(m=>({...m,state:''})); }
-  return d;
-}
-function newCase(){
-  const n=Object.keys(S.cases).length+1;
-  const id='ICU-'+String(n).padStart(3,'0')+'-'+(S.user?S.user.initials:'');
-  S.cases[id]={id,status:'open',closedOn:'',initials:'',age:'',sex:'',admitted:'',reason:'',other:'',height:'',
-    algD:'',algDwhat:'',algF:'',algFwhat:'',days:[newDay(null)]};
-  S.current=id;S.view='form';save();render();
-}
+function tlItem(p,E,i){
+  const e=E[i];const parts=[];
+  ALLKEYS.forEach(k=>{const v=getPath(e,k[0]+'.'+k[1]);if(!has(v))return;
+    let pv=null;for(let j=i-1;j>=0;j--){const x=getPath(E[j],k[0]+'.'+k[1]);if(has(x)){pv=x;break;}}
+    parts.push('<span class="lc">'+esc(k[2])+' '+(pv!=null&&String(pv)!==String(v)?esc(pv)+' → ':'')+'<b>'+esc(v)+'</b> '+(pv!=null?arrow(v,pv):'')+'</span>');});
+  if(has(e.weight)){let pw=null;for(let j=i-1;j>=0;j--)if(has(E[j].weight)){pw=E[j].weight;break;}
+    if(String(pw)!==String(e.weight))parts.unshift('<span class="lc">Weight '+(pw!=null?esc(pw)+' → ':'')+'<b>'+esc(e.weight)+'</b> kg</span>');}
+  const meds=e.meds||[];
+  const tagged=s=>meds.filter(m=>m.state===s);
+  let mtxt='';
+  ['started','changed','stopped'].forEach(s=>{const l=tagged(s);if(l.length)mtxt+='<div><span class="tag '+s+'">'+s+'</span> '+
+    l.map(m=>esc(m.name)+(s!=='stopped'&&m.dose?' '+esc(m.dose):'')).join(', ')+'</div>';});
+  if(meds.length&&!mtxt)mtxt='<div class="hint" style="margin:2px 0 0">Medicines checked — no changes ('+meds.filter(m=>m.state!=='stopped').length+' on chart).</div>';
+  const mine=e.pharmacist===me();
+  return '<div class="tli"><div class="tl-h">'+esc(fmtIso(e.date_iso)||e.date)+(icuDayFor(p,e.date_iso)?' · day '+esc(icuDayFor(p,e.date_iso)):'')+'</div>'+
+    '<div class="tl-m">'+av(e.pharmacist)+esc(e.pharmacist||'—')+' · saved '+esc(relTime(e.saved_at))+'</div>'+
+    '<div class="tl-b">'+(parts.length?parts.join('<br>'):'<span class="hint">No results in this update.</span>')+mtxt+
+    (e.unclear?'<div class="tl-note">'+esc(e.unclear)+'</div>':'')+'</div>'+
+    '<div class="tl-act"><button class="linkbtn" style="font-size:13px" onclick="printEntry(\''+jsq(e.entry_id)+'\')">Print</button>'+
+    '<button class="linkbtn" style="font-size:13px" onclick="shareEntry(\''+jsq(e.entry_id)+'\')">WhatsApp</button>'+
+    (mine?'<button class="linkbtn" style="font-size:13px" onclick="editEntry(\''+jsq(e.entry_id)+'\')">Edit</button>':'')+
+    '</div></div>';}
 
-/* ── ideal body weight ── */
-function ibw(){const c=C();const h=parseFloat(c.height);const s=c.sex;
-  if(!h||!s)return null;
-  const v=(s==='Male'?50:45.5)+0.9*(h-152);
-  return v>0?v:null;}
-
-/* ── previous value chip ── */
-function prevOf(path){
-  const p=PREV();if(!p)return null;
-  const parts=path.split('.');let v=p;for(const k of parts){v=v?v[k]:undefined;}
-  return (v===''||v==null)?null:v;
-}
-function arrow(now,then){
-  const a=parseFloat(now),b=parseFloat(then);
-  if(isNaN(a)||isNaN(b))return '';
-  if(a>b)return '<span class="up">▲</span>';
-  if(a<b)return '<span class="down">▼</span>';
-  return '<span class="same">–</span>';
-}
-function field(label,path,ph){
-  const cur=getV(path);const pv=prevOf(path);
-  const pc=pv==null?'<div class="prev none"><div class="prev-l">Yesterday</div><div class="prev-v">—</div></div>'
-    :'<div class="prev"><div class="prev-l">Yesterday</div><div class="prev-v">'+esc(pv)+' '+arrow(cur,pv)+'</div></div>';
-  return '<div class="f"><label>'+esc(label)+'</label><div class="pair">'+
-    '<input type="text" inputmode="decimal" value="'+esc(cur)+'" placeholder="'+esc(ph||'')+'" oninput="setV(\''+path+'\',this.value)">'+
-    pc+'</div></div>';
-}
-function getV(path){const parts=path.split('.');let v=D();for(const k of parts){v=v?v[k]:undefined;}return v==null?'':v;}
-function setV(path,val){const parts=path.split('.');let o=D();
+/* ── form building blocks (target: 'd' = today's update draft, 'p' = profile draft) ── */
+const D=()=>S.drafts[S.current];
+const PD=()=>S.profDraft&&S.profDraft.data;
+function tgt(t){return t==='p'?PD():D();}
+function getT(t,path){const v=getPath(tgt(t),path);return v==null?'':v;}
+function setT(t,path,val){const parts=path.split('.');let o=tgt(t);
   for(let i=0;i<parts.length-1;i++){if(!o[parts[i]])o[parts[i]]={};o=o[parts[i]];}
   o[parts[parts.length-1]]=val;save();refreshLive();}
-function setC(k,v){C()[k]=v;save();refreshLive();}
-
-/* ── screens ── */
-function render(){
-  const app=document.getElementById('app');
-  const bar=document.getElementById('bar');
-  const sub=document.getElementById('hsub');
-  if(!S.user||S.view==='signin'){sub.textContent='';
-    app.innerHTML=signInView(S.user?S.user.name:'');bar.innerHTML='';
-    setTimeout(()=>{const f=document.getElementById('si-user');if(f&&!f.value)f.focus();
-      else{const g=document.getElementById('si-pass');if(g)g.focus();}},60);return;}
-  if(!UNLOCKED){sub.textContent='';app.innerHTML=lockView();bar.innerHTML='';
-    setTimeout(()=>{const f=document.getElementById('lk-pin');if(f)f.focus();},60);return;}
-  if(S.view==='settings'){sub.textContent='This phone';app.innerHTML=settingsView();
-    bar.innerHTML='<button onclick="go(\'list\')">Patients</button>';return;}
-  if(S.view==='list'){ sub.textContent=S.user.name; app.innerHTML=listView();
-    bar.innerHTML='<button onclick="go(\'settings\')">This phone</button>'+
-      '<button class="primary" onclick="newCase()">New patient</button>';return;}
-  if(S.view==='trend'){ const c=C(); sub.textContent=c.id+(c.initials?' · '+c.initials:'');
-    app.innerHTML=trendView();
-    bar.innerHTML='<button onclick="go(\'form\')">Back</button><button onclick="window.print()">Print</button>';return;}
-  const c=C();sub.textContent=c.id+(c.initials?' · '+c.initials:'')+' · day '+(D().icuDay||'?');
-  app.innerHTML=formView();
-  bar.innerHTML='<button onclick="go(\'list\')">Patients</button>'+
-    '<button onclick="go(\'trend\')">Trend</button>'+
-    '<button onclick="doPrint()">Print</button>'+
-    '<button class="primary" onclick="finish()">Finish</button>';
-  refreshLive();
-}
-function closeCase(){
-  const c=C();
-  if(!confirm('Close '+c.id+'? It leaves the active list but stays readable under Closed.'))return;
-  c.status='closed';c.closedOn=today();save();go('list');toast('Case closed');}
-function reopenCase(id){S.cases[id].status='open';S.cases[id].closedOn='';save();render();toast('Case reopened');}
-
-function go(v){S.view=v;save();render();window.scrollTo(0,0);}
-function open_(id){S.current=id;S.view='form';save();render();window.scrollTo(0,0);}
-
-function listView(){
-  const ids=Object.keys(S.cases);
-  if(!ids.length)return '<div class="empty">No patients yet.<br>Tap <b>New patient</b> to start.</div>';
-  const open=ids.filter(i=>S.cases[i].status!=='closed');
-  const shut=ids.filter(i=>S.cases[i].status==='closed');
-  const card=(id,isClosed)=>{const c=S.cases[id];const d=c.days[c.days.length-1];
-    return '<button class="pcard'+(isClosed?' closed':'')+'" onclick="open_(\''+id+'\')">'+
-      '<span class="pid">'+esc(id.replace('ICU-',''))+'</span>'+
-      '<span class="pmain"><span class="pname">'+esc(c.initials||'no initials')+'</span>'+
-      '<span class="pmeta">'+esc([c.age,c.sex,c.reason].filter(Boolean).join(' · ')||'not filled in')+'</span></span>'+
-      '<span class="pday">'+(isClosed?'closed<br>'+esc(c.closedOn||''):'day '+esc(d.icuDay||'?')+'<br>'+
-        esc(c.days.length)+' entr'+(c.days.length===1?'y':'ies'))+'</span></button>';};
-  let h='<div class="plist">';
-  h+='<div class="lhead">In the unit — '+open.length+'</div>';
-  h+= open.length?open.map(id=>card(id,false)).join(''):'<div class="empty">No open patients.</div>';
-  if(shut.length){h+='<div class="lhead">Closed — '+shut.length+'</div>'+shut.map(id=>card(id,true)).join('');}
-  h+='</div>';
-  return h;
-}
+function setV(path,val){setT('d',path,val);}
 
 function sec(n,title,body,open){
   return '<section><button class="sec-h" aria-expanded="'+(open===false?'false':'true')+'" onclick="tog(this)">'+
     '<span class="sec-n">'+n+'</span><span class="sec-t">'+title+'</span><span class="chev">▾</span></button>'+
-    '<div class="sec-b"'+(open===false?' hidden':'')+'>'+body+'</div></section>';
-}
+    '<div class="sec-b"'+(open===false?' hidden':'')+'>'+body+'</div></section>';}
 function tog(b){const o=b.getAttribute('aria-expanded')==='true';
   b.setAttribute('aria-expanded',String(!o));b.nextElementSibling.hidden=o;}
-
-function yn(label,key,isCase){
-  const v=isCase?C()[key]:getV(key);
-  const f=isCase?'setC':'setV';
+function yn(label,key,t){const v=getT(t,key);
   return '<div class="f"><span class="lab">'+esc(label)+'</span><div class="yn">'+
-    '<button data-v="no" aria-pressed="'+(v==='no')+'" onclick="'+f+'(\''+key+'\',\'no\');render()">No</button>'+
-    '<button data-v="yes" aria-pressed="'+(v==='yes')+'" onclick="'+f+'(\''+key+'\',\'yes\');render()">Yes</button>'+
-    '</div></div>';
-}
-function chips(label,key,opts,isCase){
-  const v=isCase?C()[key]:getV(key);const f=isCase?'setC':'setV';
+    '<button data-v="no" aria-pressed="'+(v==='no')+'" onclick="setT(\''+t+'\',\''+key+'\',\'no\');render()">No</button>'+
+    '<button data-v="yes" aria-pressed="'+(v==='yes')+'" onclick="setT(\''+t+'\',\''+key+'\',\'yes\');render()">Yes</button>'+
+    '</div></div>';}
+function chips(label,key,opts,t){const v=getT(t,key);
   return '<div class="f"><span class="lab">'+esc(label)+'</span><div class="chips">'+
-    opts.map(o=>'<button aria-pressed="'+(v===o)+'" onclick="'+f+'(\''+key+'\',\''+o+'\');render()">'+esc(o)+'</button>').join('')+
-    '</div></div>';
-}
-function txt(label,key,ph,isCase,area){
-  const v=isCase?C()[key]:getV(key);const f=isCase?'setC':'setV';
-  const el=area?'<textarea placeholder="'+esc(ph||'')+'" oninput="'+f+'(\''+key+'\',this.value)">'+esc(v)+'</textarea>'
-    :'<input type="text" value="'+esc(v)+'" placeholder="'+esc(ph||'')+'" oninput="'+f+'(\''+key+'\',this.value)">';
-  return '<div class="f"><label>'+esc(label)+'</label>'+el+'</div>';
-}
+    opts.map(o=>'<button aria-pressed="'+(v===o)+'" onclick="setT(\''+t+'\',\''+key+'\',\''+jsq(o)+'\');render()">'+esc(o)+'</button>').join('')+
+    '</div></div>';}
+function txt(label,key,ph,t,area,type){const v=getT(t,key);
+  const el=area?'<textarea placeholder="'+esc(ph||'')+'" oninput="setT(\''+t+'\',\''+key+'\',this.value)">'+esc(v)+'</textarea>'
+    :'<input type="'+(type||'text')+'"'+(type==='tel'?' inputmode="decimal"':'')+' value="'+esc(v)+'" placeholder="'+esc(ph||'')+'" oninput="setT(\''+t+'\',\''+key+'\',this.value)">';
+  return '<div class="f"><label>'+esc(label)+'</label>'+el+'</div>';}
+
+/* a finding with its last known value beside it */
+function prevOf(path){const d=D();return lastKnown(CP(),path,d.date_iso,d.entry_id);}
+function field(label,path){
+  const cur=getT('d',path);const pv=prevOf(path);
+  const pc=!pv?'<div class="prev none"><div class="prev-l">Last</div><div class="prev-v">—</div></div>'
+    :'<div class="prev"><div class="prev-l">Last · '+esc(shortIso(pv.date))+'</div><div class="prev-v">'+esc(pv.v)+' '+arrow(cur,pv.v)+'</div></div>';
+  return '<div class="f"><label>'+esc(label)+'</label><div class="pair">'+
+    '<input type="text" inputmode="decimal" value="'+esc(cur)+'" oninput="setV(\''+path+'\',this.value)">'+pc+'</div></div>';}
+
+/* ── admission profile: created once, edited rarely ── */
+function newPatient(){S.profDraft={mode:'new',data:{case_id:'',initials:'',age:'',sex:'',admitted:'',admission_event:'',operations:'',
+  reason:'',other:'',height:'',allergy_drug:'',allergy_drug_what:'',allergy_food:'',allergy_food_what:''}};go('profedit');}
+function editProfile(){const p=CP();const d={};
+  ['case_id','initials','age','sex','admitted','admission_event','operations','reason','other','height',
+   'allergy_drug','allergy_drug_what','allergy_food','allergy_food_what'].forEach(k=>d[k]=p[k]||'');
+  S.profDraft={mode:'edit',data:d};go('profedit');}
+function profEditView(){
+  const d=PD(),isNew=S.profDraft.mode==='new';
+  let h='<button class="back" onclick="cancelProfile()">‹ Cancel</button>';
+  h+=sec('·',isNew?'New patient — admission profile':'Edit admission profile — '+esc(d.case_id),
+    (isNew?txt('Case no.','case_id','Leave blank for the next number','p'):'')+
+    '<div class="row">'+txt('Initials','initials','A. B.','p')+txt('Age','age','','p',false,'tel')+'</div>'+
+    chips('Sex','sex',['Male','Female'],'p')+
+    '<div class="row">'+txt('Admitted to ICU on','admitted','15 Aug 2026','p')+txt('Height (cm)','height','','p',false,'tel')+'</div>'+
+    '<div class="calc" id="ibwbox"></div>');
+  h+=sec('1','Why in intensive care',
+    txt('What brought them in','admission_event','e.g. head trauma with reduced consciousness','p',true)+
+    txt('Operations this admission','operations','e.g. burr hole','p',true)+
+    txt('Main problem now','reason','','p')+
+    txt('Other problems','other','Long-standing conditions','p',true));
+  h+=sec('2','Allergies',
+    yn('Drug allergy?','allergy_drug','p')+
+    '<div class="reveal" '+(d.allergy_drug==='yes'?'':'hidden')+'>'+txt('Which drug, and what happened','allergy_drug_what','','p',true)+'</div>'+
+    yn('Food allergy?','allergy_food','p')+
+    '<div class="reveal" '+(d.allergy_food==='yes'?'':'hidden')+'>'+txt('Which food, and what happened','allergy_food_what','','p',true)+'</div>');
+  if(!isNew)h+='<p class="hint">Changing the profile is logged with your name. Day-to-day results go in an update, not here.</p>';
+  return h;}
+function cancelProfile(){const m=S.profDraft&&S.profDraft.mode;S.profDraft=null;save();go(m==='edit'?'profile':'list');}
+async function saveProfile(){
+  const d=clone(PD());if(!d.initials){toast('Initials are needed');return;}
+  const isNew=S.profDraft.mode==='new';if(isNew)d.create=true;
+  if(d.case_id&&/^\d+$/.test(d.case_id.trim()))d.case_id='ICU-'+d.case_id.trim().padStart(3,'0');
+  BUSY=true;toast('Saving…');const j=await api('savePatient',{patient:d});BUSY=false;
+  if(!j.ok){toast(j.error==='offline'?'Not saved — no connection. Your entry is kept.':(j.message||'Not saved'));return;}
+  S.profDraft=null;S.current=j.case_id;save();await refresh(true);
+  if(isNew){startUpdate(j.case_id);toast(j.case_id+' opened — now today\'s findings');}
+  else{go('profile');toast('Profile saved');}}
+
+/* ── today's update: a draft on this phone until saved to the shared record ── */
+function startUpdate(id){
+  const p=P(id);S.current=id;const td=isoToday();
+  const ex=S.drafts[id];
+  if(!ex){
+    const mine=entries(p).find(e=>e.date_iso===td&&e.pharmacist===me());
+    if(mine){S.drafts[id]=clone(mine);}
+    else{
+      const mE=lastMedsEntry(p),w=lastKnown(p,'weight'),sw=lastKnown(p,'swollen');
+      S.drafts[id]={entry_id:'',date_iso:td,date:fmtIso(td),icuDay:icuDayFor(p,td),weight:w?w.v:'',swollen:sw?sw.v:'',
+        labs:{},kid:{},liv:{},creatTrend:'',dialysis:'',ascites:'',enceph:'',vent:'',feeding:'',lines:'',
+        meds:mE?mE.meds.filter(m=>m.state!=='stopped').map(m=>Object.assign({},m,{state:''})):[],cultures:'',unclear:''};
+    }
+  }
+  save();go('form');}
+function editEntry(eid){const p=CP();const e=entries(p).find(x=>x.entry_id===eid);if(!e)return;
+  if(S.drafts[p.case_id]&&S.drafts[p.case_id].entry_id!==eid&&!confirm('You have an unsaved update for this patient. Replace it with this entry?'))return;
+  S.drafts[p.case_id]=clone(e);save();go('form');}
+function discardDraft(){if(!confirm('Discard this unsaved update?'))return;delete S.drafts[S.current];save();go('profile');}
+function setDate(v){const d=D();d.date_iso=v;d.date=fmtIso(v);
+  if(!d.entry_id)d.icuDay=icuDayFor(CP(),v)||d.icuDay;save();render();}
 
 function formView(){
-  const c=C(),d=D();
-  let h='';
-  h+='<button class="back" onclick="go(\'list\')">‹ All patients</button>';
-
-  h+=sec('·','Patient',
-    '<div class="row">'+txt('Case no.','id','',true)+txt('Initials','initials','A. B.',true)+'</div>'+
-    '<div class="row">'+txt('Age','age','',true)+'</div>'+
-    chips('Sex','sex',['Male','Female'],true)+
-    '<div class="row">'+txt('Admitted on','admitted','19 / 9',true)+
-      '<div class="f"><label>Today</label><input type="text" value="'+esc(d.date)+'" oninput="setV(\'date\',this.value)"></div></div>'+
-    '<div class="f"><label>ICU day</label><div class="pair">'+
-      '<input type="text" inputmode="numeric" value="'+esc(d.icuDay)+'" oninput="setV(\'icuDay\',this.value)">'+
-      (PREV()&&PREV().icuDay?'<div class="prev"><div class="prev-l">Yesterday</div><div class="prev-v">day '+esc(PREV().icuDay)+'</div></div>'
-        :'<div class="prev none"><div class="prev-l">Yesterday</div><div class="prev-v">—</div></div>')+
-      '</div></div>');
-
-  h+=sec('1','Weight and height',
-    '<div class="row">'+
-      '<div class="f"><label>Weight (kg)</label><input type="text" inputmode="decimal" value="'+esc(d.weight)+'" oninput="setV(\'weight\',this.value)"></div>'+
-      txt('Height (cm)','height','',true)+'</div>'+
-    yn('Is the patient swollen?','swollen')+
-    '<div class="calc" id="ibwbox"></div>');
-
-  h+=sec('2','Why in intensive care',
-    txt('Main problem','reason','',true)+txt('Other problems','other','',true,true));
-
-  h+=sec('3','Allergies',
-    yn('Drug allergy?','algD',true)+
-    '<div class="reveal" '+(c.algD==='yes'?'':'hidden')+'>'+txt('Which drug, and what happened','algDwhat','',true,true)+'</div>'+
-    yn('Food allergy?','algF',true)+
-    '<div class="reveal" '+(c.algF==='yes'?'':'hidden')+'>'+txt('Which food, and what happened','algFwhat','',true,true)+'</div>');
-
-  h+=sec('4','Kidney and liver',
+  const p=CP(),d=D();const edit=!!d.entry_id;
+  let h='<button class="back" onclick="go(\'profile\')">‹ '+esc(p.case_id)+' profile</button>';
+  h+='<div class="banner" style="background:var(--navy-soft);border-color:var(--navy)">'+
+    (edit?'Editing your update of '+esc(fmtIso(d.date_iso))+'.':'New update by <b>'+esc(me())+'</b> — it reaches the shared record when you tap <b>Save</b>.')+
+    ' <button class="linkbtn" style="font-size:13px" onclick="discardDraft()">Discard</button></div>';
+  h+=sec('·','This update',
+    '<div class="row"><div class="f"><label>Date</label><input type="date" value="'+esc(d.date_iso)+'" onchange="setDate(this.value)"></div>'+
+    '<div class="f"><label>ICU day</label><input type="text" inputmode="numeric" value="'+esc(d.icuDay)+'" oninput="setV(\'icuDay\',this.value)"></div></div>');
+  h+=sec('1','Weight',
+    '<div class="f"><label>Weight (kg)</label><div class="pair"><input type="text" inputmode="decimal" value="'+esc(d.weight)+'" oninput="setV(\'weight\',this.value)">'+
+      (function(){const pv=prevOf('weight');return pv?'<div class="prev"><div class="prev-l">Last · '+esc(shortIso(pv.date))+'</div><div class="prev-v">'+esc(pv.v)+'</div></div>'
+        :'<div class="prev none"><div class="prev-l">Last</div><div class="prev-v">—</div></div>';})()+'</div></div>'+
+    yn('Is the patient swollen?','swollen','d')+'<div class="calc" id="ibwbox"></div>');
+  h+=sec('2','Kidney and liver',
     KID.map(k=>field(k[1],'kid.'+k[0])).join('')+
-    chips('Creatinine is','creatTrend',['going up','steady','coming down'])+
-    yn('On dialysis?','dialysis')+
+    chips('Creatinine is','creatTrend',['going up','steady','coming down'],'d')+
+    yn('On dialysis?','dialysis','d')+
     LIV.map(k=>field(k[1],'liv.'+k[0])).join('')+
-    chips('Fluid in the abdomen','ascites',['none','mild','moderate or more'])+
-    chips('Confused or drowsy beyond sedation','enceph',['no','mild','marked'])+
-    '<p class="hint">The last two turn a vague liver caution into a computable class.</p>');
-
-  h+=sec('5','Blood results today',
-    LABS.map(k=>field(k[1],'labs.'+k[0])).join(''));
-
-  h+=sec('6','Status, feeding and lines',
-    chips('Breathing','vent',['own breathing','oxygen','ventilator'])+
-    chips('Feeding','feeding',['nothing by mouth','by mouth','feeding tube','drip feeding'])+
-    txt('Central line — where, and how many openings','lines','',false)+
-    txt('Cultures sent / grown','cultures','',false,true),false);
-
-  h+=sec('7','Medicines',
+    chips('Fluid in the abdomen','ascites',['none','mild','moderate or more'],'d')+
+    chips('Confused or drowsy beyond sedation','enceph',['no','mild','marked'],'d'));
+  h+=sec('3','Blood results',LABS.map(k=>field(k[1],'labs.'+k[0])).join('')+
+    '<p class="hint">Leave a box empty if it was not measured — the last value stays visible on the profile.</p>');
+  h+=sec('4','Status, feeding and lines',
+    chips('Breathing','vent',['own breathing','oxygen','ventilator'],'d')+
+    chips('Feeding','feeding',['nothing by mouth','by mouth','feeding tube','drip feeding'],'d')+
+    txt('Central line — where, and how many openings','lines','','d')+
+    txt('Cultures sent / grown','cultures','','d',true),false);
+  h+=sec('5','Medicines',
     '<div id="meds">'+d.meds.map((m,i)=>medRow(i,m)).join('')+'</div>'+
     '<button class="addbtn" onclick="addMed()">+ Add medicine</button>'+
-    '<p class="hint">Medicines carried over from the last entry. Mark anything that started, stopped or changed.</p>');
-
-  h+=sec('8','Anything unclear',
-    txt('Anything you could not read, or are unsure about','unclear','Leave blank rather than guess.',false,true));
-
+    '<p class="hint">Carried over from the last list. Mark anything that started, stopped or changed.</p>');
+  h+=sec('6','Notes and anything unclear',
+    txt('Notes, or anything you could not read','unclear','Leave blank rather than guess.','d',true));
   h+='<div class="checks" id="checks"></div>';
-  return h;
-}
+  return h;}
 
 function medRow(i,m){
   return '<div class="med'+(m.state==='stopped'?' stopped':'')+'">'+
@@ -569,248 +676,246 @@ function medRow(i,m){
     '<div><span class="mini">How often</span><input type="text" value="'+esc(m.freq||'')+'" oninput="setMed('+i+',\'freq\',this.value)"></div>'+
     '<div><span class="mini">Started on</span><input type="text" value="'+esc(m.started||'')+'" oninput="setMed('+i+',\'started\',this.value)"></div>'+
     '<div class="full"><span class="mini">What it is for</span><input type="text" value="'+esc(m.why||'')+'" oninput="setMed('+i+',\'why\',this.value)"></div>'+
-    '</div>'+
-    '<div class="tagrow">'+
+    '</div><div class="tagrow">'+
     ['started','changed','stopped'].map(t=>'<button aria-pressed="'+(m.state===t)+'" onclick="tagMed('+i+',\''+t+'\')">'+t+'</button>').join('')+
-    '</div></div>';
-}
+    '</div></div>';}
 function addMed(){D().meds.push({name:'',dose:'',route:'',freq:'',started:'',why:'',state:'started'});save();render();}
 function delMed(i){D().meds.splice(i,1);save();render();}
 function setMed(i,k,v){D().meds[i][k]=v;save();}
 function tagMed(i,t){const m=D().meds[i];m.state=(m.state===t?'':t);save();render();}
 
-/* ── live calculations and checks ── */
+async function saveEntry(){
+  const d=clone(D());d.case_id=S.current;d.date=fmtIso(d.date_iso);
+  d.meds=d.meds.filter(m=>has(m.name));
+  BUSY=true;toast('Saving…');const j=await api('saveEntry',{entry:d});BUSY=false;
+  if(!j.ok){toast(j.error==='offline'?'Not saved — no connection. Your update is kept on this phone.':(j.message||'Not saved'));return;}
+  delete S.drafts[S.current];save();await refresh(true);go('profile');toast('Saved to the shared record');}
+
+/* ── live checks while filling ── */
 function refreshLive(){
   const box=document.getElementById('ibwbox');
-  if(box){const v=ibw();const c=C();
-    box.innerHTML='<div class="calc-l">Ideal weight</div><div class="calc-v">'+
-      (v?v.toFixed(1)+' kg':'—')+'</div><div class="calc-n">'+
-      (v?esc(c.sex)+' · '+(c.sex==='Male'?'50.0':'45.5')+' + 0.9 × ('+esc(c.height)+' − 152)'
-        :'Enter sex and height')+'</div>';}
-  const ch=document.getElementById('checks');if(!ch)return;
-  const d=D(),out=[];
-  const n=k=>{const v=k.split('.').reduce((o,p)=>o?o[p]:undefined,d);const f=parseFloat(v);return isNaN(f)?null:f;};
-  const blank=k=>{const v=k.split('.').reduce((o,p)=>o?o[p]:undefined,d);return v===''||v==null;};
-  if(blank('kid.creatinine')) out.push('Creatinine is blank. No dose that depends on the kidneys can be checked without it.');
-  if(d.creatTrend==='going up') out.push('Creatinine is rising — every clearance figure calculated today will read higher than the truth.');
+  if(box){const src=S.view==='profedit'?PD():CP();const v=ibwOf(src);
+    box.innerHTML='<div class="calc-l">Ideal weight</div><div class="calc-v">'+(v?v.toFixed(1)+' kg':'—')+'</div><div class="calc-n">'+
+      (v?esc(src.sex)+' · '+(src.sex==='Male'?'50.0':'45.5')+' + 0.9 × ('+esc(src.height)+' − 152)':'Enter sex and height in the profile')+'</div>';}
+  const ch=document.getElementById('checks');if(!ch||S.view!=='form')return;
+  const d=D(),p=CP(),out=[];
+  const n=k=>{const f=parseFloat(getPath(d,k));return isNaN(f)?null:f;};
+  const blank=k=>!has(getPath(d,k));
+  if(blank('kid.creatinine')){const lk=lastKnown(p,'kid.creatinine',d.date_iso,d.entry_id);
+    out.push('Creatinine is blank'+(lk?' — last known '+lk.v+' on '+shortIso(lk.date)+'.':'. No kidney-dependent dose can be checked without it.'));}
+  if(d.creatTrend==='going up')out.push('Creatinine is rising — every clearance figure calculated today will read higher than the truth.');
   if(n('labs.potassium')!==null&&n('labs.potassium')<3.5&&blank('labs.magnesium'))
     out.push('Potassium is low and magnesium is blank. Potassium will not correct through a magnesium shortage.');
-  if(d.swollen==='yes') out.push('Swollen — the weight on the scale is not the weight to dose with.');
-  if(!C().height) out.push('Height is missing, so ideal weight cannot be worked out.');
-  const p=PREV();
-  if(p){const a=parseFloat(d.kid&&d.kid.creatinine),b=parseFloat(p.kid&&p.kid.creatinine);
-    if(!isNaN(a)&&!isNaN(b)&&b>0&&Math.abs(a-b)/b>=0.25)
-      out.push('Creatinine has moved more than a quarter since the last entry — every renal dose needs re-checking.');}
+  if(n('labs.ionised')!==null&&n('labs.ionised')<1.0&&blank('labs.magnesium'))
+    out.push('Ionised calcium is low and magnesium is blank. Calcium will not hold without magnesium.');
+  if(d.swollen==='yes')out.push('Swollen — the weight on the scale is not the weight to dose with.');
+  if(!p.height)out.push('Height is missing from the profile, so ideal weight cannot be worked out.');
+  const lk=lastKnown(p,'kid.creatinine',d.date_iso,d.entry_id);
+  if(lk&&n('kid.creatinine')!==null){const b=parseFloat(lk.v);
+    if(b>0&&Math.abs(n('kid.creatinine')-b)/b>=0.25)out.push('Creatinine has moved more than a quarter since '+shortIso(lk.date)+' — every renal dose needs re-checking.');}
   ch.innerHTML=out.length?out.map(t=>'<div class="chk"><span class="chk-i">!</span><span>'+esc(t)+'</span></div>').join('')
-    :'<div class="chk ok"><span class="chk-i">✓</span><span>Nothing flagged on the entries so far.</span></div>';
-}
+    :'<div class="chk ok"><span class="chk-i">✓</span><span>Nothing flagged on the entries so far.</span></div>';}
 
-/* ── trend view ── */
-function trendRows(){
-  const c=C();const rows=[];
-  const push=(label,get)=>{const vals=c.days.map(get);
-    if(vals.some(v=>v!==''&&v!=null))rows.push([label,vals]);};
-  push('ICU day',d=>d.icuDay);
-  push('Weight (kg)',d=>d.weight);
-  KID.forEach(k=>push(k[1],d=>d.kid&&d.kid[k[0]]));
-  push('Creatinine trend',d=>d.creatTrend);
-  LABS.forEach(k=>push(k[1],d=>d.labs&&d.labs[k[0]]));
-  LIV.forEach(k=>push(k[1],d=>d.liv&&d.liv[k[0]]));
-  push('Fluid in abdomen',d=>d.ascites);
-  push('Confusion',d=>d.enceph);
-  push('Medicines on chart',d=>d.meds.filter(m=>m.state!=='stopped').length||'');
-  return rows;
-}
+/* ── trend: every update side by side ── */
+function trendRows(p,E){
+  const rows=[];const push=(label,get)=>{const vals=E.map(get);if(vals.some(has))rows.push([label,vals]);};
+  push('ICU day',e=>icuDayFor(p,e.date_iso));
+  push('Weight (kg)',e=>e.weight);
+  KID.forEach(k=>push(k[1],e=>e.kid&&e.kid[k[0]]));
+  push('Creatinine trend',e=>e.creatTrend);
+  LABS.forEach(k=>push(k[1],e=>e.labs&&e.labs[k[0]]));
+  LIV.forEach(k=>push(k[1],e=>e.liv&&e.liv[k[0]]));
+  push('Medicines on chart',e=>(e.meds||[]).filter(m=>m.state!=='stopped').length||'');
+  push('Pharmacist',e=>initialsOf(e.pharmacist));
+  return rows;}
 function trendView(){
-  const c=C();
-  if(c.days.length<2) return '<button class="back" onclick="go(\'form\')">‹ Back</button>'+
-    '<div class="empty">Only one entry so far.<br>Tap <b>New day</b> below to start the second, and the values will line up side by side.</div>'+
-    '<button class="addbtn" onclick="addDay()">+ New day</button>';
-  const rows=trendRows();
-  let h='<button class="back" onclick="go(\'form\')">‹ Back</button><div class="trend"><table class="tr"><thead><tr><th>Finding</th>'+
-    c.days.map(d=>'<th>'+esc(d.date)+'</th>').join('')+'</tr></thead><tbody>';
-  rows.forEach(r=>{h+='<tr><td class="k">'+esc(r[0])+'</td>'+
-    r[1].map((v,i)=>{let a='';if(i>0)a=arrow(v,r[1][i-1]);return '<td>'+esc(v||'—')+' '+a+'</td>';}).join('')+'</tr>';});
-  h+='</tbody></table></div><div style="margin-top:13px"><button class="addbtn" onclick="addDay()">+ New day</button></div>';
-  return h;
-}
-function addDay(){const c=C();c.days.push(newDay(c.days[c.days.length-1]));save();go('form');toast('New day started');}
+  const p=CP(),E=entries(p);
+  let h='<button class="back" onclick="go(\'profile\')">‹ '+esc(p.case_id)+' profile</button>';
+  if(E.length<2)return h+'<div class="empty">One update so far — the trend needs two.</div>';
+  h+='<div class="trend"><table class="tr"><thead><tr><th>Finding</th>'+E.map(e=>'<th>'+esc(shortIso(e.date_iso))+'</th>').join('')+'</tr></thead><tbody>';
+  trendRows(p,E).forEach(r=>{h+='<tr><td class="k">'+esc(r[0])+'</td>'+
+    r[1].map((v,i)=>{let a='';if(i>0&&r[0]!=='Pharmacist'){for(let j=i-1;j>=0;j--)if(has(r[1][j])){a=arrow(v,r[1][j]);break;}}
+      return '<td>'+esc(has(v)?v:'—')+' '+(has(v)?a:'')+'</td>';}).join('')+'</tr>';});
+  return h+'</tbody></table></div>';}
 
-/* ── output text ── */
-function build(){
-  const c=C(),d=D(),p=PREV();const L=[];
-  L.push('CRITICAL CARE PHARMACOTHERAPY REVIEW');
-  L.push('Department of Pharmacy — Intensive Care Service');
-  L.push('');
-  L.push(c.id+' · '+(c.initials||'—')+' · '+(c.age||'?')+' '+(c.sex||'')+' · ICU day '+(d.icuDay||'?'));
-  L.push('Pharmacist: '+(S.user?S.user.name:'—'));
-  L.push(d.date+(p?'   (previous entry '+p.date+')':'   FIRST ENTRY'));
-  L.push('');
-  if(!p){
-    L.push('WHY IN INTENSIVE CARE: '+(c.reason||'—'));
-    if(c.other)L.push('OTHER PROBLEMS: '+c.other);
-    L.push('ALLERGY — drug: '+(c.algD||'—')+(c.algDwhat?' ('+c.algDwhat+')':'')+
-      ' · food: '+(c.algF||'—')+(c.algFwhat?' ('+c.algFwhat+')':''));
-    L.push('');
-  }
-  const line=(lbl,now,then)=>{
-    if((now===''||now==null)&&(then===''||then==null))return null;
-    if(then==null||then===''||!p)return lbl+': '+(now||'not measured');
+/* ── settings ── */
+function settingsView(){
+  const n=S.patients.length,open=S.patients.filter(p=>p.status!=='closed').length;
+  let old=0;try{const o=JSON.parse(localStorage.getItem('ccpr-v2')||'null');if(o&&o.cases)old=Object.keys(o.cases).length;}catch(e){}
+  return '<button class="back" onclick="go(\'list\')">‹ Patients</button>'+
+  '<section><div class="sec-b" style="padding:0">'+
+  '<div class="setrow"><span>Signed in as</span><b>'+esc(me())+'</b></div>'+
+  '<div class="setrow"><span>Shared record</span><b>'+(ONLINE?'connected':'offline')+'</b></div>'+
+  '<div class="setrow"><span>Patients</span><b>'+open+' open · '+(n-open)+' closed</b></div>'+
+  '<div class="setrow"><span>Last refreshed</span><b>'+esc(relTime(S.fetchedAt)||'—')+'</b></div>'+
+  '<div class="setrow"><span>Unsaved updates on this phone</span><b>'+Object.keys(S.drafts).length+'</b></div>'+
+  '</div></section>'+
+  '<section><div class="sec-b" style="padding:0">'+
+  (old?'<div class="setrow"><span>Old records kept on this phone ('+old+')</span><button class="linkbtn" onclick="backupOld()">Save file</button></div>':'')+
+  '<div class="setrow"><span>Lock this phone now</span><button class="linkbtn" onclick="lockNow()">Lock</button></div>'+
+  '<div class="setrow"><span>Sign in as someone else</span><button class="linkbtn danger" onclick="signOut()">Sign out</button></div>'+
+  '</div></section>'+
+  '<p class="hint">Patient files live in the pharmacy\'s shared record, not on this phone. Unsaved updates stay here until you save them.</p>';}
+function backupOld(){try{const blob=new Blob([localStorage.getItem('ccpr-v2')||'{}'],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='icu-review-old-phone-records.json';
+  document.body.appendChild(a);a.click();a.remove();toast('File saved');}catch(e){toast('Could not save here');}}
+
+/* ── close and reopen ── */
+async function closeP(){const p=CP();
+  const o=prompt('Close '+p.case_id+'? It stays readable under Closed.\nOutcome (e.g. discharged, transferred to ward, died):','');
+  if(o===null)return;BUSY=true;const j=await api('setStatus',{case_id:p.case_id,status:'closed',outcome:o});BUSY=false;
+  if(!j.ok){toast(j.message||'Not saved');return;}await refresh(true);go('list');toast('Case closed');}
+async function reopenP(){const p=CP();BUSY=true;const j=await api('setStatus',{case_id:p.case_id,status:'open'});BUSY=false;
+  if(!j.ok){toast(j.message||'Not saved');return;}await refresh(true);toast('Case reopened');}
+
+/* ── screens ── */
+function go(v){S.view=v;save();render();window.scrollTo(0,0);}
+function openP(id){S.current=id;go('profile');}
+function render(){
+  const app=document.getElementById('app'),bar=document.getElementById('bar'),sub=document.getElementById('hsub');
+  if(!S.lastUser){sub.textContent='';app.innerHTML=signInView('');bar.innerHTML='';
+    setTimeout(()=>{const f=document.getElementById('si-user');if(f)f.focus();},60);return;}
+  if(!UNLOCKED||!S.auth){sub.textContent='';app.innerHTML=lockView();bar.innerHTML='';
+    setTimeout(()=>{const f=document.getElementById('si-pass');if(f)f.focus();},60);return;}
+  if(['profile','form','trend'].includes(S.view)&&!CP())S.view='list';
+  if(S.view==='form'&&!D())S.view='profile';
+  if(S.view==='profedit'&&!S.profDraft)S.view='list';
+  const p=CP();
+  if(S.view==='settings'){sub.textContent=me();app.innerHTML=settingsView();bar.innerHTML='<button onclick="go(\'list\')">Patients</button>';return;}
+  if(S.view==='list'){sub.textContent=me();app.innerHTML=listView();
+    bar.innerHTML='<button onclick="go(\'settings\')">Settings</button><button class="primary" onclick="newPatient()">New patient</button>';return;}
+  if(S.view==='profedit'){sub.textContent=S.profDraft.mode==='new'?'New patient':PD().case_id;app.innerHTML=profEditView();
+    bar.innerHTML='<button onclick="cancelProfile()">Cancel</button><button class="primary" onclick="saveProfile()">Save profile</button>';refreshLive();return;}
+  if(S.view==='trend'){sub.textContent=p.case_id+' · '+(p.initials||'');app.innerHTML=trendView();
+    bar.innerHTML='<button onclick="go(\'profile\')">Back</button><button onclick="printEntry()">Print</button>';return;}
+  if(S.view==='form'){sub.textContent=p.case_id+' · '+(p.initials||'')+' · '+me();app.innerHTML=formView();
+    bar.innerHTML='<button onclick="go(\'profile\')">Profile</button><button class="primary" onclick="saveEntry()">Save update</button>';refreshLive();return;}
+  sub.textContent=p.case_id+' · '+(p.initials||'');app.innerHTML=profileView();
+  const dr=S.drafts[p.case_id];
+  bar.innerHTML='<button onclick="go(\'list\')">Patients</button><button onclick="go(\'trend\')">Trend</button>'+
+    '<button onclick="printEntry()">Print</button>'+
+    (p.status==='closed'?'':'<button class="primary" onclick="startUpdate(\''+jsq(p.case_id)+'\')">'+(dr?'Continue update':'Add update')+'</button>');}
+
+/* ── WhatsApp text for one update ── */
+function entryPair(eid){const p=CP(),E=entries(p);let i=eid?E.findIndex(e=>e.entry_id===eid):E.length-1;
+  if(i<0)i=E.length-1;return {p:p,E:E,i:i,d:E[i],prevOf:path=>{for(let j=i-1;j>=0;j--){const v=getPath(E[j],path);if(has(v))return v;}return null;}};}
+function build(eid){
+  const x=entryPair(eid),c=x.p,d=x.d;const L=[];
+  if(!d)return 'No updates yet.';
+  L.push('CRITICAL CARE PHARMACOTHERAPY REVIEW');L.push('Department of Pharmacy — Intensive Care Service');L.push('');
+  L.push(c.case_id+' · '+(c.initials||'—')+' · '+(c.age||'?')+' '+(c.sex||'')+' · ICU day '+(icuDayFor(c,d.date_iso)||'?'));
+  L.push('Pharmacist: '+(d.pharmacist||'—'));
+  L.push(fmtIso(d.date_iso)+(x.i>0?'   (update '+(x.i+1)+' of '+x.E.length+')':'   FIRST ENTRY'));L.push('');
+  if(x.i===0){
+    if(c.admission_event)L.push('WHAT BROUGHT THEM IN: '+c.admission_event);
+    if(c.operations)L.push('OPERATIONS: '+c.operations);
+    L.push('MAIN PROBLEM: '+(c.reason||'—'));if(c.other)L.push('OTHER PROBLEMS: '+c.other);
+    L.push('ALLERGY — drug: '+(c.allergy_drug||'—')+(c.allergy_drug_what?' ('+c.allergy_drug_what+')':'')+
+      ' · food: '+(c.allergy_food||'—')+(c.allergy_food_what?' ('+c.allergy_food_what+')':''));L.push('');}
+  const line=(lbl,path)=>{const now=getPath(d,path),then=x.prevOf(path);
+    if(!has(now))return null;if(then==null)return lbl+': '+now;
     if(String(now)===String(then))return lbl+': '+now+'  (unchanged)';
     const a=parseFloat(now),b=parseFloat(then);
-    const ar=(!isNaN(a)&&!isNaN(b))?(a>b?' UP':' DOWN'):'';
-    return lbl+': '+(then)+' -> '+(now||'not measured')+ar;
-  };
-  L.push('WEIGHT AND HEIGHT');
-  const iv=ibw();
-  L.push('Weight '+(d.weight||'—')+' kg'+(d.swollen==='yes'?' (SWOLLEN — not a dosing weight)':'')+
-    ' · height '+(c.height||'—')+' cm'+(iv?' · ideal weight '+iv.toFixed(1)+' kg':''));
-  L.push('');
-  L.push('KIDNEY');
-  KID.forEach(k=>{const s=line(k[1],d.kid&&d.kid[k[0]],p&&p.kid&&p.kid[k[0]]);if(s)L.push(s);});
-  if(d.creatTrend)L.push('Creatinine is '+d.creatTrend.toUpperCase());
-  if(d.dialysis)L.push('Dialysis: '+d.dialysis);
-  L.push('');
-  const livL=[];
-  LIV.forEach(k=>{const s=line(k[1],d.liv&&d.liv[k[0]],p&&p.liv&&p.liv[k[0]]);if(s)livL.push(s);});
-  if(d.ascites)livL.push('Fluid in abdomen: '+d.ascites);
-  if(d.enceph)livL.push('Confusion beyond sedation: '+d.enceph);
-  if(livL.length){L.push('LIVER');livL.forEach(x=>L.push(x));L.push('');}
-  else {L.push('LIVER: nothing entered — liver class cannot be worked out.');L.push('');}
-  L.push('BLOOD RESULTS');
-  let any=false;
-  LABS.forEach(k=>{const s=line(k[1],d.labs&&d.labs[k[0]],p&&p.labs&&p.labs[k[0]]);if(s){L.push(s);any=true;}});
-  if(!any)L.push('none entered');
-  L.push('');
-  if(d.vent||d.feeding||d.lines){
-    L.push('STATUS');
-    if(d.vent)L.push('Breathing: '+d.vent);
-    if(d.feeding)L.push('Feeding: '+d.feeding);
-    if(d.lines)L.push('Lines: '+d.lines);
-    L.push('');
-  }
-  const started=d.meds.filter(m=>m.state==='started'),stopped=d.meds.filter(m=>m.state==='stopped'),
-        changed=d.meds.filter(m=>m.state==='changed');
-  if(p){
-    L.push('MEDICINE CHANGES');
-    if(started.length)started.forEach(m=>L.push('STARTED  '+medTxt(m)));
-    if(changed.length)changed.forEach(m=>L.push('CHANGED  '+medTxt(m)));
-    if(stopped.length)stopped.forEach(m=>L.push('STOPPED  '+(m.name||'—')));
-    if(!started.length&&!changed.length&&!stopped.length)L.push('No medicine changes.');
-    L.push('');
-    const nOn=d.meds.filter(m=>m.state!=='stopped').length;L.push('ON CHART NOW: '+nOn+' medicine'+(nOn===1?'':'s'));
-  }else{
-    L.push('MEDICINES — '+d.meds.length+' item'+(d.meds.length===1?'':'s'));
-    d.meds.forEach((m,i)=>L.push((i+1)+'. '+medTxt(m)));
-  }
-  L.push('');
+    return lbl+': '+then+' -> '+now+((!isNaN(a)&&!isNaN(b))?(a>b?' UP':' DOWN'):'');};
+  const iv=ibwOf(c);
+  L.push('WEIGHT '+(d.weight||'—')+' kg'+(d.swollen==='yes'?' (SWOLLEN — not a dosing weight)':'')+
+    ' · height '+(c.height||'—')+' cm'+(iv?' · ideal '+iv.toFixed(1)+' kg':''));L.push('');
+  const block=(title,list,pre)=>{const out=list.map(k=>line(k[1],pre+'.'+k[0])).filter(Boolean);
+    if(out.length){L.push(title);out.forEach(s=>L.push(s));L.push('');}};
+  block('KIDNEY',KID,'kid');if(d.creatTrend)L.push('Creatinine is '+d.creatTrend.toUpperCase());if(d.dialysis)L.push('Dialysis: '+d.dialysis);
+  block('LIVER',LIV,'liv');block('BLOOD RESULTS',LABS,'labs');
+  if(d.vent||d.feeding||d.lines){L.push('STATUS');if(d.vent)L.push('Breathing: '+d.vent);if(d.feeding)L.push('Feeding: '+d.feeding);
+    if(d.lines)L.push('Lines: '+d.lines);L.push('');}
+  const meds=d.meds||[];
+  if(meds.length){const st=s=>meds.filter(m=>m.state===s);
+    if(x.i>0){L.push('MEDICINE CHANGES');st('started').forEach(m=>L.push('STARTED  '+medTxt(m)));
+      st('changed').forEach(m=>L.push('CHANGED  '+medTxt(m)));st('stopped').forEach(m=>L.push('STOPPED  '+(m.name||'—')));
+      if(!st('started').length&&!st('changed').length&&!st('stopped').length)L.push('No medicine changes.');
+      const nOn=meds.filter(m=>m.state!=='stopped').length;L.push('ON CHART NOW: '+nOn+' medicine'+(nOn===1?'':'s'));}
+    else{L.push('MEDICINES — '+meds.length);meds.forEach((m,i)=>L.push((i+1)+'. '+medTxt(m)));}
+    L.push('');}
   if(d.cultures)L.push('CULTURES: '+d.cultures);
-  if(d.unclear)L.push('COULD NOT READ / UNSURE: '+d.unclear);
-  L.push('');
-  L.push('Initials only. Sent from the ICU pharmacy record.');
-  return L.join('\n');
-}
+  if(d.unclear)L.push('NOTES / UNSURE: '+d.unclear);
+  L.push('');L.push('Initials only. From the shared ICU pharmacy record.');
+  return L.join('\n');}
 function medTxt(m){return [m.name,m.dose,m.route,m.freq].filter(Boolean).join('  ')+(m.why?'   — '+m.why:'');}
-
-function finish(){document.getElementById('out').textContent=build();
+let OUT_ID=null;
+function shareEntry(eid){OUT_ID=eid;document.getElementById('out').textContent=build(eid);
   document.getElementById('preview').hidden=false;window.scrollTo(0,0);}
 function closePreview(){document.getElementById('preview').hidden=true;}
-function copyOut(){const t=build();
-  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(()=>toast('Copied'),()=>toast('Could not copy'));}
+function copyOut(){const t=build(OUT_ID);
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(()=>toast('Copied'),()=>toast('Could not copy'));
   else toast('Select the text and copy');}
-function waOut(){window.open('https://wa.me/?text='+encodeURIComponent(build()),'_blank');}
+function waOut(){window.open('https://wa.me/?text='+encodeURIComponent(build(OUT_ID)),'_blank');}
 
 /* ── print: identical to the paper record ── */
-function doPrint(){buildPrint();setTimeout(()=>window.print(),60);}
-function buildPrint(){
-  const c=C(),d=D(),p=PREV();const iv=ibw();
+function printEntry(eid){if(!entries(CP()).length){toast('No updates to print yet');return;}
+  buildPrint(eid);setTimeout(()=>window.print(),60);}
+function buildPrint(eid){
+  const x=entryPair(eid),c=x.p,d=x.d,iv=ibwOf(c);
+  const hasPrev=x.i>0;
   const row=(k,v)=>'<tr><td class="k">'+esc(k)+'</td><td class="v" colspan="3">'+esc(v||'')+'</td></tr>';
   const q=(k1,v1,k2,v2)=>'<tr><td class="k">'+esc(k1)+'</td><td class="v">'+esc(v1||'')+
     '</td><td class="k">'+esc(k2)+'</td><td class="v">'+esc(v2||'')+'</td></tr>';
-  const pv=(now,then)=>{
-    if(then==null||then==='')return esc(now||'');
+  const pv=path=>{const now=getPath(d,path),then=x.prevOf(path);
+    if(then==null)return esc(has(now)?now:'');
+    if(!has(now))return '<span style="color:#5A6478">'+esc(then)+' (last)</span>';
     const a=parseFloat(now),b=parseFloat(then);
     const ar=(!isNaN(a)&&!isNaN(b))?(a>b?'<span class="p-up">▲</span>':a<b?'<span class="p-dn">▼</span>':'–'):'';
-    return esc(then)+' → <b>'+esc(now||'')+'</b> '+ar;};
-
+    return esc(then)+' → <b>'+esc(now)+'</b> '+ar;};
+  const prevDate=hasPrev?x.E[x.i-1].date_iso:'';
   let h='<div class="p-head"><div class="p-eyebrow">DEPARTMENT OF PHARMACY  ·  INTENSIVE CARE SERVICE</div>'+
     '<div class="p-title">Critical Care Pharmacotherapy Review</div>'+
-    '<div class="p-sub">'+esc(c.id)+'  ·  '+esc(c.initials||'—')+'  ·  entry '+c.days.length+
-    (p?'  ·  previous entry '+esc(p.date):'  ·  first entry')+'</div></div>';
-
+    '<div class="p-sub">'+esc(c.case_id)+'  ·  '+esc(c.initials||'—')+'  ·  update '+(x.i+1)+' of '+x.E.length+
+    (hasPrev?'  ·  previous update '+esc(fmtIso(prevDate)):'  ·  first entry')+'</div></div>';
   h+='<table class="p"><tr><th>Case no.</th><th>Initials</th><th>Age · sex</th><th>ICU day</th></tr>'+
-    '<tr><td class="v">'+esc(c.id)+'</td><td class="v">'+esc(c.initials)+'</td><td class="v">'+
-    esc([c.age,c.sex].filter(Boolean).join(' · '))+'</td><td class="v">'+esc(d.icuDay)+'</td></tr>'+
-    '<tr><th>Admitted on</th><th>This entry</th><th>Reason for admission</th><th>Pharmacist</th></tr>'+
-    '<tr><td class="v">'+esc(c.admitted)+'</td><td class="v">'+esc(d.date)+'</td><td class="v">'+
-    esc(c.reason)+'</td><td class="v">'+esc(S.user?S.user.name:'')+'</td></tr></table>';
-
+    '<tr><td class="v">'+esc(c.case_id)+'</td><td class="v">'+esc(c.initials)+'</td><td class="v">'+
+    esc([c.age,c.sex].filter(Boolean).join(' · '))+'</td><td class="v">'+esc(icuDayFor(c,d.date_iso))+'</td></tr>'+
+    '<tr><th>Admitted on</th><th>This update</th><th>Main problem</th><th>Pharmacist</th></tr>'+
+    '<tr><td class="v">'+esc(c.admitted)+'</td><td class="v">'+esc(fmtIso(d.date_iso))+'</td><td class="v">'+
+    esc(c.reason)+'</td><td class="v">'+esc(d.pharmacist||'')+'</td></tr></table>';
   h+='<div class="p-bar">1  ·  WEIGHT AND HEIGHT</div><table class="p">'+
     q('Weight (kg)',(d.weight||'')+(d.swollen==='yes'?'  — SWOLLEN':''),'Height (cm)',c.height)+
-    row('Ideal weight',iv?iv.toFixed(1)+' kg   ('+(c.sex||'')+' · '+(c.sex==='Male'?'50.0':'45.5')+' + 0.9 × ('+(c.height||'?')+' − 152))':'not calculable')+
-    '</table>';
-
+    row('Ideal weight',iv?iv.toFixed(1)+' kg   ('+(c.sex||'')+' · '+(c.sex==='Male'?'50.0':'45.5')+' + 0.9 × ('+(c.height||'?')+' − 152))':'not calculable')+'</table>';
   h+='<div class="p-bar">2  ·  WHY IN INTENSIVE CARE</div><table class="p">'+
+    row('What brought them in',c.admission_event)+row('Operations this admission',c.operations)+
     row('Main problem',c.reason)+row('Other problems',c.other)+'</table>';
-
   h+='<div class="p-bar">3  ·  ALLERGIES</div><table class="p">'+
-    q('Drug allergy',c.algD,'If yes — what',c.algDwhat)+
-    q('Food allergy',c.algF,'If yes — what',c.algFwhat)+'</table>';
-
-  h+='<div class="p-bar">4  ·  KIDNEY  and  LIVER</div><table class="p">'+
-    '<tr><th>Finding</th><th>'+(p?'Previous → today':'Today')+'</th><th>Finding</th><th>'+(p?'Previous → today':'Today')+'</th></tr>';
-  const kl=KID.map(k=>[k[1],pv(d.kid&&d.kid[k[0]],p&&p.kid&&p.kid[k[0]])])
-    .concat([['Creatinine is',esc(d.creatTrend||'')],['On dialysis',esc(d.dialysis||'')]])
-    .concat(LIV.map(k=>[k[1],pv(d.liv&&d.liv[k[0]],p&&p.liv&&p.liv[k[0]])]))
-    .concat([['Fluid in abdomen',esc(d.ascites||'')],['Confusion beyond sedation',esc(d.enceph||'')]]);
-  for(let i=0;i<kl.length;i+=2){
-    h+='<tr><td class="k">'+esc(kl[i][0])+'</td><td class="v">'+kl[i][1]+'</td>'+
-      (kl[i+1]?'<td class="k">'+esc(kl[i+1][0])+'</td><td class="v">'+kl[i+1][1]+'</td>':'<td></td><td></td>')+'</tr>';}
-  h+='</table>';
-
-  h+='<div class="p-bar">5  ·  BLOOD RESULTS</div><table class="p">'+
-    '<tr><th>Finding</th><th>'+(p?'Previous → today':'Today')+'</th><th>Finding</th><th>'+(p?'Previous → today':'Today')+'</th></tr>';
-  for(let i=0;i<LABS.length;i+=2){
-    const A=LABS[i],B=LABS[i+1];
-    h+='<tr><td class="k">'+esc(A[1])+'</td><td class="v">'+pv(d.labs&&d.labs[A[0]],p&&p.labs&&p.labs[A[0]])+'</td>'+
-      (B?'<td class="k">'+esc(B[1])+'</td><td class="v">'+pv(d.labs&&d.labs[B[0]],p&&p.labs&&p.labs[B[0]])+'</td>':'<td></td><td></td>')+'</tr>';}
-  h+='</table>';
-
+    q('Drug allergy',c.allergy_drug,'If yes — what',c.allergy_drug_what)+
+    q('Food allergy',c.allergy_food,'If yes — what',c.allergy_food_what)+'</table>';
+  const hd='<tr><th>Finding</th><th>'+(hasPrev?'Previous → today':'Today')+'</th><th>Finding</th><th>'+(hasPrev?'Previous → today':'Today')+'</th></tr>';
+  const pairs=list=>{let s='';for(let i=0;i<list.length;i+=2){s+='<tr><td class="k">'+esc(list[i][0])+'</td><td class="v">'+list[i][1]+'</td>'+
+    (list[i+1]?'<td class="k">'+esc(list[i+1][0])+'</td><td class="v">'+list[i+1][1]+'</td>':'<td></td><td></td>')+'</tr>';}return s;};
+  const kl=KID.map(k=>[k[1],pv('kid.'+k[0])]).concat([['Creatinine is',esc(d.creatTrend||'')],['On dialysis',esc(d.dialysis||'')]])
+    .concat(LIV.map(k=>[k[1],pv('liv.'+k[0])])).concat([['Fluid in abdomen',esc(d.ascites||'')],['Confusion beyond sedation',esc(d.enceph||'')]]);
+  h+='<div class="p-bar">4  ·  KIDNEY  and  LIVER</div><table class="p">'+hd+pairs(kl)+'</table>';
+  h+='<div class="p-bar">5  ·  BLOOD RESULTS</div><table class="p">'+hd+pairs(LABS.map(k=>[k[1],pv('labs.'+k[0])]))+'</table>';
   h+='<div class="p-bar">6  ·  STATUS, FEEDING AND LINES</div><table class="p">'+
     q('Breathing',d.vent,'Feeding',d.feeding)+row('Central line',d.lines)+row('Cultures',d.cultures)+'</table>';
-
-  h+='<div class="p-bar">7  ·  MEDICINES  —  '+d.meds.filter(m=>m.state!=='stopped').length+' on chart, '+d.meds.length+' listed</div>'+
+  const meds=d.meds&&d.meds.length?d.meds:((lastMedsEntry(c)||{}).meds||[]);
+  h+='<div class="p-bar">7  ·  MEDICINES  —  '+meds.filter(m=>m.state!=='stopped').length+' on chart, '+meds.length+' listed</div>'+
     '<table class="p"><tr><th style="width:5%">#</th><th style="width:27%">Medicine</th><th style="width:14%">Dose</th>'+
-    '<th style="width:10%">Route</th><th style="width:14%">How often</th><th style="width:18%">What it is for</th>'+
-    '<th style="width:12%">Change</th></tr>';
-  d.meds.forEach((m,i)=>{h+='<tr><td class="v">'+(i+1)+'</td><td class="v">'+esc(m.name)+'</td><td class="v">'+esc(m.dose)+
+    '<th style="width:10%">Route</th><th style="width:14%">How often</th><th style="width:18%">What it is for</th><th style="width:12%">Change</th></tr>';
+  meds.forEach((m,i)=>{h+='<tr><td class="v">'+(i+1)+'</td><td class="v">'+esc(m.name)+'</td><td class="v">'+esc(m.dose)+
     '</td><td class="v">'+esc(m.route)+'</td><td class="v">'+esc(m.freq)+'</td><td class="v">'+esc(m.why)+
     '</td><td class="v">'+esc(m.state?m.state.toUpperCase():'')+'</td></tr>';});
   h+='</table>';
-
-  if(d.unclear){h+='<div class="p-bar red">COULD NOT READ  ·  EXCLUDED FROM EVERY CHECK</div>'+
-    '<table class="p">'+row('Unclear',d.unclear)+'</table>';}
-
-  if(c.days.length>1){
-    h+='<div class="p-bar">DAY BY DAY</div><table class="p"><tr><th>Finding</th>'+
-      c.days.map(x=>'<th>'+esc(x.date)+'</th>').join('')+'</tr>';
-    trendRows().forEach(r=>{h+='<tr><td class="k">'+esc(r[0])+'</td>'+
-      r[1].map(v=>'<td class="v">'+esc(v||'—')+'</td>').join('')+'</tr>';});
-    h+='</table>';
-  }
-
-  h+='<div class="p-foot"><span>Pharmacist ______________________   Signature ______________   Time _________</span>'+
+  if(d.unclear)h+='<div class="p-bar red">NOTES  ·  COULD NOT READ OR UNSURE</div><table class="p">'+row('Notes',d.unclear)+'</table>';
+  const E=x.E.slice(Math.max(0,x.i-6),x.i+1);
+  if(E.length>1){h+='<div class="p-bar">DAY BY DAY</div><table class="p"><tr><th>Finding</th>'+
+      E.map(e=>'<th>'+esc(shortIso(e.date_iso))+'</th>').join('')+'</tr>';
+    trendRows(c,E).forEach(r=>{h+='<tr><td class="k">'+esc(r[0])+'</td>'+r[1].map(v=>'<td class="v">'+esc(has(v)?v:'—')+'</td>').join('')+'</tr>';});
+    h+='</table>';}
+  h+='<div class="p-foot"><span>Pharmacist '+esc(d.pharmacist||'______________')+'   Signature ______________   Time _________</span>'+
     '<span>Initials only — no full name, no hospital number.</span></div>';
-  document.getElementById('print').innerHTML=h;
-}
+  document.getElementById('print').innerHTML=h;}
 
+/* ── start ── */
 load();
-Object.keys(S.cases).forEach(k=>{if(!S.cases[k].status)S.cases[k].status='open';});
-if(S.current&&!S.cases[S.current])S.current=null;
-if(!S.current&&S.view==='form')S.view='list';
-if(!S.user)S.view='signin';
-if(S.view==='signin'&&S.user)S.view='list';
+if(S.auth&&S.auth.expires&&Date.now()>S.auth.expires)S.auth=null;
 render();
+setInterval(()=>{if(UNLOCKED&&S.auth&&['list','profile','trend'].includes(S.view)&&!document.hidden)refresh(true);},60000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&UNLOCKED&&S.auth&&['list','profile','trend'].includes(S.view))refresh(true);});
 </script>
 </body>
 </html>
