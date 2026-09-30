@@ -69,7 +69,8 @@ textarea{resize:vertical;min-height:58px;line-height:1.45}
 .prev-v{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--navy);
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .prev.none .prev-v{color:var(--ink-dim);font-weight:400}
-.up{color:var(--red)}.down{color:var(--green)}.same{color:var(--ink-mid)}
+.up,.down,.same{color:var(--ink-dim)}
+.dlt-i{font-family:var(--mono);font-size:11.5px;color:var(--ink-dim);margin-left:4px}
 
 .yn{display:flex;gap:8px}
 .yn button{flex:1;font-family:inherit;font-size:15px;font-weight:600;padding:11px 8px;border-radius:8px;
@@ -297,6 +298,76 @@ table.now td.d{font-size:11px;color:var(--ink-dim);text-align:right;white-space:
   tr,table.p{page-break-inside:auto}
   td,th{page-break-inside:avoid}
 }
+
+/* ═══ v2 : badges, deltas, flags, checks, new list ═══ */
+.hl{font-size:10px;font-weight:800;padding:1px 3px;border-radius:3px;margin-left:4px;vertical-align:1px;background:var(--red-soft);color:var(--red)}
+.hl.ll,.hl.hh{background:var(--red);color:#fff}
+.dlt{text-align:right;font-family:var(--mono);color:var(--ink-dim);font-size:12.5px;white-space:nowrap;width:64px}
+.dlt.new{font-style:italic;font-size:11.5px}
+td.age{text-align:right;color:var(--red);font-size:11.5px;width:62px;font-weight:600}
+.grp{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);font-weight:700;margin:13px 0 4px}
+.grp:first-child{margin-top:0}
+.card.alarm{border-color:var(--red)}
+.card.alarm .card-h{background:var(--red-soft)}
+.card.alarm .card-t{color:var(--red)}
+.lockw{font-size:10px;color:var(--ink-dim);opacity:.6}
+.flag{display:flex;align-items:baseline;gap:9px;padding:9px 0;border-bottom:1px dashed var(--rule)}
+.flag:last-child{border-bottom:0}
+.fdot{width:8px;height:8px;border-radius:99px;flex:none;position:relative;top:4px;background:var(--amber,#9C6500)}
+.flag.crit .fdot{background:var(--red)}
+.fname{font-weight:600;min-width:74px}
+.fval{font-family:var(--mono);font-weight:700}
+.flag.crit .fval{color:var(--red)}
+.fwhy{color:var(--ink-dim);font-size:12.5px;margin-left:auto;text-align:right;max-width:54%}
+.ftag{font-size:10px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;padding:1px 6px;border-radius:4px;background:var(--red);color:#fff}
+.ckrow{padding:11px 0;border-bottom:1px solid var(--rule)}
+.ckrow:last-of-type{border-bottom:0}
+.ckrow-t{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-weight:700;font-size:14px}
+.kk{font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:800;padding:2px 6px;border-radius:4px;flex:none}
+.kk.red{background:var(--red);color:#fff}
+.kk.amber{background:#fff3d9;color:#9C6500}
+.kk.mon{background:var(--lbl);color:var(--navy)}
+.wd{display:flex;gap:9px;margin-top:5px;font-size:12.8px;line-height:1.45}
+.wd-k{flex:none;width:26px;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:800;color:var(--ink-dim);padding-top:3px}
+.wd.do .wd-k,.wd.do .wd-v{color:var(--navy)}
+.wd.do .wd-v{font-weight:600}
+.disc{margin-top:11px;padding:9px 10px;background:var(--lbl);border-radius:8px;font-size:12px;color:var(--ink-dim);line-height:1.45}
+.disc b{color:var(--navy)}
+.never{display:flex;flex-wrap:wrap;gap:6px}
+.nchip{background:var(--red-soft);color:var(--red);border:1px solid var(--red);border-radius:99px;padding:4px 10px;font-size:12.5px;font-weight:600}
+details.card>summary{padding:11px 14px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:8px;border-bottom:1px solid var(--rule)}
+details.card>summary::-webkit-details-marker{display:none}
+details.card>summary::after{content:"▾";color:var(--ink-dim);font-size:12px;flex:none}
+details.card[open]>summary::after{content:"▴"}
+details.card:not([open])>summary{border-bottom:0}
+.strip{display:flex;gap:8px;margin:10px 0}
+.st{flex:1;background:var(--paper,#fff);border:1px solid var(--line);border-radius:10px;padding:9px 6px;text-align:center}
+.st b{display:block;font-size:20px;line-height:1.1}
+.st span{font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-dim)}
+.st.act b{color:var(--red)}
+.pcard.urgent{border-color:var(--red);border-left:4px solid var(--red)}
+.pdx{color:var(--ink-dim);font-size:13px;margin-top:3px}
+.plink{display:inline-flex;gap:4px;font-size:11.5px;font-weight:600;color:#9C6500;background:#fff3d9;border-radius:99px;padding:2px 8px;margin-top:6px}
+.prow{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:8px}
+.badge{font-size:12px;font-weight:700;border-radius:7px;padding:3px 9px;white-space:nowrap}
+.badge.crit{background:var(--red-soft);color:var(--red)}
+.badge.chk{background:var(--lbl);color:var(--navy)}
+.crow{display:flex;align-items:center;gap:9px;padding:10px 13px;border-top:1px solid var(--rule);font-size:13.5px;cursor:pointer;width:100%;background:none;border-left:0;border-right:0;border-bottom:0;text-align:left;font-family:inherit}
+.cid{font-weight:700;color:var(--ink-dim);width:62px;flex:none;font-size:13px}
+.cn{font-weight:600;width:62px;flex:none}
+.cout{color:var(--ink-dim);font-size:12.5px}
+.cdate{margin-left:auto;color:var(--ink-dim);font-size:11.5px;white-space:nowrap}
+.cmark{font-size:11px;font-weight:700;border-radius:99px;padding:2px 7px;white-space:nowrap;background:#fff3d9;color:#9C6500}
+.dxrow{display:flex;gap:10px;padding:3px 0}
+.dxk{flex:none;width:74px;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-dim);font-weight:700;padding-top:3px}
+.dxv{font-size:13.5px;line-height:1.45}
+.dxv.big{font-weight:600;font-size:14.5px}
+.vitals{display:flex;gap:7px;margin-top:10px}
+.vt{flex:1;background:var(--lbl);border-radius:8px;padding:7px 9px;text-align:center}
+.vt b{display:block;font-size:15px}
+.vt span{font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim)}
+.vt.miss{background:var(--red-soft)}.vt.miss b{color:var(--red);font-size:12px;padding:2px 0}
+
 </style>
 </head>
 <body>
@@ -448,9 +519,314 @@ function icuDayFor(p,iso,skipId){
   return isNaN(n)?'':String(n);}
 function ibwOf(p){const h=parseFloat(p&&p.height),s=p&&p.sex;if(!h||!s)return null;
   const v=(s==='Male'?50:45.5)+0.9*(h-152);return v>0?v:null;}
+/* the signed change, never a coloured arrow — direction and size in one */
 function arrow(now,then){const a=parseFloat(now),b=parseFloat(then);
-  if(isNaN(a)||isNaN(b))return '';if(a>b)return '<span class="up">▲</span>';
-  if(a<b)return '<span class="down">▼</span>';return '<span class="same">–</span>';}
+  if(isNaN(a)||isNaN(b))return '';const d=a-b;if(d===0)return '';
+  const s=Math.abs(d)<1?d.toFixed(2):(Math.abs(d)<10?d.toFixed(1):d.toFixed(0));
+  return '<span class="dlt-i">'+(d>0?'+':'')+s.replace(/^\+?-/,'\u2212')+'</span>';}
+/* ═══════════════════════════════════════════════════════════════════
+   CLINICAL ENGINE — reference ranges, flags, and the medicine rules.
+   Ranges printed on a lab report always win. The seed below is only a
+   fallback for the handwritten Daily ICU Lab Monitoring Chart, which
+   prints no ranges at all.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* seed ranges — [low, high, criticalLow, criticalHigh]; null = none */
+const LABSEED={
+ 'labs.haemoglobin':{F:[12,16,7,null],M:[13,18,7,null]},
+ 'labs.hct':{F:[36,46,21,null],M:[42,54,21,null]},
+ 'labs.whitecells':[4,11,1,30],
+ 'labs.platelets':[150,400,50,1000],
+ 'labs.neut':[40,65,null,null],
+ 'labs.lymph':[25,40,null,null],
+ 'labs.mono':[2,8,null,null],
+ 'labs.eos':[0,4,null,null],
+ 'labs.baso':[0,1,null,null],
+ 'labs.sodium':[135,149,128,158],
+ 'labs.potassium':[3.5,5.1,2.8,6.2],
+ 'labs.chloride':[98,107,null,null],
+ 'labs.calcium':[8.5,10.2,7,12.5],
+ 'labs.ionised':[1.15,1.29,0.9,null],
+ 'labs.magnesium':[1.7,2.4,1,4],
+ 'labs.phosphate':[2.5,4.5,1,null],
+ 'labs.glucose':[70,105,54,400],
+ 'kid.urea':[16,48,null,150],
+ 'kid.creatinine':[0.6,1.1,null,4],
+ 'labs.lactate':[0.5,1.6,null,4],
+ 'liv.bilirubin':[0,1.2,null,null],
+ 'liv.dbili':[0,0.3,null,null],
+ 'liv.ibili':[0,0.9,null,null],
+ 'liv.ast':[0,40,null,1000],
+ 'liv.alt':[0,41,null,1000],
+ 'liv.alp':[40,129,null,null],
+ 'liv.protein':[6.4,8.3,null,null],
+ 'liv.albumin':[3.5,5,2,null],
+ 'liv.pt':[11.7,15.3,null,null],
+ 'liv.ptt':[0,35,null,100],
+ 'liv.inr':[0.8,1.2,null,5],
+ 'labs.crp':[0,6,null,null],
+ 'labs.procalcitonin':[0,0.5,null,2],
+ 'labs.ddimer':[0,500,null,null],
+ 'labs.troponin':[0,14,null,52],
+ 'labs.bnp':[0,125,null,null],
+ 'labs.tsh':[0.4,4,null,null],
+ 'labs.t3':[0.8,2,null,null],
+ 'labs.t4':[60,120,null,null],
+};
+/* rate rules — a value can be in range and still be an emergency */
+const RATERULE={
+ 'labs.sodium':{d:10,h:24,txt:'sodium moved more than 10 in 24 h'},
+ 'labs.potassium':{d:1.5,h:12,txt:'potassium moved more than 1.5 in 12 h'},
+ 'labs.haemoglobin':{d:-2,h:24,txt:'haemoglobin fell more than 2 in 24 h'},
+};
+const LEARNKEY='ccpr-ranges-v1';
+let LEARNED={};
+try{const r=localStorage.getItem(LEARNKEY);if(r)LEARNED=JSON.parse(r);}catch(e){}
+function learnRange(path,src,lo,hi){
+  if(!isFinite(lo)||!isFinite(hi))return;
+  const k=path+'|'+(src||'lab');
+  LEARNED[k]={lo:lo,hi:hi,at:new Date().toISOString()};
+  try{localStorage.setItem(LEARNKEY,JSON.stringify(LEARNED));}catch(e){}
+}
+/* the range that applies: what the lab printed > what it printed before > the seed */
+function rangeOf(path,src,sex){
+  const k=path+'|'+(src||'lab'), L=LEARNED[k];
+  let seed=LABSEED[path];
+  if(seed&&!Array.isArray(seed))seed=seed[(sex||'').toUpperCase().charAt(0)==='M'?'M':'F'];
+  const lo=L?L.lo:(seed?seed[0]:null), hi=L?L.hi:(seed?seed[1]:null);
+  return {lo:lo,hi:hi,cl:seed?seed[2]:null,ch:seed?seed[3]:null,learned:!!L};
+}
+/* H / L / HH / LL — works with no previous value */
+function badgeOf(path,v,src,sex){
+  const n=parseFloat(v);if(isNaN(n))return null;
+  const r=rangeOf(path,src,sex);
+  if(r.cl!=null&&n<r.cl)return{b:'LL',crit:true,r:r};
+  if(r.ch!=null&&n>r.ch)return{b:'HH',crit:true,r:r};
+  if(r.lo!=null&&n<r.lo)return{b:'L',crit:false,r:r};
+  if(r.hi!=null&&n>r.hi)return{b:'H',crit:false,r:r};
+  return null;
+}
+/* the signed change, as text — no arrows */
+function deltaTxt(v,pv){
+  const a=parseFloat(v),b=parseFloat(pv);
+  if(isNaN(a))return '';
+  if(isNaN(b))return 'new';
+  const d=a-b;if(d===0)return '0';
+  const s=Math.abs(d)<1?d.toFixed(2):(Math.abs(d)<10?d.toFixed(1):d.toFixed(0));
+  return (d>0?'+':'')+s.replace(/^\+?-/,'−');
+}
+function hoursBetween(a,b){const x=new Date(a),y=new Date(b);
+  return Math.abs(x-y)/36e5;}
+
+/* ── FLAGS : tier 1 out of range, tier 2 moving fast ── */
+function flagsFor(p){
+  const out=[];const E=entries(p);if(!E.length)return out;
+  const sex=p.sex||'';
+  ALLKEYS.forEach(k=>{
+    const path=k[0]+'.'+k[1], cur=lastKnown(p,path);
+    if(!cur)return;
+    let pv=null,pd=null;
+    for(let i=E.length-1;i>=0;i--){ if(String(E[i].date_iso)>=String(cur.date))continue;
+      const x=getPath(E[i],path); if(has(x)){pv=x;pd=E[i].date_iso;break;} }
+    const bg=badgeOf(path,cur.v,cur.src,sex);
+    const r=rangeOf(path,cur.src,sex);
+    if(bg){
+      let dist=0;
+      const n=parseFloat(cur.v),w=(r.hi!=null&&r.lo!=null)?(r.hi-r.lo)||1:1;
+      if(r.lo!=null&&n<r.lo)dist=(r.lo-n)/w; else if(r.hi!=null&&n>r.hi)dist=(n-r.hi)/w;
+      out.push({name:k[2],v:cur.v,badge:bg.b,crit:bg.crit,rank:(bg.crit?1000:0)+dist,
+        why:(pv!=null?pv+' → '+cur.v:'first ever measured')+(bg.crit?'':'')});
+      return;
+    }
+    /* tier 2 — in range but moving fast */
+    if(pv!=null&&r.lo!=null&&r.hi!=null){
+      const w=(r.hi-r.lo)||1, d=Math.abs(parseFloat(cur.v)-parseFloat(pv));
+      const rr=RATERULE[path], fast=rr&&pd&&hoursBetween(cur.date,pd)<=rr.h&&Math.abs(parseFloat(cur.v)-parseFloat(pv))>=Math.abs(rr.d);
+      if(fast||d/w>0.25) out.push({name:k[2],v:cur.v,badge:null,crit:!!fast,mov:true,
+        rank:(fast?900:1)+d/w, why:pv+' → '+cur.v+(fast?' · '+rr.txt:' · in range, moving fast')});
+    }
+  });
+  return out.sort((a,b)=>b.rank-a.rank);
+}
+/* ── tests that have never been done ── */
+const NEVERWATCH=[['labs.magnesium','Magnesium'],['labs.phosphate','Phosphate'],
+  ['liv.albumin','Albumin'],['labs.ionised','Ionised calcium'],['labs.procalcitonin','Procalcitonin'],
+  ['labs.crp','CRP'],['kid.creatinine','Creatinine'],['labs.troponin','Troponin']];
+function neverFor(p){
+  return NEVERWATCH.filter(k=>!lastKnown(p,k[0])).map(k=>k[1]);
+}
+
+/* ═══════════ MEDICINE RULES — batch 1, 24 rules ═══════════
+   Each: id, sev (red|amber|mon), title, why, todo, test(ctx)->bool
+   ctx = {meds:[names lowercase], has(fn), lab(path), age, sex, wt, crcl, days(name), noLevel(name), labAge(path)} */
+const RULES=[
+{id:'R1',sev:'red',t:'Ceftriaxone + a calcium-containing fluid',
+ w:'Ceftriaxone binds calcium into an insoluble salt. Fatal precipitates in lung and kidney have been reported.',
+ d:'Use saline for all fluids while ceftriaxone runs, or separate lines with saline flushes before and after every dose.',
+ f:c=>c.has('ceftriaxone')&&(c.has('ringer')||c.has('hartmann')||c.has('calcium gluconate')||c.has('calcium chloride'))},
+{id:'R2',sev:'red',t:'Desmopressin + a low-sodium fluid',
+ w:'Desmopressin makes the kidney hold free water. A fluid carrying less sodium than plasma then dilutes the patient faster.',
+ d:'Use 0.9% saline. Sodium at least twice daily. Tie the rate to urine output.',
+ f:c=>c.has('desmopressin')&&(c.has('ringer')||c.has('hartmann')||c.has('0.45')||c.has('dextrose')||c.has('tap water')||c.has('free water'))},
+{id:'R3',sev:'red',t:'Desmopressin stopped while hypertonic saline runs',
+ w:'Stopping desmopressin triggers a free-water diuresis and the sodium rises on its own. Adding hypertonic saline to that is uncontrolled overcorrection, and osmotic demyelination is irreversible.',
+ d:'Pick one. Keep desmopressin as a clamp and let the saline do the correcting, or stop it and give no hypertonic saline.',
+ f:c=>c.has('3%')&&c.stopped('desmopressin')},
+{id:'R4',sev:'red',t:'Carbapenem + valproate',
+ w:'Carbapenems drop valproate levels by 60 to 90 per cent within 24 hours. Breakthrough seizures follow.',
+ d:'Do not combine. Levetiracetam has no interaction with carbapenems.',
+ f:c=>(c.has('meropenem')||c.has('ertapenem')||c.has('imipenem'))&&(c.has('valproate')||c.has('depakine'))},
+{id:'R5',sev:'red',t:'Vancomycin + piperacillin-tazobactam',
+ w:'A well-described acute kidney injury signal that vancomycin with meropenem or cefepime does not carry.',
+ d:'Use meropenem or cefepime as the partner. If Tazocin is unavoidable, creatinine daily.',
+ f:c=>c.has('vancomycin')&&(c.has('tazobactam')||c.has('tazocin')||c.has('piperacillin'))},
+{id:'R6',sev:'red',t:'Potassium infusion + a drug that retains potassium',
+ w:'These block the pathway that excretes potassium — 12 per cent hyperkalaemia in the sacubitril/valsartan trials. Replacement becomes unpredictable in both directions.',
+ d:'Review whether both should run. Potassium daily at minimum, and write a stop rule at 4.0.',
+ f:c=>c.has('potassium')&&(c.has('sacubitril')||c.has('savesto')||c.has('valsartan')||c.has('spironolactone')||c.has('amiloride')||c.has('lisinopril')||c.has('ramipril')||c.has('captopril'))},
+{id:'R7',sev:'red',t:'Potassium above 10 mmol/h through a peripheral line',
+ w:'10 mmol/h is the peripheral ceiling. Above it, continuous cardiac monitoring is required and phlebitis is near-certain.',
+ d:'Slow the rate, obtain central access, or split the dose. Check the total daily amount separately from the rate.',
+ f:c=>c.kRate()>10&&!c.central},
+{id:'R8',sev:'red',t:'NSAID or coxib + ACE inhibitor or ARB',
+ w:'The NSAID blunts the antihypertensive, retains sodium, and blocks the afferent arteriole while the ARB blocks the efferent — filtration falls from both ends. With a diuretic added, this is the triple whammy.',
+ d:'Stop the NSAID and document it. Do not add a diuretic for at least a week afterwards.',
+ f:c=>(c.has('ibuprofen')||c.has('diclofenac')||c.has('etoricoxib')||c.has('arcoxia')||c.has('celecoxib')||c.has('ketorolac')||c.has('naproxen')||c.has('indomethacin'))&&(c.has('valsartan')||c.has('losartan')||c.has('exforge')||c.has('lisinopril')||c.has('ramipril')||c.has('captopril')||c.has('candesartan'))},
+{id:'R9',sev:'red',t:'Tranexamic acid in gastrointestinal bleeding',
+ w:'HALT-IT, 12,009 patients: no reduction in death from bleeding, and more venous thromboembolic events.',
+ d:'Do not use. A raised D-dimer is not a reason to reach for it.',
+ f:c=>(c.has('tranexamic')||c.has('cyklokapron'))&&/bleed|melena|melaena|haematemesis|hematemesis|gi ?bleed/i.test(c.dx)},
+{id:'R10',sev:'red',t:'Amlodipine + simvastatin',
+ w:'Amlodipine raises simvastatin exposure. The licensed cap is 20 mg a day — above it, muscle injury risk rises.',
+ d:'Use rosuvastatin, which is not handled by that enzyme, or atorvastatin, which has no cap.',
+ f:c=>(c.has('amlodipine')||c.has('exforge'))&&c.has('simvastatin')},
+{id:'R11',sev:'red',t:'Omeprazole or esomeprazole + clopidogrel',
+ w:'Omeprazole is the strongest CYP2C19 inhibitor of the class and blunts the conversion of clopidogrel to its active form.',
+ d:'Switch to pantoprazole, which does not interfere meaningfully.',
+ f:c=>(c.has('omeprazole')||c.has('esomeprazole')||c.has('nexium'))&&(c.has('clopidogrel')||c.has('plavix'))},
+{id:'R12',sev:'red',t:'A QT-prolonging drug with low potassium, magnesium or calcium',
+ w:'The electrolytes alone create the substrate for torsades. The drug adds to it.',
+ d:'ECG with a measured QT. Correct the electrolytes. Never more than 16 mg of ondansetron as a single intravenous dose.',
+ f:c=>(c.has('ondansetron')||c.has('zofran')||c.has('haloperidol')||c.has('quetiapine')||c.has('amiodarone')||c.has('azithromycin')||c.has('clarithromycin')||c.has('levofloxacin')||c.has('ciprofloxacin')||c.has('mirtazapine'))
+   &&(c.low('labs.potassium')||c.low('labs.ionised')||c.low('labs.magnesium')||!c.lab('labs.magnesium'))},
+
+{id:'A1',sev:'amber',t:'Beta-blocker + potassium replacement',
+ w:'Beta-blockade slows potassium moving into cells, so the serum level runs higher. Modest with selective agents, real at higher doses.',
+ d:'Count it as one more influence pushing potassium up. Recheck sooner than usual.',
+ f:c=>c.has('potassium')&&(c.has('bisoprolol')||c.has('concor')||c.has('metoprolol')||c.has('carvedilol')||c.has('atenolol')||c.has('propranolol')||c.has('labetalol'))},
+{id:'A2',sev:'amber',t:'Salbutamol stopped while potassium is being replaced',
+ w:'Salbutamol drives potassium into cells. Removing it removes a force that was holding the level down.',
+ d:'Expect the potassium to rise. Recheck within hours, not the next morning.',
+ f:c=>c.has('potassium')&&(c.stopped('salbutamol')||c.stopped('ventolin'))},
+{id:'A3',sev:'amber',t:'Phenytoin + metronidazole',
+ w:'Metronidazole inhibits the enzyme clearing phenytoin. The effect is continuous at steady state, so spacing the doses does not help.',
+ d:'Remove one of the two if possible. If both must run, lower the phenytoin, take an albumin-corrected level at 48 to 72 hours, and repeat 3 to 5 days after the metronidazole stops.',
+ f:c=>(c.has('phenytoin')||c.has('epanutin'))&&(c.has('metronidazole')||c.has('flagyl'))},
+{id:'A4',sev:'amber',t:'Phenytoin + carbamazepine together',
+ w:'Each induces the other, so both levels are unpredictable — and stopping one moves the other sharply.',
+ d:'Agree a single-agent plan and write it down. Levels for both if they must overlap.',
+ f:c=>(c.has('phenytoin')||c.has('epanutin'))&&(c.has('carbamazepine')||c.has('tegretol'))},
+{id:'A5',sev:'amber',t:'An enzyme inducer + dexamethasone',
+ w:'The inducer speeds dexamethasone clearance, so the steroid does less than the dose suggests.',
+ d:'Confirm the intended strength and watch for swelling returning if the inducer starts or stops.',
+ f:c=>(c.has('phenytoin')||c.has('carbamazepine')||c.has('phenobarbital')||c.has('rifampicin'))&&(c.has('dexamethasone')||c.has('decadron'))},
+{id:'A6',sev:'amber',t:'Two or more drugs that lower sodium',
+ w:'No single one of these is alarming. Stacked, they are how a sodium falls without anyone deciding it should.',
+ d:'Sodium daily while more than one is running. Name them out loud on the round.',
+ f:c=>c.countAny(['desmopressin','carbamazepine','mirtazapine','sertraline','fluoxetine','citalopram','escitalopram','hydrochlorothiazide','indapamide','tap water','free water'])>=2},
+{id:'A7',sev:'amber',t:'High-dose carbapenem with an under-dosed anticonvulsant',
+ w:'Carbapenems lower the seizure threshold in proportion to the dose. An under-dosed anticonvulsant alongside is the wrong combination, particularly after craniotomy.',
+ d:'Raise the anticonvulsant to the upper half of its range before the carbapenem is escalated.',
+ f:c=>c.mgDay('meropenem')>=4000&&c.wt&&c.mgDay('levetiracetam')&&(c.mgDay('levetiracetam')/c.wt)<25},
+
+{id:'M1',sev:'mon',t:'A drug that needs a level, where none has been taken',
+ w:'The level, not the arithmetic, settles the dose.',
+ d:'Send a trough before the next dose. Vancomycin target 15 to 20 for a deep-seated infection.',
+ f:c=>['vancomycin','phenytoin','digoxin','gentamicin','amikacin','carbamazepine'].some(x=>c.has(x)&&c.days(x)>=3)},
+{id:'M2',sev:'mon',t:'A renally cleared drug where the creatinine is stale',
+ w:'The dose is being calculated against a number that may no longer be true.',
+ d:'Creatinine today.',
+ f:c=>c.labAge('kid.creatinine')>72&&['vancomycin','meropenem','enoxaparin','levetiracetam','amikacin','gentamicin','piperacillin'].some(x=>c.has(x))},
+{id:'M3',sev:'mon',t:'Potassium replacement with magnesium never measured',
+ w:'Magnesium is required to hold potassium in the cell and for the kidney to conserve it. Without it, potassium is lost as fast as it is given.',
+ d:'Measure and replace magnesium. It is usually why the potassium will not move.',
+ f:c=>c.has('potassium')&&c.days('potassium')>=2&&!c.lab('labs.magnesium')},
+{id:'M4',sev:'mon',t:'Calcium replacement not working, with magnesium unmeasured',
+ w:'Low magnesium causes a functional hypoparathyroidism — calcium resists replacement and potassium resists replacement, at the same time.',
+ d:'Measure magnesium. One deficiency explains both failures.',
+ f:c=>c.has('calcium gluconate')&&c.days('calcium gluconate')>=2&&c.low('labs.ionised')&&!c.lab('labs.magnesium')},
+{id:'M5',sev:'mon',t:'Prophylactic enoxaparin against the measured clearance',
+ w:'2000 IU is the reduced dose for a clearance below 30. Above that it is sub-prophylactic — the full bleeding risk with little of the protection.',
+ d:'4000 IU once daily at a normal or augmented clearance.',
+ f:c=>c.has('enoxaparin')&&c.crcl&&((c.mgDay('enoxaparin')<=2000&&c.crcl>30)||(c.mgDay('enoxaparin')>=4000&&c.crcl<30))},
+{id:'M6',sev:'mon',t:'Augmented renal clearance with a standard dose',
+ w:'Young patients after trauma or surgery clear drug far faster than the label assumes. Standard doses run sub-therapeutic.',
+ d:'Use the upper half of the range, and take a level where one exists.',
+ f:c=>c.crcl>130&&['levetiracetam','meropenem','vancomycin','enoxaparin','cefepime','ceftazidime'].some(x=>c.has(x))},
+{id:'M7',sev:'mon',t:'A creatinine too low to be believed',
+ w:'In an older patient with little muscle, a low creatinine means wasted muscle, not good kidneys. Cockcroft-Gault then returns an impossible clearance.',
+ d:'Do not dose on the calculated figure. Round the creatinine up to 1.0, or use urine output.',
+ f:c=>c.lab('kid.creatinine')&&parseFloat(c.lab('kid.creatinine'))<0.5&&c.age>65},
+{id:'M8',sev:'mon',t:'No weight recorded',
+ w:'No weight means no dose can be verified and no clearance can be calculated.',
+ d:'Weigh the patient.',
+ f:c=>!c.wt&&c.meds.length>0},
+{id:'M9',sev:'mon',t:'A medicine on the chart that cannot be identified',
+ w:'An unidentified medicine has been screened against nothing. The interaction check is incomplete and the list is wrong.',
+ d:'Ask the nurse for the box. Thirty seconds.',
+ f:c=>c.unknown.length>0},
+];
+
+/* build the context the rules are tested against */
+function ruleCtx(p){
+  const E=entries(p), L=lastMedsEntry(p);
+  const meds=(L&&L.meds||[]);
+  const on=meds.filter(m=>m.state!=='stopped');
+  const names=on.map(m=>String(m.name||'').toLowerCase());
+  const offNames=meds.filter(m=>m.state==='stopped').map(m=>String(m.name||'').toLowerCase());
+  const txt=on.map(m=>[m.name,m.dose,m.route,m.freq,m.note].filter(Boolean).join(' ').toLowerCase());
+  const wt=(lastKnown(p,'weight')||{}).v;
+  const cr=(lastKnown(p,'kid.creatinine')||{}).v;
+  let crcl=null;
+  if(wt&&cr&&p.age){const c=Math.max(parseFloat(cr),0.6);
+    crcl=((140-parseFloat(p.age))*parseFloat(wt))/(72*c)*((p.sex||'').toUpperCase().charAt(0)==='F'?0.85:1);}
+  const firstSeen=n=>{for(let i=0;i<E.length;i++){const l=(E[i].meds||[]);
+      if(l.some(m=>String(m.name||'').toLowerCase().indexOf(n)>=0&&m.state!=='stopped'))return E[i].date_iso;}return null;};
+  return {
+    meds:names, unknown:on.filter(m=>/\?|unread|unknown|not readable/i.test([m.name,m.note].join(' '))).map(m=>m.name),
+    dx:[p.reason,p.admission_event,p.other].filter(Boolean).join(' '),
+    age:parseFloat(p.age)||0, sex:p.sex||'', wt:parseFloat(wt)||null, central:/central|cvc|jugular|subclavian/i.test(JSON.stringify(E.slice(-2))),
+    crcl:crcl,
+    has:s=>txt.some(t=>t.indexOf(s)>=0),
+    stopped:s=>offNames.some(t=>t.indexOf(s)>=0),
+    countAny:a=>a.filter(s=>txt.some(t=>t.indexOf(s)>=0)).length,
+    lab:path=>{const x=lastKnown(p,path);return x?x.v:null;},
+    labAge:path=>{const x=lastKnown(p,path);if(!x)return 9999;return hoursBetween(new Date().toISOString(),x.date);},
+    low:path=>{const x=lastKnown(p,path);if(!x)return false;const b=badgeOf(path,x.v,x.src,p.sex);return !!b&&b.b.charAt(0)==='L';},
+    days:n=>{const f=firstSeen(n);if(!f)return 0;return Math.max(1,Math.round(hoursBetween(new Date().toISOString(),f)/24));},
+    mgDay:n=>{const m=on.find(m=>String(m.name||'').toLowerCase().indexOf(n)>=0);if(!m)return 0;
+      const d=parseFloat(String(m.dose||'').replace(/[^0-9.]/g,''));if(isNaN(d))return 0;
+      const g=/g\b|gram/i.test(m.dose||'')?1000:1; const f=parseInt(String(m.freq||'').replace(/[^0-9]/g,''))||1;
+      return d*g*f;},
+    kRate:()=>{const m=on.find(m=>/potassium|kcl/i.test(m.name||''));if(!m)return 0;
+      const s=[m.dose,m.freq,m.note].join(' ');const mm=s.match(/(\d+)\s*m?eq[^0-9]*(\d+)\s*h/i);
+      return mm?Number(mm[1])/Number(mm[2]):0;},
+  };
+}
+function runRules(p){
+  const c=ruleCtx(p), out=[];
+  RULES.forEach(r=>{ let hit=false; try{hit=!!r.f(c);}catch(e){hit=false;}
+    if(hit)out.push({id:r.id,sev:r.sev,t:r.t,w:r.w,d:r.d}); });
+  const order={red:0,amber:1,mon:2};
+  return out.sort((a,b)=>order[a.sev]-order[b.sev]);
+}
+
+/* the next case number, previewed on the phone — the server stays the authority */
+function nextCaseNo(){
+  let max=0;(S.patients||[]).forEach(p=>{const m=String(p.case_id||'').match(/^ICU-(\d+)/);
+    if(m)max=Math.max(max,Number(m[1]));});
+  return 'ICU-'+String(max+1).padStart(3,'0');
+}
 
 /* ── sign in ── */
 function signInView(pref){
@@ -495,79 +871,178 @@ function syncLine(){
     (ONLINE?'Shared record · refreshed '+esc(relTime(S.fetchedAt)||'—'):'Offline · showing the copy from '+esc(relTime(S.fetchedAt)||'—'))+
     ' · <button class="linkbtn" style="font-size:11.5px" onclick="refresh()">Refresh</button></p>';}
 function listView(){
-  const ps=S.patients.slice().sort((a,b)=>String(a.case_id).localeCompare(String(b.case_id)));
-  if(!S.fetchedAt)return '<div class="loading">Loading the shared record…</div>';
-  let h=syncLine();
-  if(!ONLINE)h+='<div class="banner">No connection. You can read the last copy; saving waits until you are back online.</div>';
-  if(!ps.length)return h+'<div class="empty">No patients yet.<br>Tap <b>New patient</b> to start.</div>';
-  const open=ps.filter(p=>p.status!=='closed'),shut=ps.filter(p=>p.status==='closed');
-  const card=p=>{const isC=p.status==='closed';const l=lastEntry(p);const n=(p.entries||[]).length;
-    const day=l?icuDayFor(p,l.date_iso):'';
-    return '<button class="pcard'+(isC?' closed':'')+'" onclick="openP(\''+jsq(p.case_id)+'\')">'+
-      '<span class="pid">'+esc(String(p.case_id).replace(/^ICU-/,''))+'</span>'+
-      '<span class="pmain"><span class="pname">'+esc(p.initials||'no initials')+
-        '<span style="font-weight:400;color:var(--ink-mid)"> · '+esc([p.age,p.sex].filter(Boolean).join(' '))+'</span></span>'+
-      '<span class="pmeta">'+esc(p.admission_event||p.reason||'not filled in')+'</span>'+
-      (p.updated_by?'<span class="plast">'+av(p.updated_by)+'Last update <b>'+esc(p.updated_by)+'</b> · '+esc(relTime(p.updated_at))+'</span>':'')+
-      '</span>'+
-      '<span class="pday">'+(isC?'closed<br>'+esc(fmtIso(p.closed_on)):(day?'day '+esc(day):'—')+'<br>'+n+' entr'+(n===1?'y':'ies'))+'</span></button>';};
-  h+='<div class="plist"><div class="lhead">In the unit — '+open.length+'</div>';
-  h+=open.length?open.map(card).join(''):'<div class="empty">No open patients.</div>';
-  if(shut.length)h+='<div class="lhead">Closed — '+shut.length+'</div>'+shut.map(card).join('');
-  return h+'</div>';}
+  const ps=S.patients.slice();
+  const open=ps.filter(p=>p.status!=='closed'), shut=ps.filter(p=>p.status==='closed');
+  /* work out flags and checks once per open patient, then sort most urgent first */
+  const info=new Map();
+  open.forEach(p=>{let f=[],r=[];try{f=flagsFor(p);}catch(e){}try{r=runRules(p);}catch(e){}
+    const crit=f.filter(x=>x.crit).length, red=r.filter(x=>x.sev==='red').length;
+    info.set(p.case_id,{f:f,r:r,rank:crit*100+red*10+f.length});});
+  open.sort((a,b)=>(info.get(b.case_id).rank-info.get(a.case_id).rank)||String(a.case_id).localeCompare(String(b.case_id)));
+  shut.sort((a,b)=>String(b.closed_on||'').localeCompare(String(a.closed_on||'')));
 
-/* ── patient profile: admission baseline, where things stand now, and every update ── */
+  const noRev=open.filter(p=>!entries(p).length).length;
+  const needs=open.filter(p=>{const i=info.get(p.case_id);return i.f.some(x=>x.crit)||i.r.some(x=>x.sev==='red');}).length;
+
+  let h=syncLine();
+  h+='<div class="strip"><div class="st"><b>'+open.length+'</b><span>In the unit</span></div>'+
+     '<div class="st act"><b>'+needs+'</b><span>Need action</span></div>'+
+     '<div class="st"><b>'+noRev+'</b><span>Not reviewed</span></div></div>';
+
+  const card=p=>{
+    const i=info.get(p.case_id), E=entries(p), L=E[E.length-1];
+    const day=L?icuDayFor(p,L.date_iso):icuDayFor(p,new Date().toISOString());
+    const top=i.f[0], reds=i.r.filter(x=>x.sev==='red').length, urgent=(top&&top.crit)||reds>0;
+    let b='';
+    if(top)b+='<span class="badge '+(top.crit?'crit':'chk')+'">'+esc(top.name+' '+top.v)+(top.crit?' critical':'')+'</span>';
+    if(i.r.length)b+='<span class="badge chk">'+i.r.length+' check'+(i.r.length===1?'':'s')+'</span>';
+    return '<button class="pcard'+(urgent?' urgent':'')+'" onclick="openP(\''+jsq(p.case_id)+'\')">'+
+      '<div class="ptop"><span class="pid">'+esc(p.case_id)+'</span><span class="pn">'+esc(p.initials||'—')+'</span>'+
+      '<span class="pday">'+(day?'day '+esc(day):'—')+'</span></div>'+
+      '<div class="pdx">'+esc([p.age&&p.age+' '+(p.sex||''),p.reason||p.admission_event].filter(Boolean).join(' · '))+'</div>'+
+      (p.readmission_of?'<span class="plink">↩ readmission of '+esc(p.readmission_of)+'</span>':'')+
+      (b?'<div class="prow">'+b+'</div>':'')+
+      '<div class="pfoot">'+(E.length?av(p.updated_by)+esc(p.updated_by||'—')+'<span class="fresh">'+esc(relTime(p.updated_at))+'</span>'
+        :'<span style="color:var(--red);font-weight:600">No pharmacy review saved yet</span>')+'</div>'+
+      '</button>';};
+
+  h+='<div class="lhead">In the unit — '+open.length+(open.length>1?' <span style="font-weight:400;font-size:11.5px">· most urgent first</span>':'')+'</div>';
+  h+=open.length?open.map(card).join(''):'<div class="empty">No open patients.</div>';
+
+  if(shut.length){
+    const withItems=shut.filter(p=>p.outcome||p.readmitted_as).length;
+    h+='<details class="card" style="margin-top:14px"><summary><span class="card-t">Closed — '+shut.length+'</span>'+
+       '<span class="hint" style="margin:0">'+withItems+' with notes</span></summary>';
+    shut.forEach(p=>{
+      h+='<button class="crow" onclick="openP(\''+jsq(p.case_id)+'\')">'+
+        '<span class="cid">'+esc(p.case_id)+'</span><span class="cn">'+esc(p.initials||'—')+'</span>'+
+        '<span class="cout">'+esc(p.outcome||'closed')+'</span>'+
+        (p.readmitted_as?'<span class="cmark">↩ readmitted as '+esc(p.readmitted_as)+'</span>':'')+
+        '<span class="cdate">'+esc(shortIso(p.closed_on))+'</span></button>';});
+    h+='</details>';}
+  return h;}
+
+/* ── patient profile ── */
 function profileView(){
   const p=CP();if(!p)return '<div class="empty">This patient is no longer in the list.</div>';
   const E=entries(p),L=E[E.length-1];const iv=ibwOf(p);
+  const wt=lastKnown(p,'weight');
+  let FL=[],RL=[],NV=[];
+  try{FL=flagsFor(p);}catch(e){}
+  try{RL=runRules(p);}catch(e){}
+  try{NV=neverFor(p);}catch(e){}
+
   let h='<button class="back" onclick="go(\'list\')">‹ All patients</button>';
+
+  /* HERO — identity, diagnosis, why here */
   h+='<div class="hero"><div class="hero-top"><span class="pid">'+esc(p.case_id)+'</span>'+
     '<span class="hero-n">'+esc(p.initials||'—')+'</span><span class="pill '+(p.status==='closed'?'closed':'open')+'">'+
     (p.status==='closed'?'closed':'in the unit')+'</span></div>'+
-    '<div class="hero-m">'+esc([p.age&&p.age+' y',p.sex,L&&icuDayFor(p,L.date_iso)&&'ICU day '+icuDayFor(p,L.date_iso)].filter(Boolean).join(' · '))+'</div>'+
-    (p.updated_by?'<div class="plast" style="margin-top:6px">'+av(p.updated_by)+'Last update <b>'+esc(p.updated_by)+'</b> · '+esc(relTime(p.updated_at))+'</div>':'')+
-    (p.status==='closed'?'<div class="hero-m">Closed '+esc(fmtIso(p.closed_on))+(p.outcome?' · '+esc(p.outcome):'')+'</div>':'')+
+    '<div class="hero-m">'+esc([p.age&&p.age+' years',p.sex].filter(Boolean).join(' · '))+'</div>';
+  const alg=[p.allergy_drug,p.allergy_drug_what].filter(Boolean).join(' — ');
+  h+='<div style="margin-top:7px"><span class="badge '+(/no|nil|none/i.test(alg||'no')?'chk':'crit')+'">'+
+    esc(alg&&!/^no|^nil|^none/i.test(alg)?'Allergy · '+alg:'No known drug allergy')+'</span></div>';
+  h+='<div style="margin-top:10px;padding-top:9px;border-top:1px solid var(--rule)">'+
+    (p.reason?'<div class="dxrow"><span class="dxk">Diagnosis</span><span class="dxv big">'+esc(p.reason)+'</span></div>':'')+
+    (p.admission_event?'<div class="dxrow"><span class="dxk">Why here</span><span class="dxv">'+esc(p.admission_event)+'</span></div>':'')+
+    (p.other?'<div class="dxrow"><span class="dxk">Also</span><span class="dxv">'+esc(p.other)+'</span></div>':'')+
+    (p.admitted?'<div class="dxrow"><span class="dxk">Admitted</span><span class="dxv">'+esc(p.admitted)+'</span></div>':'')+
     '</div>';
+  const day=L?icuDayFor(p,L.date_iso):null;
+  h+='<div class="vitals">'+
+    '<div class="vt"><span>ICU day</span><b>'+(day||'—')+'</b></div>'+
+    '<div class="vt'+(wt?'':' miss')+'"><span>Weight</span><b>'+(wt?esc(wt.v)+' kg':'not recorded')+'</b></div>'+
+    '<div class="vt'+(p.height?'':' miss')+'"><span>Height</span><b>'+(p.height?esc(p.height)+' cm':'not recorded')+'</b></div></div>';
+  if(p.updated_by)h+='<div class="plast" style="margin-top:9px">'+av(p.updated_by)+'Last update <b>'+esc(p.updated_by)+'</b> · '+esc(relTime(p.updated_at))+'</div>';
+  if(p.status==='closed')h+='<div class="hero-m">Closed '+esc(fmtIso(p.closed_on))+(p.outcome?' · '+esc(p.outcome):'')+'</div>';
+  h+='</div>';
 
-  /* where things stand now */
-  const rows=[];
-  ALLKEYS.forEach(k=>{const cur=lastKnown(p,k[0]+'.'+k[1]);if(!cur)return;
-    const before=entries(p).filter(e=>String(e.date_iso)<String(cur.date));let pv=null;
-    for(let i=before.length-1;i>=0;i--){const v=getPath(before[i],k[0]+'.'+k[1]);if(has(v)){pv=v;break;}}
-    rows.push('<tr><td>'+esc(k[2])+'</td><td class="v">'+esc(cur.v)+' '+(pv!=null?arrow(cur.v,pv):'')+'</td><td class="d">'+esc(shortIso(cur.date))+'</td></tr>');});
-  const w=lastKnown(p,'weight');
-  if(w)rows.unshift('<tr><td>Weight (kg)</td><td class="v">'+esc(w.v)+'</td><td class="d">'+esc(shortIso(w.date))+'</td></tr>');
-  h+='<div class="card"><div class="card-h"><span class="card-t">Now — latest findings</span></div><div class="card-b">'+
-    (rows.length?'<table class="now">'+rows.join('')+'</table>':'<div class="hint">No results recorded yet.</div>')+'</div></div>';
+  /* FLAGS — always open */
+  if(FL.length){
+    h+='<div class="card alarm"><div class="card-h"><span class="card-t">Flags — '+FL.length+'</span><span class="lockw">always shown</span></div><div class="card-b">';
+    FL.slice(0,8).forEach(f=>{h+='<div class="flag'+(f.crit?' crit':'')+'"><span class="fdot"></span>'+
+      '<span class="fname">'+esc(f.name)+'</span><span class="fval">'+esc(f.v)+
+      (f.badge?' <span class="hl'+(f.badge.length>1?' '+f.badge.toLowerCase():'')+'">'+f.badge+'</span>':'')+
+      (f.crit&&f.badge?' <span class="ftag">critical</span>':'')+'</span>'+
+      '<span class="fwhy">'+esc(f.why)+'</span></div>';});
+    h+='</div></div>';}
 
+  /* MEDICINE CHECKS */
+  if(RL.length){
+    const mE=lastMedsEntry(p), n=mE?(mE.meds||[]).filter(m=>m.state!=='stopped').length:0;
+    h+='<details class="card" open><summary><span class="card-t">Medicine checks — '+RL.length+'</span><span class="hint" style="margin:0">'+n+' screened</span></summary><div class="card-b">';
+    RL.forEach(r=>{h+='<div class="ckrow"><div class="ckrow-t"><span class="kk '+r.sev+'">'+
+      (r.sev==='red'?'act today':r.sev==='amber'?'check':'monitor')+'</span>'+esc(r.t)+'</div>'+
+      '<div class="wd"><span class="wd-k">Why</span><span class="wd-v">'+esc(r.w)+'</span></div>'+
+      '<div class="wd do"><span class="wd-k">Do</span><span class="wd-v">'+esc(r.d)+'</span></div></div>';});
+    h+='<div class="disc"><b>'+n+' medicines screened against the built-in list.</b> This is a safety net for the interactions that recur in this unit — <b>it is not a complete interaction screen.</b></div>';
+    h+='<button class="big-btn" style="margin-top:9px" onclick="shareEntry(\''+jsq(mE?mE.entry_id:'')+'\')">Send this chart to ORION →</button>';
+    h+='</div></details>';}
+
+  /* LATEST + OLDER */
+  const latest=L?L.date_iso:null;
+  const nowRows=[],oldRows=[];
+  let lastGrp='';
+  LABCHART.forEach(row=>{
+    const path=row[1], cur=lastKnown(p,path); if(!cur)return;
+    let pv=null;
+    for(let i=E.length-1;i>=0;i--){ if(String(E[i].date_iso)>=String(cur.date))continue;
+      const x=getPath(E[i],path); if(has(x)){pv=x;break;} }
+    const bg=badgeOf(path,cur.v,cur.src,p.sex);
+    const val=esc(cur.v)+(bg?'<span class="hl'+(bg.b.length>1?' '+bg.b.toLowerCase():'')+'">'+bg.b+'</span>':'');
+    if(latest&&String(cur.date)===String(latest)){
+      const d=deltaTxt(cur.v,pv);
+      nowRows.push([row[0],'<tr><td>'+esc(row[2])+'</td><td class="v">'+val+'</td><td class="dlt'+(d==='new'?' new':'')+'">'+esc(d)+'</td></tr>']);
+    }else{
+      const ag=Math.round(hoursBetween(new Date().toISOString(),cur.date)/24);
+      oldRows.push('<tr><td>'+esc(row[2])+'</td><td class="v">'+val+'</td><td class="age">'+(ag<1?'today':ag+' day'+(ag===1?'':'s'))+'</td></tr>');}
+  });
+  if(wt)nowRows.unshift(['','<tr><td>Weight (kg)</td><td class="v">'+esc(wt.v)+'</td><td class="dlt"></td></tr>']);
+  if(nowRows.length){
+    h+='<details class="card" open><summary><span class="card-t">Latest — '+esc(shortIso(latest))+'</span>'+
+      '<span class="hint" style="margin:0">'+esc(L&&L.pharmacist||'')+'</span></summary><div class="card-b">';
+    nowRows.forEach(r=>{ if(r[0]&&r[0]!==lastGrp){ if(lastGrp)h+='</table>'; h+='<div class="grp">'+esc(r[0])+'</div><table class="now">'; lastGrp=r[0]; }
+      else if(!lastGrp){h+='<table class="now">';lastGrp='-';}
+      h+=r[1]; });
+    h+='</table></div></details>';}
+  if(oldRows.length){
+    h+='<details class="card"><summary><span class="card-t">Older values — '+oldRows.length+'</span><span class="hint" style="margin:0">not from the latest entry</span></summary>'+
+      '<div class="card-b"><table class="now">'+oldRows.join('')+'</table></div></details>';}
+
+  /* NEVER MEASURED */
+  if(NV.length){
+    h+='<div class="card alarm"><div class="card-h"><span class="card-t">Never measured — '+NV.length+'</span><span class="lockw">always shown</span></div>'+
+      '<div class="card-b"><div class="never">'+NV.map(n=>'<span class="nchip">'+esc(n)+'</span>').join('')+'</div></div></div>';}
+
+  /* MEDICINES */
   const mE=lastMedsEntry(p);
-  h+='<div class="card"><div class="card-h"><span class="card-t">Medicines on the chart</span>'+
-    (mE?'<span class="hint" style="margin:0">'+esc(shortIso(mE.date_iso))+' · '+esc(mE.pharmacist)+'</span>':'')+'</div><div class="card-b">';
+  h+='<details class="card" open><summary><span class="card-t">Medicines'+(mE?' — '+(mE.meds||[]).filter(m=>m.state!=='stopped').length:'')+'</span>'+
+    (mE?'<span class="hint" style="margin:0">'+esc(shortIso(mE.date_iso))+' · '+esc(mE.pharmacist)+'</span>':'')+'</summary><div class="card-b">';
   if(mE){const on=mE.meds.filter(m=>m.state!=='stopped'),off=mE.meds.filter(m=>m.state==='stopped');
     h+='<ul class="mlist">'+on.map(m=>'<li><span class="mn">'+esc(m.name)+'</span>'+
       (m.state?'<span class="tag '+m.state+'">'+m.state+'</span>':'')+
       '<span class="md">'+esc([m.dose,m.route,m.freq].filter(Boolean).join(' · '))+'</span></li>').join('')+
       off.map(m=>'<li style="opacity:.6"><span class="mn"><s>'+esc(m.name)+'</s></span><span class="tag stopped">stopped</span></li>').join('')+'</ul>';}
   else h+='<div class="hint">No medicine list recorded yet.</div>';
-  h+='</div></div>';
+  h+='</div></details>';
 
-  /* admission profile */
-  h+='<div class="card"><div class="card-h"><span class="card-t">Admission profile</span>'+
-    '<button class="linkbtn" style="font-size:13px" onclick="editProfile()">Edit</button></div><div class="card-b"><dl class="kv">'+
-    kv('Admitted',p.admitted)+kv('What brought them in',p.admission_event)+kv('Operations',p.operations)+
-    kv('Main problem',p.reason)+kv('Other problems',p.other)+
+  /* ADMISSION DETAIL */
+  h+='<details class="card"><summary><span class="card-t">Admission detail</span>'+
+    '<span class="hint" style="margin:0">operations, allergies</span></summary><div class="card-b"><dl class="kv">'+
+    kv('Operations',p.operations)+kv('Other problems',p.other)+
     kv('Height',p.height?p.height+' cm':'')+kv('Ideal weight',iv?iv.toFixed(1)+' kg':'')+
     kv('Drug allergy',[p.allergy_drug,p.allergy_drug_what].filter(Boolean).join(' — '))+
     kv('Food allergy',[p.allergy_food,p.allergy_food_what].filter(Boolean).join(' — '))+
     kv('Opened by',p.created_by?p.created_by+' · '+relTime(p.created_at):'')+
-    '</dl></div></div>';
+    '</dl><p class="hint" style="margin-top:8px"><button class="linkbtn" onclick="editProfile()">Edit profile</button></p></div></details>';
 
-  /* timeline */
-  h+='<div class="card"><div class="card-h"><span class="card-t">Updates — '+E.length+'</span></div><div class="card-b"><div class="tl">';
+  /* TIMELINE */
+  h+='<details class="card" open><summary><span class="card-t">Updates — '+E.length+'</span><span class="hint" style="margin:0">newest first</span></summary><div class="card-b"><div class="tl">';
   for(let i=E.length-1;i>=0;i--)h+=tlItem(p,E,i);
   h+='<div class="tli base"><div class="tl-h">Admitted to intensive care</div><div class="tl-m">'+esc(p.admitted||'date not recorded')+
     (p.created_by?' · file opened by '+esc(p.created_by):'')+'</div><div class="tl-b">'+esc(p.admission_event||p.reason||'')+'</div></div>';
-  h+='</div></div></div>';
+  h+='</div></div></details>';
+
   if(p.status==='closed')h+='<p class="hint" style="text-align:center;margin-top:14px"><button class="linkbtn" onclick="reopenP()">Reopen this case</button></p>';
   else h+='<p class="hint" style="text-align:center;margin-top:14px"><button class="linkbtn danger" onclick="closeP()">Close this case</button></p>';
   return h;}
@@ -665,7 +1140,9 @@ function editProfile(){const p=CP();const d={};PROFILE_KEYS.forEach(k=>d[k]=p[k]
 function profileSections(isNew){
   const d=PD();let h='';
   h+=sec('·',isNew?'Patient':'Edit admission profile — '+esc(d.case_id),
-    (isNew?txt('Case no.','case_id','Leave blank for the next number','p'):'')+
+    (isNew?'<div class="f"><label>Case number</label>'+
+      '<div class="prev" style="padding:9px 11px"><div class="prev-l">Assigned automatically</div>'+
+      '<div class="prev-v">'+esc(nextCaseNo())+'</div></div></div>':'')+
     '<div class="row">'+txt('Initials','initials','A. B.','p')+txt('Age','age','','p',false,'tel')+'</div>'+
     chips('Sex','sex',['Male','Female'],'p')+
     '<div class="row">'+txt('Admitted to ICU on','admitted','24 Sep 2026','p')+txt('Height (cm)','height','','p',false,'tel')+'</div>'+
