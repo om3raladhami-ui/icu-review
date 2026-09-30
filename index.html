@@ -327,6 +327,15 @@ td.age{text-align:right;color:var(--red);font-size:11.5px;width:62px;font-weight
 .kk.red{background:var(--red);color:#fff}
 .kk.amber{background:#fff3d9;color:#9C6500}
 .kk.mon{background:var(--lbl);color:var(--navy)}
+.kk.ok{background:#e6f2ea;color:var(--green)}
+.ckhd{font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;font-weight:800;color:var(--ink-dim);
+  margin:9px 0 1px;padding-top:9px;border-top:1px solid var(--rule)}
+.card-b>.ckhd:first-child{margin-top:0;padding-top:0;border-top:0}
+.ckrow.orion{border-left:3px solid var(--navy);padding-left:9px}
+.oty{font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--ink-dim);
+  background:var(--lbl);border-radius:4px;padding:2px 6px;flex:none}
+.ckt{flex:1 1 100%;margin-top:2px}
+.csrc{margin-top:5px;font-size:11.5px;color:var(--ink-dim);font-style:italic}
 .wd{display:flex;gap:9px;margin-top:5px;font-size:12.8px;line-height:1.45}
 .wd-k{flex:none;width:26px;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:800;color:var(--ink-dim);padding-top:3px}
 .wd.do .wd-k,.wd.do .wd-v{color:var(--navy)}
@@ -367,6 +376,21 @@ details.card:not([open])>summary{border-bottom:0}
 .vt b{display:block;font-size:15px}
 .vt span{font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim)}
 .vt.miss{background:var(--red-soft)}.vt.miss b{color:var(--red);font-size:12px;padding:2px 0}
+
+
+/* ── list card layout fix : the old .pcard was a horizontal row ── */
+.pcard{display:block;padding:12px 13px;align-items:initial}
+.ptop{display:flex;align-items:baseline;gap:8px;flex-wrap:nowrap}
+.pid{font-family:inherit;font-size:16px;font-weight:700;color:var(--navy);background:none;
+  border-radius:0;padding:0;flex:none;letter-spacing:.01em}
+.pn{font-weight:600;font-size:15px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pday{margin-left:auto;background:var(--lbl);border-radius:7px;padding:2px 9px;font-size:12px;
+  font-weight:700;color:var(--navy);white-space:nowrap;font-family:inherit;text-align:center;flex:none}
+.pfoot{display:flex;align-items:center;gap:6px;margin-top:9px;font-size:12px;color:var(--ink-dim);
+  border-top:1px solid var(--rule);padding-top:8px}
+.fresh{margin-left:auto;white-space:nowrap}
+.pcard.closed .pid{background:none;color:var(--ink-dim)}
+.lhead{display:block}
 
 </style>
 </head>
@@ -828,6 +852,14 @@ function nextCaseNo(){
   return 'ICU-'+String(max+1).padStart(3,'0');
 }
 
+/* the most recent ORION screen saved against this patient */
+function orionChecksFor(p){
+  const E=entries(p);
+  for(let i=E.length-1;i>=0;i--){const c=E[i].orionChecks;
+    if(c&&c.length)return {list:c,date:E[i].date_iso,by:E[i].pharmacist};}
+  return {list:[],date:'',by:''};
+}
+
 /* ── sign in ── */
 function signInView(pref){
   return '<div class="gate">'+
@@ -927,10 +959,11 @@ function profileView(){
   const p=CP();if(!p)return '<div class="empty">This patient is no longer in the list.</div>';
   const E=entries(p),L=E[E.length-1];const iv=ibwOf(p);
   const wt=lastKnown(p,'weight');
-  let FL=[],RL=[],NV=[];
+  let FL=[],RL=[],NV=[],OC={list:[],date:'',by:''};
   try{FL=flagsFor(p);}catch(e){}
   try{RL=runRules(p);}catch(e){}
   try{NV=neverFor(p);}catch(e){}
+  try{OC=orionChecksFor(p);}catch(e){}
 
   let h='<button class="back" onclick="go(\'list\')">‹ All patients</button>';
 
@@ -967,15 +1000,35 @@ function profileView(){
       '<span class="fwhy">'+esc(f.why)+'</span></div>';});
     h+='</div></div>';}
 
-  /* MEDICINE CHECKS */
-  if(RL.length){
+  /* MEDICINE CHECKS — ORION's screen first, then the built-in floor */
+  if(RL.length||OC.list.length){
     const mE=lastMedsEntry(p), n=mE?(mE.meds||[]).filter(m=>m.state!=='stopped').length:0;
-    h+='<details class="card" open><summary><span class="card-t">Medicine checks — '+RL.length+'</span><span class="hint" style="margin:0">'+n+' screened</span></summary><div class="card-b">';
-    RL.forEach(r=>{h+='<div class="ckrow"><div class="ckrow-t"><span class="kk '+r.sev+'">'+
-      (r.sev==='red'?'act today':r.sev==='amber'?'check':'monitor')+'</span>'+esc(r.t)+'</div>'+
-      '<div class="wd"><span class="wd-k">Why</span><span class="wd-v">'+esc(r.w)+'</span></div>'+
-      '<div class="wd do"><span class="wd-k">Do</span><span class="wd-v">'+esc(r.d)+'</span></div></div>';});
-    h+='<div class="disc"><b>'+n+' medicines screened against the built-in list.</b> This is a safety net for the interactions that recur in this unit — <b>it is not a complete interaction screen.</b></div>';
+    const kkTxt=s=>s==='red'?'act today':s==='amber'?'check':s==='ok'?'cleared':'monitor';
+    const tyTxt=t=>t==='dose'?'dose':t==='mon'?'monitoring':t==='stop'?'stop':t==='ok'?'cleared':'interaction';
+    h+='<details class="card" open><summary><span class="card-t">Medicine checks — '+(OC.list.length+RL.length)+
+      '</span><span class="hint" style="margin:0">'+n+' on the chart</span></summary><div class="card-b">';
+
+    if(OC.list.length){
+      h+='<div class="ckhd">ORION screen'+(OC.date?' · '+esc(fmtIso(OC.date)):'')+(OC.by?' · '+esc(OC.by):'')+'</div>';
+      OC.list.forEach(r=>{h+='<div class="ckrow orion"><div class="ckrow-t"><span class="kk '+(r.sev||'amber')+'">'+
+        kkTxt(r.sev)+'</span>'+((r.type==='ok'||(r.type==='mon'&&r.sev==='mon'))?'':'<span class="oty">'+tyTxt(r.type)+'</span>')+
+        '<span class="ckt">'+esc(r.t||'')+'</span></div>'+
+        (r.w?'<div class="wd"><span class="wd-k">Why</span><span class="wd-v">'+esc(r.w)+'</span></div>':'')+
+        (r.d?'<div class="wd do"><span class="wd-k">Do</span><span class="wd-v">'+esc(r.d)+'</span></div>':'')+
+        '<div class="csrc">'+(r.src?esc(r.src):'source not recorded')+'</div></div>';});}
+
+    if(RL.length){
+      if(OC.list.length)h+='<div class="ckhd">Built-in list — always on</div>';
+      RL.forEach(r=>{h+='<div class="ckrow"><div class="ckrow-t"><span class="kk '+r.sev+'">'+
+        kkTxt(r.sev)+'</span>'+esc(r.t)+'</div>'+
+        '<div class="wd"><span class="wd-k">Why</span><span class="wd-v">'+esc(r.w)+'</span></div>'+
+        '<div class="wd do"><span class="wd-k">Do</span><span class="wd-v">'+esc(r.d)+'</span></div></div>';});}
+
+    h+='<div class="disc">'+(OC.list.length
+      ?'<b>ORION screened this chart on '+esc(fmtIso(OC.date))+'.</b> The chart may have changed since — '
+       +'send it again after any medicine change. The built-in list runs on every open and catches only what recurs in this unit.'
+      :'<b>'+n+' medicines screened against the built-in list only.</b> This is a safety net for the interactions that recur in this unit — '
+       +'<b>it is not a complete interaction screen.</b> Send the chart to ORION for a full one.')+'</div>';
     h+='<button class="big-btn" style="margin-top:9px" onclick="shareEntry(\''+jsq(mE?mE.entry_id:'')+'\')">Send this chart to ORION →</button>';
     h+='</div></details>';}
 
@@ -1377,11 +1430,12 @@ function applyPaste(){
   if(has(r.entry.date_iso))d.date=fmtIso(d.date_iso);
   r.labs.forEach(x=>{const q=x[0].split('.');d[q[0]]=d[q[0]]||{};d[q[0]][q[1]]=x[1];});
   if(r.meds.length)d.meds=r.meds;
+  if(r.checks.length){d.orionChecks=r.checks;d.orionAt=new Date().toISOString();}
   const notes=[r.notes,r.unmatched.length?'Also reported: '+r.unmatched.join('; '):''].filter(Boolean).join('\n');
   if(notes)d.unclear=[d.unclear,notes].filter(Boolean).join('\n');
   d._check=r.check;save();
   go(S.pasteFor==='update'?'form':'profedit');
-  toast('Filled: '+r.labs.length+' lab'+(r.labs.length===1?'':'s')+', '+r.meds.length+' medicine'+(r.meds.length===1?'':'s'));}
+  toast('Filled: '+r.labs.length+' lab'+(r.labs.length===1?'':'s')+', '+r.meds.length+' medicine'+(r.meds.length===1?'':'s')+(r.checks.length?', '+r.checks.length+' ORION check'+(r.checks.length===1?'':'s'):''));}
 
 function parseDateIso(s){
   s=String(s||'').trim();let m=s.match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
@@ -1413,13 +1467,41 @@ function parseMedLine(line){
   m.freq=m.freq.replace(/^x\s*(\d)/i,'×$1');
   if(flags.length)m.flag=flags.filter(Boolean).join('; ');
   return m.name?m:null;}
+
+/* one ORION check:  - type | severity | title | why | what to do | source
+   The leading type and severity are recognised by name, never by counting
+   fields \u2014 a missing one shifts nothing.  */
+function parseCheckLine(raw){
+  let t=String(raw||'').replace(/^\s*[-\u2022]\s*/,'').replace(/\s+/g,' ').trim();
+  if(!t||t.indexOf('|')<0)return null;
+  let b=t.split('|').map(x=>x.trim());
+  const TY=/^(ddi|interaction|interact|dose|dosing|mon|monitor|monitoring|level|stop|ok|clear|cleared)$/i;
+  const SV=/^(red|amber|yellow|mon|monitor|ok|green|clear|critical|crit|act|act today|check)$/i;
+  const tyOf=x=>{x=x.toLowerCase();
+    if(/ddi|interact/.test(x))return 'ddi'; if(/dose|dosing/.test(x))return 'dose';
+    if(/mon|level/.test(x))return 'mon'; if(/stop/.test(x))return 'stop';
+    return 'ok';};
+  const svOf=x=>{x=x.toLowerCase();
+    if(/red|crit|act/.test(x))return 'red'; if(/amber|yellow|check/.test(x))return 'amber';
+    if(/^(ok|green|clear)/.test(x))return 'ok'; return 'mon';};
+  let type='ddi',sev='';
+  if(b.length>2&&TY.test(b[0])){type=tyOf(b[0]);b=b.slice(1);}
+  if(b.length>1&&SV.test(b[0])){sev=svOf(b[0]);b=b.slice(1);}
+  if(!sev)sev=type==='ok'?'ok':type==='mon'?'mon':'amber';
+  if(!b[0])return null;
+  return {type:type,sev:sev,t:b[0],w:b[1]||'',d:b[2]||'',src:b[3]||''};}
+
 function parseBlock(text){
-  const out={ok:false,profile:{},entry:{},labs:[],meds:[],check:[],unmatched:[],notes:''};
+  const out={ok:false,profile:{},entry:{},labs:[],meds:[],check:[],checks:[],unmatched:[],notes:''};
   const lines=String(text||'').replace(/\r/g,'').split('\n');
   if(!lines.some(l=>/#CCPR/i.test(l)))return {ok:false,msg:'This does not look like an ORION block — it should start with #CCPR.'};
   const KEYS=['patient','height','admitted','event','ops','operations','reason','problem','other','allergy','allergies',
-    'date','icu_day','day','weight','labs','meds','notes','check'];
-  const text_={};let key=null;
+    'date','icu_day','day','weight','labs','meds','notes','check','checks'];
+  const text_={};let key=null;const ckbuf=[];
+  /* a check may wrap over several lines — only a leading dash starts a new one */
+  const addCheck=(s,fresh)=>{const t=String(s||'').trim();if(!t)return;
+    if(fresh||!ckbuf.length||/^\s*[-•]/.test(s))ckbuf.push(t.replace(/^[-•]\s*/,''));
+    else ckbuf[ckbuf.length-1]+=' '+t;};
   const addLabs=s=>s.split(/[;·|\n]+/).forEach(tok=>{tok=tok.trim();if(!tok)return;
     const m=tok.match(/^(.*?)[\s:=]+([<>]?\d+(?:\.\d+)?)\s*(.*)$/);
     if(!m){out.unmatched.push(tok);return;}
@@ -1435,12 +1517,15 @@ function parseBlock(text){
         const dm=v.match(/^(\d{4}-\d{2}-\d{2}|\d{1,2}\s*[A-Za-z]{3}(\s*\d{4})?)/);
         if(dm&&!has(out.entry.date_iso))out.entry.date_iso=parseDateIso(dm[1]);if(rest)addLabs(rest);}
       else if(k==='meds'){if(v&&v.indexOf('|')>=0){const md=parseMedLine(v);if(md)out.meds.push(md);}}
+      else if(k==='checks'){if(v)addCheck(v,true);}
       else text_[k]=v;
       return;}
     if(key==='labs')addLabs(raw);
     else if(key==='meds'){const md=parseMedLine(raw);if(md)out.meds.push(md);}
+    else if(key==='checks')addCheck(raw,false);
     else if(key)text_[key]=(text_[key]?text_[key]+' ':'')+raw.trim();
   });
+  ckbuf.forEach(t=>{const ck=parseCheckLine(t);if(ck)out.checks.push(ck);});
   const P_=out.profile;
   if(text_.patient){const b=text_.patient.split('|').map(x=>x.trim());
     P_.initials=b[0]||'';const age=(b[1]||'').match(/\d+/);P_.age=age?age[0]:'';
